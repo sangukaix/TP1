@@ -1,0 +1,59 @@
+﻿A1_Score,A2_Score,A3_Score,A4_Score,A5_Score,A6_Score,A7_Score,A8_Score,A9_Score,A10_Score,age,gender,ethnicity,jaundice,family_asd,country_of_res,used_app_before,result,age_desc,relation,Class/ASD,target,actual_label,predicted_label,model_score_yes,correct
+1,0,1,1,1,1,0,1,1,1,11,m,Unknown,no,no,Egypt,no,8,4-11 years,Unknown,YES,1,YES,YES,0.9611449272548936,True
+1,1,1,0,1,1,1,1,1,1,9,m,Asian,yes,no,Pakistan,no,9,4-11 years,Parent,YES,1,YES,YES,0.9846955173352566,True
+1,1,1,1,1,1,1,0,1,1,7,f,Asian,no,no,Philippines,no,9,4-11 years,Parent,YES,1,YES,YES,0.9892695402603844,True
+1,0,1,1,1,1,1,1,1,1,4,m,White-European,no,yes,Canada,no,9,4-11 years,Parent,YES,1,YES,YES,0.992157886382605,True
+1,0,0,1,1,1,1,1,1,1,11,m,Hispanic,no,no,United States,yes,8,4-11 years,self,YES,1,YES,YES,0.9614863472560966,True
+1,1,0,1,1,1,1,0,0,0,7,f,White-European,no,no,United Kingdom,no,6,4-11 years,Parent,NO,0,NO,NO,0.2907140512767398,True
+1,1,1,1,1,1,1,1,1,0,6,m,Asian,no,yes,India,no,9,4-11 years,Parent,YES,1,YES,YES,0.9833993140676338,True
+1,0,0,0,1,0,1,0,0,1,9,m,White-European,yes,yes,Australia,no,4,4-11 years,Parent,NO,0,NO,NO,0.024370288337223045,True
+0,1,1,0,0,0,1,1,0,1,6,m,Unknown,no,yes,United Arab Emirates,no,5,4-11 years,Unknown,NO,0,NO,NO,0.05648808475360243,True
+1,0,1,1,1,1,1,1,1,1,11,f,White-European,no,no,Austria,no,9,4-11 years,Parent,YES,1,YES,YES,0.992157886382605,True
+1,0,1,0,1,1,0,0,0,0,8,m,White-European,no,no,United Kingdom,no,4,4-11 years,Parent,NO,0,NO,NO,0.011590166359565465,True
+0,1,1,0,0,1,0,0,1,1,11,f,Latino,yes,no,Philippines,no,5,4-11 years,Health care professional,NO,0,NO,NO,0.040987575623118264,True
+0,0,1,0,1,1,1,0,1,1,8,m,White-European,no,no,United Kingdom,no,6,4-11 years,Parent,NO,0,NO,NO,0.23535807087159266,True
+1,1,0,0,1,1,0,1,0,0,6,m,Middle Eastern ,no,no,Jordan,no,5,4-11 years,Parent,NO,0,NO,NO,0.05296525551949011,True
+0,1,1,0,1,0,1,0,0,0,4,f,Unknown,no,no,Pakistan,no,4,4-11 years,Unknown,NO,0,NO,NO,0.00680713200161193,True
+1,0,1,1,0,0,0,0,1,0,6,m,Asian,no,no,India,no,4,4-11 years,Health care professional,NO,0,NO,NO,0.01873725376445408,True
+1,0,1,1,1,1,0,1,1,1,5,f,Middle Eastern ,no,no,Canada,no,8,4-11 years,Parent,YES,1,YES,YES,0.9611449272548936,True
+1,1,1,1,1,1,1,1,1,1,6,f,Black,no,no,Nigeria,no,10,4-11 years,Parent,YES,1,YES,YES,0.9981201856599337,True
+1,0,1,1,0,0,0,1,0,1,8,m,Middle Eastern ,no,no,United States,no,5,4-11 years,Parent,NO,0,NO,NO,0.1660145987714989,True
+1,1,1,1,1,1,0,1,1,0,6,m,Asian,no,no,Nepal,no,8,4-11 years,Health care professional,YES,1,YES,YES,0.9205237045243995,True
+1,1,1,0,0,1,0,0,0,1,5,m,Middle Eastern ,yes,no,United Arab Emirates,no,5,4-11 years,Parent,NO,0,NO,NO,0.06945708445147172,True
+0,1,1,0,1,1,0,0,0,1,5,m,Asian,no,no,South Korea,no,5,4-11 years,Parent,NO,0,NO,NO,0.0485301200061154,True
+1,0,1,1,1,0,1,1,1,1,7,f,White-European,no,no,Australia,no,8,4-11 years,Parent,YES,1,YES,YES,0.967525462162992,True
+1,1,1,1,1,1,1,1,0,1,6,m,Others,yes,no,United Kingdom,no,9,4-11 years,Parent,YES,1,YES,YES,0.9907600633668546,True
+1,0,0,0,1,0,0,0,0,1,4,m,Asian,no,no,Bangladesh,no,3,4-11 years,Parent,NO,0,NO,NO,0.00486018995139569,True
+1,0,1,1,1,1,0,1,0,0,5,m,Latino,no,yes,Mexico,no,6,4-11 years,Parent,NO,0,NO,NO,0.35787339976967614,True
+1,1,1,1,1,0,1,1,1,1,8,m,White-European,no,yes,Australia,no,9,4-11 years,Parent,YES,1,YES,YES,0.9920658418878112,True
+1,1,0,1,0,1,1,0,1,0,11,f,White-European,yes,yes,United Kingdom,no,6,4-11 years,Relative,NO,0,NO,NO,0.25564462783567055,True
+1,0,1,1,1,1,0,1,0,1,6,m,South Asian,no,no,India,no,7,4-11 years,Parent,YES,1,YES,YES,0.8332062579022437,True
+1,1,1,1,1,1,0,0,0,1,4,m,South Asian,no,yes,Saudi Arabia,no,7,4-11 years,Parent,YES,1,YES,YES,0.7844905585650489,True
+0,0,1,0,1,0,0,0,0,1,7,m,Asian,no,no,Japan,no,3,4-11 years,Parent,NO,0,NO,NO,0.0028538207646676716,True
+0,1,1,1,1,1,0,1,1,1,5,m,Unknown,no,no,Russia,no,8,4-11 years,Unknown,YES,1,YES,YES,0.9231030134112754,True
+0,0,1,0,1,0,1,0,0,0,4,f,South Asian,no,no,India,no,3,4-11 years,Parent,NO,0,NO,NO,0.0016304282607581982,True
+1,1,0,0,0,0,0,0,0,0,7,m,Asian,no,no,New Zealand,no,2,4-11 years,Parent,NO,0,NO,NO,0.00038681261090415517,True
+1,1,1,1,1,1,1,0,1,1,11,f,White-European,no,no,United Kingdom,no,9,4-11 years,Parent,YES,1,YES,YES,0.9892695402603844,True
+0,1,1,0,0,1,1,1,0,0,4,m,Unknown,yes,no,Qatar,yes,5,4-11 years,Unknown,NO,0,NO,NO,0.027582056708682842,True
+0,1,0,0,1,0,0,1,0,0,4,f,Unknown,no,no,Syria,no,3,4-11 years,Unknown,NO,0,NO,NO,0.0015206018235183801,True
+1,0,1,1,1,1,1,1,0,1,5,m,Black,no,no,United States,no,8,4-11 years,Parent,YES,1,YES,YES,0.9623342461876921,True
+0,1,1,1,1,1,0,1,0,1,4,m,Asian,no,no,India,no,7,4-11 years,Parent,YES,1,YES,YES,0.7079628971677527,True
+0,1,1,1,1,1,0,0,0,1,4,m,White-European,no,no,Australia,no,6,4-11 years,Parent,NO,0,NO,NO,0.2962312506546865,True
+0,0,0,1,0,1,0,0,1,1,4,m,Asian,no,no,Bangladesh,no,4,4-11 years,Parent,NO,0,NO,NO,0.01631285950114701,True
+1,0,1,1,0,1,0,1,1,0,5,m,South Asian,no,no,India,no,6,4-11 years,Parent,NO,0,NO,NO,0.3183385175519116,True
+1,0,1,0,1,1,1,1,0,1,7,m,Middle Eastern ,yes,no,Jordan,no,7,4-11 years,Parent,YES,1,YES,YES,0.7558567202736118,True
+1,1,1,1,1,1,1,1,1,1,5,m,Others,yes,no,United States,no,10,4-11 years,Parent,YES,1,YES,YES,0.9981201856599337,True
+1,0,1,1,1,1,1,1,1,1,4,f,Hispanic,no,no,United States,no,9,4-11 years,Parent,YES,1,YES,YES,0.992157886382605,True
+0,1,0,0,0,1,1,1,0,0,11,m,Asian,no,no,Argentina,no,4,4-11 years,Parent,NO,0,NO,NO,0.0055658368484453585,True
+1,1,1,1,1,1,1,1,1,1,9,m,White-European,no,no,United Kingdom,no,10,4-11 years,Parent,YES,1,YES,YES,0.9981201856599337,True
+0,1,1,1,0,1,0,0,0,1,10,f,Asian,no,no,Australia,no,5,4-11 years,Parent,NO,0,NO,NO,0.06649097632253109,True
+1,1,1,0,0,1,0,1,0,1,5,m,Middle Eastern ,no,no,Jordan,no,6,4-11 years,Parent,NO,0,NO,NO,0.30064277949164847,True
+0,0,0,0,0,0,0,0,0,0,5,f,Hispanic,no,no,United States,no,0,4-11 years,Parent,NO,0,NO,NO,1.0661621723874305e-05,True
+1,1,1,0,1,1,0,0,0,0,4,m,South Asian,no,no,India,no,5,4-11 years,Parent,NO,0,NO,NO,0.04690395878235661,True
+0,1,0,0,0,0,1,0,0,1,6,m,Unknown,yes,no,Saudi Arabia,no,3,4-11 years,Unknown,NO,0,NO,NO,0.002047051208665569,True
+1,1,1,1,1,1,0,0,1,1,8,m,Black,no,no,Australia,no,8,4-11 years,Parent,YES,1,YES,YES,0.9474392479460152,True
+1,1,1,1,1,1,1,0,1,1,10,m,White-European,no,no,New Zealand,yes,9,4-11 years,Parent,YES,1,YES,YES,0.9892695402603844,True
+1,1,1,1,1,0,1,0,1,1,4,m,White-European,no,no,Australia,no,8,4-11 years,Parent,YES,1,YES,YES,0.955967334170022,True
+0,0,1,0,1,1,1,0,1,0,4,f,Unknown,no,yes,Pakistan,no,5,4-11 years,Unknown,NO,0,NO,NO,0.03320040887377048,True
+1,1,1,1,1,1,0,1,0,1,11,m,White-European,no,no,Sweden,no,8,4-11 years,Parent,YES,1,YES,YES,0.9544728377312953,True
+0,1,0,1,1,1,1,0,1,1,9,m,White-European,no,yes,United Kingdom,no,7,4-11 years,Parent,YES,1,YES,YES,0.6777901974092886,True
