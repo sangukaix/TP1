@@ -390,14 +390,13 @@ selected_model = meta.get("selected_model", "Logistic Regression")
 # 4. 공통 UI - 표/그래프 20% 확대 + 왼쪽 정렬
 # ============================================================
 PIPELINE = [
-    "문제 정의",
-    "데이터 확인",
-    "전처리",
-    "P-value",
-    "변수 선정",
-    "모델 비교",
-    "성능 평가",
-    "결과 해석",
+    "프로젝트 개요",
+    "데이터 전처리",
+    "연관성 확인",
+    "머신러닝 모델",
+    "모델 성능 평가",
+    "가중치 산출",
+    "결론 및 활용",
 ]
 
 
@@ -573,21 +572,6 @@ if menu.startswith("1."):
             f'age 결측값 중앙값 {age_median:.0f}로 대체 · ethnicity/relation 결측값 Unknown 처리</div>',
             unsafe_allow_html=True,
         )
-        if "Class/ASD" in analysis.columns:
-            gm = analysis.groupby("Class/ASD")[BEHAVIOR].mean().reindex(["NO", "YES"])
-            fig, ax = plt.subplots(figsize=(3.25, 1.35))
-            x = np.arange(1, 11)
-            ax.plot(x, gm.loc["NO"].values, marker="o", markersize=2.8, linewidth=1.2, label="NO 평균")
-            ax.plot(x, gm.loc["YES"].values, marker="o", markersize=2.8, linewidth=1.2, label="YES 평균")
-            ax.set_ylim(0, 1.03)
-            ax.set_xticks(x)
-            ax.set_xticklabels([f"A{i}" for i in x], fontsize=6)
-            ax.tick_params(axis="y", labelsize=6)
-            ax.grid(alpha=.18)
-            ax.legend(fontsize=6, ncol=2, loc="lower center")
-            fig.tight_layout(pad=.5)
-            st.pyplot(fig, width="stretch")
-            plt.close(fig)
         st.markdown(
             f'<div class="overview-result">결과 · 분석 가능한 {len(analysis)}명의 데이터 구성</div>',
             unsafe_allow_html=True,
@@ -752,10 +736,28 @@ if menu.startswith("1."):
 # ============================================================
 elif menu.startswith("2."):
     page_title("2. 데이터 전처리", "결측값과 중복값을 정리하고 분석에 사용할 형태로 변환한다.")
-    pipeline([1, 2])
+    pipeline(1)
 
     duplicate_count = int(cleaned_before_fill.duplicated().sum())
     missing_count = int(cleaned_before_fill.isna().sum().sum())
+    st.subheader("전처리 내용")
+    preprocess_tbl = pd.DataFrame(
+        [
+            ["중복 데이터 처리", "중복 데이터", duplicate_count, "중복 행 제거"],
+            ["결측값 처리", "age", int(cleaned_before_fill["age"].isna().sum()), f"중앙값 {age_median:.0f}로 대체"],
+            ["결측값 처리", "ethnicity", int(cleaned_before_fill["ethnicity"].isna().sum()), "Unknown으로 대체"],
+            ["결측값 처리", "relation", int(cleaned_before_fill["relation"].isna().sum()), "Unknown으로 대체"],
+            ["변수 제거", "age_desc", 0, "상수 변수라 제외"],
+            ["데이터 누수 방지", "result", 0, "ML 입력에서 제외"],
+        ],
+        columns=["전처리 종류", "항목", "개수", "처리 방법"],
+    )
+    left_table(preprocess_tbl, .84)
+    mini_note(
+        "<b>사용하지 않은 전처리: 정규화·표준화(Scaling)</b><br>"
+        "최종 입력 변수 A1~A10이 모두 0 또는 1의 동일한 범위를 가지므로 별도의 정규화·표준화는 적용하지 않음."
+    )
+
     c1, c2, c3, c4 = st.columns(4, gap="small")
     with c1:
         metric_card("행(Row)", len(raw))
@@ -799,24 +801,20 @@ elif menu.startswith("2."):
         ax.tick_params(axis="y", labelsize=8)
         fig.tight_layout()
         left_plot(fig, .64)
-
-    st.subheader("전처리 내용")
-    preprocess_tbl = pd.DataFrame(
-        [
-            ["중복 데이터 처리", "중복 데이터", duplicate_count, "중복 행 제거"],
-            ["결측값 처리", "age", int(cleaned_before_fill["age"].isna().sum()), f"중앙값 {age_median:.0f}로 대체"],
-            ["결측값 처리", "ethnicity", int(cleaned_before_fill["ethnicity"].isna().sum()), "Unknown으로 대체"],
-            ["결측값 처리", "relation", int(cleaned_before_fill["relation"].isna().sum()), "Unknown으로 대체"],
-            ["변수 제거", "age_desc", 0, "상수 변수라 제외"],
-            ["데이터 누수 방지", "result", 0, "ML 입력에서 제외"],
-        ],
-        columns=["전처리 종류", "항목", "개수", "처리 방법"],
-    )
-    left_table(preprocess_tbl, .84)
-    mini_note(
-        "<b>사용하지 않은 전처리: 정규화·표준화(Scaling)</b><br>"
-        "최종 입력 변수 A1~A10이 모두 0 또는 1의 동일한 범위를 가지므로 별도의 정규화·표준화는 적용하지 않음."
-    )
+        overview_means = analysis.groupby("Class/ASD")[BEHAVIOR].mean().reindex(["NO", "YES"])
+        fig, ax = plt.subplots(figsize=(3.25, 1.35))
+        x = np.arange(1, 11)
+        ax.plot(x, overview_means.loc["NO"].values, marker="o", markersize=2.8, linewidth=1.2, label="NO 평균")
+        ax.plot(x, overview_means.loc["YES"].values, marker="o", markersize=2.8, linewidth=1.2, label="YES 평균")
+        ax.set_ylim(0, 1.03)
+        ax.set_xticks(x)
+        ax.set_xticklabels([f"A{i}" for i in x], fontsize=6)
+        ax.tick_params(axis="y", labelsize=6)
+        ax.grid(alpha=.18)
+        ax.legend(fontsize=6, ncol=2, loc="lower center")
+        fig.tight_layout(pad=.5)
+        st.pyplot(fig, width="stretch")
+        plt.close(fig)
 
 
 # ============================================================
@@ -824,7 +822,7 @@ elif menu.startswith("2."):
 # ============================================================
 elif menu.startswith("3."):
     page_title("3. 연관성 확인", "각 요인이 ASD 선별 결과와 통계적으로 관련이 있는지 확인한다.")
-    pipeline(3)
+    pipeline(2)
 
     c1, c2 = st.columns(2, gap="small")
     with c1:
@@ -911,7 +909,7 @@ elif menu.startswith("3."):
 # ============================================================
 elif menu.startswith("4."):
     page_title("4. 머신러닝 모델", "4개 분류 모델을 같은 조건에서 학습하고 Validation 성능을 비교한다.")
-    pipeline([4, 5])
+    pipeline(3)
 
     plain_list(
         [
@@ -973,7 +971,7 @@ elif menu.startswith("4."):
 # ============================================================
 elif menu.startswith("5."):
     page_title("5. 모델 성능 평가")
-    pipeline(6)
+    pipeline(4)
 
     st.subheader("학습·테스트 데이터 분할")
     st.markdown(
@@ -1075,7 +1073,7 @@ elif menu.startswith("5."):
 # ============================================================
 elif menu.startswith("6."):
     page_title("6. 가중치 산출")
-    pipeline([3, 4, 7])
+    pipeline(5)
 
     st.subheader("가중치 산출 방법")
     plain_list(
@@ -1132,7 +1130,7 @@ elif menu.startswith("6."):
 # ============================================================
 elif menu.startswith("7."):
     page_title("7. 결론 및 활용")
-    pipeline(7)
+    pipeline(6)
 
     checklist_meta = meta.get("weighted_checklist", {})
     observe_cutoff = int(checklist_meta.get("observe_cutoff", 50))
