@@ -108,7 +108,9 @@ st.markdown(
     div[data-testid="stColumn"]:has(.survey-panel-marker) {
         background:#fff3e4; border:1px solid #f0d2ad; border-left:5px solid #e3a15a;
         border-radius:12px; padding:.90rem 1.00rem 1.00rem 1.00rem;
-        min-height:430px;
+        min-height:0;
+        align-self:flex-start;
+        height:fit-content;
     }
     div[data-testid="stColumn"]:has(.survey-panel-marker) div[data-testid="stCheckbox"] {
         background:transparent !important; border:0 !important; border-radius:0 !important;
@@ -151,7 +153,7 @@ st.markdown(
 .split-box.root {background:#f4f8fc; border-color:#cdddea; width:34%;}
 .split-box.train {background:#f6f8fb;}
 .split-box.test {background:#eef7f2; border-color:#cfe4d5;}
-.split-branches {display:grid; grid-template-columns:1fr 1fr; gap:.70rem; margin-top:.18rem;}
+.split-branches {display:grid; grid-template-columns:1fr 1fr; gap:.50rem; width:70%; margin:.18rem auto 0;}
 .split-branch-arrows {display:flex; justify-content:center; gap:28%; color:#8ea0af; font-size:1.18rem; line-height:1; margin:.12rem 0 .12rem 0;}
 .survey-section-spacer {height:.65rem;}
 .student-result-callout {
@@ -181,20 +183,24 @@ st.markdown(
     .overview-card-marker {display:none;}
     div[data-testid="stColumn"]:has(.overview-card-marker) {
         background:#ffffff; border:1px solid #dce4ec; border-radius:12px;
-        padding:.72rem .80rem .74rem .80rem; min-height:258px;
+        padding:.28rem .80rem .92rem .80rem; min-height:258px;
         box-shadow:0 1px 3px rgba(30,48,67,.045);
     }
-    .overview-step {font-size:.66rem; font-weight:800; letter-spacing:.03em; color:#7890a1; margin-bottom:.08rem;}
-    .overview-title {font-size:.94rem; font-weight:850; color:#263d4d; margin-bottom:.42rem;}
-    .overview-kpi {font-size:1.20rem; font-weight:850; color:#243b4c; line-height:1.15; margin:.05rem 0 .18rem 0;}
-    .overview-text {font-size:.72rem; line-height:1.45; color:#536572; margin:.08rem 0;}
+    div[data-testid="stElementContainer"]:has(.overview-card-marker) {display:none;}
+    div[data-testid="stColumn"]:has(.overview-card-marker) div[data-testid="stMarkdown"]:has(.overview-card-marker) {display:none;}
+    .overview-step {display:inline-block; font-size:.74rem; font-weight:850; letter-spacing:.03em; color:#77511a; background:#fff1b8; border-radius:5px; padding:.12rem .34rem; margin:-.12rem 0 .16rem 0;}
+    .overview-title {font-size:1.10rem; font-weight:700; color:#263d4d; margin-bottom:.42rem;}
+    .overview-kpi {font-size:.98rem; font-weight:400; color:#243b4c; line-height:1.25; margin:.05rem 0 .18rem 0;}
+    .overview-text {font-size:.68rem; line-height:1.45; color:#536572; margin:.08rem 0;}
     .overview-result {font-size:.70rem; line-height:1.42; color:#315742; background:#f1f8f3; border-radius:7px; padding:.38rem .45rem; margin-top:.35rem;}
     .overview-model-row {display:flex; justify-content:space-between; gap:.4rem; padding:.24rem .36rem; margin:.10rem 0; border-radius:6px; font-size:.69rem; color:#52616d;}
     .overview-model-row.selected {background:#eaf6ed; border:1px solid #c9e2cf; color:#2f6040; font-weight:800;}
-    .overview-weight-row {display:grid; grid-template-columns:34px 1fr 34px; gap:.30rem; align-items:center; margin:.13rem 0; font-size:.68rem; color:#52616d;}
-    .overview-weight-track {height:6px; background:#edf1f4; border-radius:10px; overflow:hidden;}
+    .overview-weight-row {display:grid; grid-template-columns:46px 1fr 30px; gap:.20rem; align-items:center; margin:.10rem 0; font-size:.64rem; color:#52616d;}
+    .overview-weight-row b {white-space:nowrap;}
+    .overview-weight-track {height:5px; background:#edf1f4; border-radius:10px; overflow:hidden;}
     .overview-weight-fill {height:100%; background:#8ea9bb; border-radius:10px;}
-    .overview-flow {display:flex; align-items:center; justify-content:center; gap:.24rem; flex-wrap:wrap; margin:.62rem 0 .42rem 0;}
+    .overview-weight-summary {font-size:.62rem; color:#7a8893; text-align:center; margin:.18rem 0 .08rem 0;}
+    .overview-flow {display:flex; align-items:center; justify-content:center; column-gap:.48rem; row-gap:.42rem; flex-wrap:wrap; margin:.62rem 0 1.05rem 0;}
     .overview-flow-node {background:#f6f8fb; border:1px solid #dce4ec; border-radius:7px; padding:.34rem .42rem; font-size:.67rem; font-weight:700; color:#465966;}
     .overview-flow-arrow {color:#91a0ad; font-size:.74rem;}
     .selected-model-note {background:#eaf6ed; border:1px solid #c9e2cf; border-left:4px solid #6fa77d; border-radius:8px; padding:.55rem .72rem; color:#315742; font-size:.79rem; line-height:1.5; margin:.38rem 0 .62rem 0;}
@@ -210,8 +216,8 @@ st.markdown(
     .report-comment {background:#f5f8fb; border:1px solid #dce5ed; border-radius:9px; padding:.68rem .76rem; margin:.40rem 0 .62rem 0; color:#334d60; font-size:.88rem; line-height:1.58; font-weight:600;}
     .report-section-title {font-size:.79rem; font-weight:850; color:#405462; margin:.50rem 0 .24rem 0;}
     .action-list-wrap {background:#fbfcfd; border:1px solid #dde5ec; border-radius:9px; padding:.46rem .52rem; margin:.12rem 0 .55rem 0;}
-    .action-list-title {font-size:.78rem; font-weight:850; color:#405462; margin:.04rem .08rem .26rem .08rem;}
-    .action-row {padding:.34rem .38rem; border-top:1px solid #edf0f3; font-size:.68rem; line-height:1.42; color:#53626d; border-radius:6px;}
+    .action-list-title {font-size:1.00rem; font-weight:850; color:#405462; margin:.04rem .08rem .26rem .08rem;}
+    .action-row {padding:.36rem .40rem; border-top:1px solid #edf0f3; font-size:.78rem; line-height:1.45; color:#53626d; border-radius:6px;}
     .action-row:first-of-type {border-top:0;}
     .action-row.active {background:#eaf6ed; border:1px solid #c9e2cf; color:#315742; font-weight:750;}
     .radar-note {font-size:.66rem; line-height:1.4; color:#71808b; text-align:center; margin-top:-.20rem;}
@@ -572,6 +578,21 @@ if menu.startswith("1."):
             f'age 결측값 중앙값 {age_median:.0f}로 대체 · ethnicity/relation 결측값 Unknown 처리</div>',
             unsafe_allow_html=True,
         )
+        if "Class/ASD" in analysis.columns:
+            gm = analysis.groupby("Class/ASD")[BEHAVIOR].mean().reindex(["NO", "YES"])
+            fig, ax = plt.subplots(figsize=(3.25, 1.35))
+            x = np.arange(1, 11)
+            ax.plot(x, gm.loc["NO"].values, marker="o", markersize=2.8, linewidth=1.2, label="NO 평균")
+            ax.plot(x, gm.loc["YES"].values, marker="o", markersize=2.8, linewidth=1.2, label="YES 평균")
+            ax.set_ylim(0, 1.03)
+            ax.set_xticks(x)
+            ax.set_xticklabels([f"A{i}" for i in x], fontsize=6)
+            ax.tick_params(axis="y", labelsize=6)
+            ax.grid(alpha=.18)
+            ax.legend(fontsize=6, ncol=2, loc="lower center")
+            fig.tight_layout(pad=.5)
+            st.pyplot(fig, width="stretch")
+            plt.close(fig)
         st.markdown(
             f'<div class="overview-result">결과 · 분석 가능한 {len(analysis)}명의 데이터 구성</div>',
             unsafe_allow_html=True,
@@ -585,7 +606,7 @@ if menu.startswith("1."):
         )
         st.markdown(
             f'<div class="overview-kpi">행동 {behavior_related_count}개 · 배경 {background_related_count}개</div>'
-            '<div class="overview-text">행동·범주형 요인은 카이제곱 검정, 나이는 독립표본 t-검정으로 확인</div>',
+            '<div class="overview-text">행동·범주형 요인은 카이제곱 검정, 나이는 독립표본 t-검정으로 확인 · p-value 0.05 미만을 통계적으로 유의한 기준으로 적용</div>',
             unsafe_allow_html=True,
         )
         if not all_assoc.empty:
@@ -599,7 +620,7 @@ if menu.startswith("1."):
                 )
             st.markdown("".join(lines), unsafe_allow_html=True)
         st.markdown(
-            '<div class="overview-result">결과 · A1~A10은 모두 p&lt;0.05, 개인·배경 요인은 p&lt;0.05 없음</div>',
+            '<div class="overview-result">A1~A10은 모두 p&lt;0.05, 개인·배경 요인은 p&lt;0.05 없음</div>',
             unsafe_allow_html=True,
         )
 
@@ -700,6 +721,10 @@ if menu.startswith("1."):
                     f'<b>{int(r["points"])}점</b></div>',
                     unsafe_allow_html=True,
                 )
+            st.markdown(
+                '<div class="overview-weight-summary">⋮ &nbsp; A1~A10 전체 10문항 중 중요도 상위 6개 문항만 요약 표시</div>',
+                unsafe_allow_html=True,
+            )
         st.markdown(
             '<div class="overview-result">결과 · 로지스틱 회귀계수 크기를 이용해 A1~A10의 합계 100점 가중점수 구성</div>',
             unsafe_allow_html=True,
@@ -783,7 +808,7 @@ elif menu.startswith("2."):
         )
     st.dataframe(preview_style, width="stretch", hide_index=False, height=455)
 
-    st.subheader("행동 문항 분포 확인(EDA)")
+    st.subheader("행동 문항 분포 확인(EDA)그래프")
     eda_df = analysis.copy()
     if "Class/ASD" in eda_df.columns:
         group_means = eda_df.groupby("Class/ASD")[BEHAVIOR].mean().reindex(["NO", "YES"])
@@ -795,26 +820,30 @@ elif menu.startswith("2."):
         ax.set_xticks(x)
         ax.set_xticklabels([f"A{i}" for i in range(1, 11)], fontsize=8)
         ax.set_ylim(0, 1.05)
-        ax.set_ylabel("평균 점수(1점 비율)", fontsize=8)
+        ax.set_xlabel("행동 문항 (A1~A10)", fontsize=8)
+        ax.set_ylabel("평균 응답 비율 (1점)", fontsize=8)
         ax.set_title("ASD 선별 YES/NO별 행동 문항 평균", fontsize=10)
         ax.legend(fontsize=8, ncol=2)
         ax.tick_params(axis="y", labelsize=8)
         fig.tight_layout()
         left_plot(fig, .64)
+
         overview_means = analysis.groupby("Class/ASD")[BEHAVIOR].mean().reindex(["NO", "YES"])
-        fig, ax = plt.subplots(figsize=(3.25, 1.35))
+        fig, ax = plt.subplots(figsize=(7.0, 3.1))
         x = np.arange(1, 11)
-        ax.plot(x, overview_means.loc["NO"].values, marker="o", markersize=2.8, linewidth=1.2, label="NO 평균")
-        ax.plot(x, overview_means.loc["YES"].values, marker="o", markersize=2.8, linewidth=1.2, label="YES 평균")
+        ax.plot(x, overview_means.loc["NO"].values, marker="o", markersize=4, linewidth=1.5, label="NO 평균")
+        ax.plot(x, overview_means.loc["YES"].values, marker="o", markersize=4, linewidth=1.5, label="YES 평균")
         ax.set_ylim(0, 1.03)
         ax.set_xticks(x)
-        ax.set_xticklabels([f"A{i}" for i in x], fontsize=6)
-        ax.tick_params(axis="y", labelsize=6)
+        ax.set_xticklabels([f"A{i}" for i in x], fontsize=8)
+        ax.set_xlabel("행동 문항 (A1~A10)", fontsize=8)
+        ax.set_ylabel("평균 응답 비율 (1점)", fontsize=8)
+        ax.set_title("ASD 선별 YES/NO별 행동 문항 평균 추이", fontsize=10)
+        ax.tick_params(axis="y", labelsize=8)
         ax.grid(alpha=.18)
-        ax.legend(fontsize=6, ncol=2, loc="lower center")
-        fig.tight_layout(pad=.5)
-        st.pyplot(fig, width="stretch")
-        plt.close(fig)
+        ax.legend(fontsize=8, ncol=2)
+        fig.tight_layout()
+        left_plot(fig, .64)
 
 
 # ============================================================
@@ -986,29 +1015,22 @@ elif menu.startswith("5."):
         unsafe_allow_html=True,
     )
 
-    plain_list(
-        [
-            ("정확도(Accuracy)", "전체 중 맞힌 비율"),
-            ("정밀도(Precision)", "YES라고 분류한 것 중 실제 YES 비율"),
-            ("재현율(Recall)", "실제 YES 중 찾아낸 비율"),
-            ("F1 점수(F1-score)", "Precision과 Recall의 균형"),
-            ("ROC-AUC", "YES와 NO를 전반적으로 구분하는 능력"),
-        ]
-    )
+    st.markdown('<div style="height:.70rem"></div>', unsafe_allow_html=True)
+    st.subheader("성능평가 결과")
 
     if not final_row.empty:
         metric_table = pd.DataFrame(
             [
-                ["정확도(Accuracy)", final_row.get("accuracy")],
-                ["정밀도(Precision)", final_row.get("precision")],
-                ["재현율(Recall)", final_row.get("recall")],
-                ["F1 점수(F1-score)", final_row.get("f1")],
-                ["ROC-AUC", final_row.get("roc_auc")],
+                ["정확도(Accuracy)", final_row.get("accuracy"), "전체 중 맞힌 비율"],
+                ["정밀도(Precision)", final_row.get("precision"), "YES라고 분류한 것 중 실제 YES 비율"],
+                ["재현율(Recall)", final_row.get("recall"), "실제 YES 중 찾아낸 비율"],
+                ["F1 점수(F1-score)", final_row.get("f1"), "Precision과 Recall의 균형"],
+                ["ROC-AUC", final_row.get("roc_auc"), "YES와 NO를 전반적으로 구분하는 능력"],
             ],
-            columns=["평가 지표", "Final Test 결과"],
+            columns=["평가 지표", "Final Test 결과", "설명"],
         )
         metric_table["Final Test 결과"] = metric_table["Final Test 결과"].map(lambda x: fmt(x))
-        left_table(metric_table, .56)
+        left_table(metric_table, .82)
 
         tn = int(final_row.get("tn", 0))
         fp = int(final_row.get("fp", 0))
@@ -1238,29 +1260,34 @@ elif menu.startswith("7."):
             child_closed = np.r_[child_values, child_values[0]]
 
             fig, ax = plt.subplots(
-                figsize=(4.25, 3.55),
+                figsize=(2.30, 1.92),
                 subplot_kw={"polar": True},
             )
             ax.plot(
                 angles_closed,
                 no_closed,
-                linewidth=1.5,
+                linewidth=.70,
                 marker="o",
-                markersize=2.8,
+                markersize=1.5,
                 label="ASD 선별 NO 그룹 평균",
             )
             ax.fill(angles_closed, no_closed, alpha=.08)
             ax.plot(
                 angles_closed,
                 child_closed,
-                linewidth=1.8,
+                linewidth=.82,
                 marker="o",
-                markersize=3.0,
+                markersize=1.6,
                 label="현재 아동",
             )
             ax.fill(angles_closed, child_closed, alpha=.08)
             ax.set_xticks(angles)
-            ax.set_xticklabels([f"A{i}" for i in range(1, 11)], fontsize=7)
+            ax.set_xticklabels(
+                [f"A{i}" for i in range(1, 11)],
+                fontsize=5.5,
+                fontweight="normal",
+            )
+            ax.tick_params(axis="x", pad=-3)
             ax.set_ylim(0, 1.0)
             ax.set_yticks([.25, .50, .75, 1.0])
             ax.set_yticklabels(
@@ -1277,7 +1304,7 @@ elif menu.startswith("7."):
                 frameon=False,
             )
             fig.tight_layout(pad=.8)
-            st.pyplot(fig, width="stretch")
+            st.pyplot(fig, width="content")
             plt.close(fig)
             st.markdown(
                 '<div class="radar-note">ASD 선별 NO 그룹의 A1~A10 평균 응답과 '
