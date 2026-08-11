@@ -228,7 +228,14 @@ st.markdown(
 )
 
 available_fonts = {f.name for f in font_manager.fontManager.ttflist}
-for candidate in ["Malgun Gothic", "NanumSquare", "Noto Sans CJK KR", "AppleGothic", "DejaVu Sans"]:
+for candidate in [
+    "Malgun Gothic",
+    "NanumGothic",
+    "NanumSquare",
+    "Noto Sans CJK KR",
+    "AppleGothic",
+    "DejaVu Sans",
+]:
     if candidate in available_fonts:
         plt.rcParams["font.family"] = candidate
         break
