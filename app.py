@@ -1,13 +1,17 @@
 from pathlib import Path
 import json
 import pickle
+from io import BytesIO
 
 import matplotlib.pyplot as plt
 from matplotlib import font_manager
 from matplotlib.colors import LinearSegmentedColormap
+from matplotlib.backends.backend_pdf import PdfPages
+from matplotlib.patches import FancyBboxPatch
 import numpy as np
 import pandas as pd
 import streamlit as st
+import streamlit.components.v1 as components
 from scipy.stats import chi2_contingency
 from sklearn.model_selection import train_test_split
 
@@ -91,6 +95,15 @@ st.markdown(
         font-size:.92rem !important;
         padding:.08rem 0 !important;
     }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label {
+        min-height:28px; align-items:center !important; margin:0 !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label p {
+        margin:0 !important; line-height:1.25 !important;
+    }
+    section[data-testid="stSidebar"] div[data-testid="stRadio"] label:nth-of-type(8) {
+        border-top:1px solid #cfd7df; margin-top:1.44rem !important; padding-top:1.44rem !important;
+    }
     .metric-card {
         background:#ffffff; border:1px solid #d9e0e7; border-radius:9px;
         padding:.72rem .85rem; min-height:78px; box-shadow:0 1px 2px rgba(28,45,65,.04);
@@ -148,11 +161,12 @@ st.markdown(
     .combined-card-label {font-size:.84rem; font-weight:800; margin-bottom:.45rem;}
     .combined-card-score {font-size:1.75rem; font-weight:900; line-height:1.1;}
     .combined-card-band {font-size:.82rem; font-weight:800; margin-top:.35rem;}
-    .combined-result {background:#f5f8fb; border:1px solid #d5e2ee; border-top:5px solid #7f9db6; border-radius:12px; padding:1.1rem 1.2rem; text-align:center; margin:.8rem auto .2rem auto; max-width:720px; color:#2f485c;}
+    .combined-result, .result-line, .criteria-wrap, .references-box {width:100%; max-width:720px; box-sizing:border-box; margin-left:auto; margin-right:auto;}
+    .combined-result {background:#f5f8fb; border:1px solid #d5e2ee; border-top:5px solid #7f9db6; border-radius:12px; padding:1.1rem 1.2rem; text-align:center; margin-top:.8rem; margin-bottom:.2rem; color:#2f485c;}
     .combined-result-title {font-size:.82rem; font-weight:800; color:#647a8d; margin-bottom:.40rem;}
     .combined-result-value {font-size:1.35rem; font-weight:900; margin-bottom:.42rem;}
     .combined-result-text {font-size:.86rem; line-height:1.55;}
-    .criteria-wrap {margin:.90rem 0 .30rem;}
+    .criteria-wrap {margin-top:.90rem; margin-bottom:.30rem;}
     .criteria-heading {font-size:.98rem; font-weight:850; color:#2f485c; margin:0 0 .48rem;}
     .criteria-panel {background:#fff; border:1px solid #dce4ec; border-radius:10px; padding:.72rem .78rem; height:100%;}
     .criteria-panel-title {font-size:.80rem; font-weight:850; color:#3e627b; margin-bottom:.45rem;}
@@ -160,6 +174,10 @@ st.markdown(
     .criteria-row b {color:#2f485c;}
     .criteria-row.low, .criteria-row.mid, .criteria-row.high, .criteria-row.vhigh {background:#ffffff; border-color:#e1e7ec;}
     .criteria-row.current {background:#eef8f1; border-color:#a8d3b4;}
+    .environment-criteria .criteria-panel {background:#f8fbfe; border-color:#c9ddeb;}
+    .environment-criteria .criteria-panel-title {color:#365f79;}
+    .environment-criteria .criteria-row.current {background:#e8f3fb; border-color:#8fb4cd; color:#2f5c78;}
+    .environment-criteria .criteria-row.current b {color:#2f5c78;}
     .combine-algorithm {background:#f5f8fb; border:1px solid #d5e2ee; border-radius:10px; padding:.76rem .85rem; margin-top:.65rem; text-align:center;}
     .combine-algorithm-title {font-size:.80rem; font-weight:850; color:#315b78; margin-bottom:.44rem;}
     .combine-grid {display:grid; grid-template-columns:1fr 1fr; gap:.34rem; text-align:left;}
@@ -269,6 +287,18 @@ st.markdown(
     .action-row:first-of-type {border-top:0;}
     .action-row.active {background:#eaf6ed; border:1px solid #c9e2cf; color:#315742; font-weight:750;}
     .radar-note {font-size:.66rem; line-height:1.4; color:#71808b; text-align:center; margin-top:-.20rem;}
+    .environment-report .report-kicker, .environment-report .report-name {color:#365f79;}
+    .environment-report .report-score {color:#3f7191;}
+    .environment-report .report-band {background:#e8f3fb; border-color:#b8d3e6; color:#2f5c78;}
+    .environment-report .report-comment {background:#f4f9fd; border-color:#d3e3ef; color:#36566d;}
+    .environment-report .report-section-title {color:#365f79;}
+    .environment-report .action-list-wrap {background:#f8fbfe; border-color:#d3e3ef;}
+    .environment-report .action-list-title {color:#365f79;}
+    .environment-report .action-row.active {background:#e8f3fb; border-color:#b8d3e6; color:#2f5c78;}
+    .references-box {border-top:1px solid #e0e7ed; margin-top:1.1rem; padding-top:.62rem; color:#667582; font-size:.72rem; line-height:1.7;}
+    .references-box b {color:#405462;}
+    .references-box a {color:#3f7191; text-decoration:none;}
+    .references-box a:hover {text-decoration:underline;}
 
     </style>
     """,
@@ -365,7 +395,9 @@ NSCH_CODE_OPTIONS = {
     "family_r": [(1, "생물학적/입양 부모 2명·현재 결혼"), (2, "생물학적/입양 부모 2명·현재 미혼"), (3, "부모 2명·현재 결혼"), (4, "부모 2명·현재 미혼"), (5, "싱글 어머니"), (6, "싱글 아버지"), (7, "조부모 가정"), (8, "기타 관계")],
     "foodsit": [(1, "항상 영양가 있는 식사를 감당"), (2, "충분히 먹지만 원하는 종류는 항상 아님"), (3, "때때로 충분한 식사를 감당하지 못함"), (4, "자주 충분한 식사를 감당하지 못함")],
     "missmortgage": [(1, "예"), (2, "아니오"), (3, "모름")],
-    "a1_grade": [(1, "8학년 이하"), (2, "9~12학년·졸업장 없음"), (3, "고등학교 졸업/GED"), (4, "직업·기술·상업학교"), (5, "대학 학점·학위 없음"), (6, "준학사"), (7, "학사"), (8, "석사"), (9, "박사·전문학위")],
+    # 코드북의 9개 학력 응답을 설문용 5단계로 단순화했다.
+    # 모델은 범주형으로 학습됐으므로 각 단계의 대표 원래 코드(1·2·3·7·8)를 그대로 전달한다.
+    "a1_grade": [(1, "초등학교 이하"), (2, "중학교"), (3, "고등학교"), (7, "대학교"), (8, "대학원")],
     "k7q04r_r": [(1, "없음"), (2, "1회"), (3, "2회 이상")],
     "k7q82_r": [(1, "항상"), (2, "대부분"), (3, "때때로"), (4, "전혀 아님")],
     "k10q41_r": [(1, "확실히 동의"), (2, "어느 정도 동의"), (3, "어느 정도 반대"), (4, "확실히 반대")],
@@ -505,7 +537,7 @@ PIPELINE = [
     "머신러닝 모델",
     "모델 성능 평가",
     "가중치 산출",
-    "결론 및 활용",
+    "결과",
 ]
 
 
@@ -559,12 +591,12 @@ def render_nsch_asd_page():
     significant_count = int(stats["significant_0_05"].sum())
     split_counts = split_summary.groupby("split")["count"].sum().to_dict()
 
-    page_title("8. NSCH 외부데이터 분석", "NSCH 2024 자료에서 현재 ASD 여부와 함께 나타나는 환경·생활 특성을 분석했습니다.")
-    tabs = st.tabs(["8-1. 데이터 확인 및 전처리", "8-2. 연관성 분석", "8-3. 환경·생활 요인 선정", "8-4. 머신러닝 모델 비교", "8-5. 모델 성능 평가", "8-6. 생활환경 점수 산출"])
+    page_title("NSCH 외부데이터 분석", "NSCH 2024 자료에서 현재 ASD 여부와 함께 나타나는 환경·생활 특성을 분석했습니다.")
+    tabs = st.tabs(["1. 데이터 확인 및 전처리", "2. 연관성 분석", "3. 환경·생활 요인 선정", "4. 머신러닝 모델 비교", "5. 모델 성능 평가", "6. 생활환경 점수 산출"])
 
     with tabs[0]:
         nsch_pipeline(0)
-        st.subheader("8-1. 데이터 확인 및 전처리")
+        st.subheader("1. 데이터 확인 및 전처리")
         st.caption("NSCH 2024 데이터에서 현재 ASD 여부를 확인하고 환경·생활 특성 분석에 필요한 데이터를 정리했습니다.")
         c1, c2, c3, c4 = st.columns(4, gap="small")
         with c1: metric_card("전체 아동", f"{int(target['raw_rows']):,}명")
@@ -585,11 +617,10 @@ def render_nsch_asd_page():
         <div class="test-flow-box">불필요한 항목 제외</div><div class="test-flow-arrow">→</div>
         <div class="test-flow-box">환경·생활 후보 {len(candidates)}개</div>
         </div>''', unsafe_allow_html=True)
-        mini_note("현재 ASD 여부는 분석 결과로만 사용하고, 환경·생활 특성만 모델 입력 후보로 사용했습니다.")
 
     with tabs[1]:
         nsch_pipeline(1)
-        st.subheader("8-2. ASD 여부와 환경·생활 특성의 연관성 확인")
+        st.subheader("2. ASD 여부와 환경·생활 특성의 연관성 확인")
         h1, h2 = st.columns(2, gap="small")
         with h1:
             st.markdown('<div class="hypothesis-card"><b>귀무가설 H0</b><br>현재 ASD 여부와 해당 환경·생활 요인은 관계가 없다.</div>', unsafe_allow_html=True)
@@ -620,7 +651,7 @@ def render_nsch_asd_page():
 
     with tabs[2]:
         nsch_pipeline(2)
-        st.subheader("8-3. 최종 환경·생활 요인 선정")
+        st.subheader("3. 최종 환경·생활 요인 선정")
         st.markdown('''<div class="test-flow">
         <div class="test-flow-box">통계적 관계</div><div class="test-flow-arrow">+</div>
         <div class="test-flow-box">관계 크기</div><div class="test-flow-arrow">+</div>
@@ -652,7 +683,7 @@ def render_nsch_asd_page():
 
     with tabs[3]:
         nsch_pipeline(3)
-        st.subheader("8-4. 머신러닝 모델 비교")
+        st.subheader("4. 머신러닝 모델 비교")
         st.caption("선정된 환경·생활 항목을 동일하게 사용하여 4개의 분류모델을 같은 조건에서 비교했습니다.")
         plain_list([
             ("왜 분류인가?", "현재 ASD 여부가 있음 / 없음의 두 범주이기 때문"),
@@ -681,13 +712,12 @@ def render_nsch_asd_page():
 
     with tabs[4]:
         nsch_pipeline(4)
-        st.subheader("8-5. 최종 모델 성능 평가")
+        st.subheader("5. 최종 모델 성능 평가")
         st.markdown(f'''<div class="split-diagram">
             <div class="split-root-row"><div class="split-box root"><strong>전체 분석 데이터 {int(target['usable_current_asd']):,}명</strong><br>현재 ASD 여부 유효응답</div></div>
-            <div class="split-branch-arrows"><span>↙</span><span>↓</span><span>↘</span></div>
+            <div class="split-branch-arrows"><span>↙</span><span>↘</span></div>
             <div class="split-branches">
                 <div class="split-box train"><strong>Train · {int(split_counts.get('train', 0)):,}명</strong><br>모델 학습</div>
-                <div class="split-box train"><strong>Validation · {int(split_counts.get('validation', 0)):,}명</strong><br>모델 선택·기준 설정</div>
                 <div class="split-box test"><strong>Test · {int(split_counts.get('test', 0)):,}명</strong><br>최종 성능 평가</div>
             </div></div>''', unsafe_allow_html=True)
         st.markdown('<div style="height:.70rem"></div>', unsafe_allow_html=True)
@@ -716,7 +746,7 @@ def render_nsch_asd_page():
 
     with tabs[5]:
         nsch_pipeline(5)
-        st.subheader("8-6. 생활환경 관찰점수 산출")
+        st.subheader("6. 생활환경 관찰점수 산출")
         st.markdown('''<div class="test-flow">
         <div class="test-flow-box">설문 응답</div><div class="test-flow-arrow">→</div>
         <div class="test-flow-box">결측값 처리</div><div class="test-flow-arrow">→</div>
@@ -735,7 +765,6 @@ def render_nsch_asd_page():
         input_view.columns = ["순위", "설문 항목", "영역", "입력 형태"]
         left_table(input_view, .88, 360)
         st.markdown('<div class="formula-box"><b>계산 예시</b><br>설문 응답 → 모델 입력 변환 → predict_proba 출력값 0.63 → 생활환경 관찰점수 63점</div>', unsafe_allow_html=True)
-        result_line("선택지 번호를 단순 합산한 점수가 아니라, 학습된 머신러닝 모델이 전체 응답을 함께 계산한 결과입니다.")
 
 
 def page_title(title, subtitle=""):
@@ -794,16 +823,177 @@ def score_result_box(score, title):
 
 
 def result_report_header(student_name, score, title, comment):
-    who = student_name.strip() if student_name and student_name.strip() else "해당 아동"
+    comment_html = "<br>".join(str(comment).replace("<br>", "\n").splitlines())
     st.markdown(
         f'''<div class="report-kicker">개별 관찰 결과</div>
-        <div class="report-name">{who}</div>
         <div class="report-score">{int(score)} / 100점</div>''',
         unsafe_allow_html=True,
     )
     if title:
         st.markdown(f'<div class="report-band">{title}</div>', unsafe_allow_html=True)
-    st.markdown(f'<div class="report-comment"><b>{who}</b> {comment}</div>', unsafe_allow_html=True)
+    st.markdown(f'<div class="report-comment">{comment_html}</div>', unsafe_allow_html=True)
+
+
+def environment_result_report_header(student_name, score, title, comment):
+    """생활환경 설문 결과를 ASD 설문 결과 카드와 같은 구조로 표시한다."""
+    band_html = f'<div class="report-band">{title}</div>' if title else ""
+    # 문장 데이터에는 HTML 태그를 넣지 않고, 화면 출력용 줄바꿈만 여기서 만든다.
+    comment_html = "<br>".join(str(comment).splitlines())
+    st.markdown(
+        f'''<div class="report-kicker">개별 관찰 결과</div>
+        <div class="report-score">{float(score):.1f} / 100점</div>
+        {band_html}
+        <div class="report-comment">{comment_html}</div>''',
+        unsafe_allow_html=True,
+    )
+
+
+def environment_result_state(score, score_bands):
+    """현재 환경 점수의 4개 검증 구간에 맞는 제목·설명·대응 단계 번호를 고른다."""
+    index = next(
+        (i for i, (_, row) in enumerate(score_bands.iterrows()) if float(score) < float(row["upper_score"]) * 100 or i == len(score_bands) - 1),
+        len(score_bands) - 1,
+    )
+    states = [
+        ("", "현재 설문에서 생활환경 특성이 낮은 수준으로 관찰됩니다.\n일상 환경, 수면과 학교생활의 변화가 반복되는지 평소 관찰을 지속해 주세요."),
+        ("생활환경 추가 관찰 구간", "현재 설문에서 일부 생활환경 특성이 관찰됩니다.\n생활 리듬과 학교·가정에서의 변화가 반복되는지 조금 더 자세히 기록해 주세요."),
+        ("생활환경 고관찰 구간", "현재 설문에서 여러 생활환경 특성이 함께 관찰됩니다.\n관찰한 변화와 생활환경 정보를 보호자와 공유해 함께 확인해 주세요."),
+        ("생활환경 매우 고관찰 구간", "현재 설문에서 생활환경 특성이 높은 수준으로 관찰됩니다.\n관찰 내용을 보호자와 담당자에게 우선 공유하고 필요한 지원을 함께 확인해 주세요."),
+    ]
+    title, comment = states[min(index, len(states) - 1)]
+    return index, title, comment
+
+
+def environment_action_list(score, score_bands):
+    """기존 검증자료의 4개 환경 점수 구간에 맞춰 현재 점수의 관찰 행동을 표시한다."""
+    labels = ["일반 관찰", "생활환경 추가 관찰", "생활환경 고관찰", "생활환경 매우 고관찰"]
+    actions = [
+        "현재 생활환경 특성을 평소와 같이 관찰합니다.",
+        "생활 리듬과 학교·가정에서의 변화가 반복되는지 조금 더 기록합니다.",
+        "관찰한 변화와 생활환경 정보를 보호자와 공유해 함께 확인합니다.",
+        "관찰 내용을 보호자와 담당자에게 우선 공유하고 필요한 지원을 함께 확인합니다.",
+    ]
+    rows = ['<div class="action-list-wrap"><div class="action-list-title">대응방안</div>']
+    for i, (_, row) in enumerate(score_bands.iterrows()):
+        lower = float(row["lower_score"]) * 100
+        upper = float(row["upper_score"]) * 100
+        is_last = i == len(score_bands) - 1
+        active = " active" if (lower <= float(score) <= upper if is_last else lower <= float(score) < upper) else ""
+        upper_text = f"{upper:.1f}점 이하" if is_last else f"{upper:.1f}점 미만"
+        rows.append(f"<div class='action-row{active}'><b>{lower:.1f}점 이상 ~ {upper_text} · {labels[min(i, len(labels)-1)]}</b><br>{actions[min(i, len(actions)-1)]}</div>")
+    rows.append('</div>')
+    st.markdown(''.join(rows), unsafe_allow_html=True)
+
+
+def environment_score_position_chart(score, score_bands):
+    """점수 자체가 기존 검증자료의 어느 구간에 위치하는지 보여 주는 보조 그래프다."""
+    colors = ["#edf7ef", "#dcefe0", "#c8e5ce", "#b3d9bc"]
+    fig, ax = plt.subplots(figsize=(2.30, 1.92))
+    for i, (_, row) in enumerate(score_bands.iterrows()):
+        lower = float(row["lower_score"]) * 100
+        upper = float(row["upper_score"]) * 100
+        ax.barh(0, upper - lower, left=lower, height=.42, color=colors[i], edgecolor="#8ebc98", linewidth=.55)
+        ax.text((lower + upper) / 2, 0, str(i + 1), ha="center", va="center", fontsize=6.5, color="#356047", fontweight="bold")
+    ax.axvline(float(score), color="#3f7750", linewidth=1.6)
+    ax.scatter([float(score)], [0], s=22, color="#3f7750", zorder=3)
+    ax.set_xlim(0, 100)
+    ax.set_ylim(-.42, .42)
+    ax.set_yticks([])
+    ax.set_xticks([0, 25, 50, 75, 100])
+    ax.set_xlabel("환경·생활 특성 점수", fontsize=6.5, color="#526b5a")
+    ax.tick_params(axis="x", labelsize=5.8, colors="#687c6e")
+    for spine in ["top", "left", "right"]:
+        ax.spines[spine].set_visible(False)
+    ax.spines["bottom"].set_color("#cfe4d5")
+    fig.tight_layout(pad=.7)
+    st.pyplot(fig, width="content")
+    plt.close(fig)
+
+
+def move_to_checklist_tab(tab_index):
+    """폼 제출 뒤 체크리스트의 다음/이전 탭을 선택한다.
+
+    Streamlit 탭은 서버에서 선택 상태를 직접 바꾸는 API가 없어, 제출이 끝난 뒤
+    화면의 탭 버튼을 한 번 선택한다. 설문 응답 자체는 모두 session_state에 보관된다.
+    """
+    components.html(
+        f"""<script>
+        window.setTimeout(() => {{
+            const tabs = window.parent.document.querySelectorAll('button[data-baseweb="tab"], button[role="tab"]');
+            if (tabs.length > {int(tab_index)}) {{
+                tabs[{int(tab_index)}].click();
+                tabs[{int(tab_index)}].scrollIntoView({{behavior: 'smooth', block: 'start'}});
+            }}
+        }}, 100);
+        </script>""",
+        height=0,
+    )
+
+
+def make_summary_pdf(student_name, asd_score, env_score, total_score, verdict, summary_label):
+    """종합 결과 화면에 표시되는 내용을 같은 순서로 2페이지 PDF에 담는다."""
+    output = BytesIO()
+    with PdfPages(output) as pdf:
+        who = student_name.strip() if student_name and student_name.strip() else "해당 아동"
+        def heading(fig, title, subtitle):
+            fig.text(.10, .94, title, fontsize=20, fontweight="bold", color="#243746")
+            fig.text(.10, .912, subtitle, fontsize=10.5, color="#52616d")
+
+        # 1페이지: 화면 상단의 이름·두 점수·종합 결과를 그대로 배치한다.
+        fig = plt.figure(figsize=(8.27, 11.69), facecolor="white")
+        heading(fig, "아동 관찰 결과", f"아이 이름: {who}")
+        fig.text(.10, .855, "종합 결과", fontsize=14, fontweight="bold", color="#315b78")
+        fig.add_artist(FancyBboxPatch((.10, .765), .80, .065, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#fff3e4", edgecolor="#f0d2ad", transform=fig.transFigure))
+        fig.text(.15, .802, f"ASD 행동점수    {asd_score:.1f} / 100", fontsize=13, fontweight="bold", color="#8b5a22", va="center")
+        fig.add_artist(FancyBboxPatch((.10, .675), .80, .065, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#edf5fb", edgecolor="#c9ddeb", transform=fig.transFigure))
+        fig.text(.15, .712, f"환경·생활 특성 점수    {env_score:.1f} / 100", fontsize=13, fontweight="bold", color="#3f7750", va="center")
+        fig.add_artist(FancyBboxPatch((.10, .525), .80, .105, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#f5f8fb", edgecolor="#7f9db6", linewidth=1.4, transform=fig.transFigure))
+        fig.text(.50, .595, "종합 관찰 결과", fontsize=11, fontweight="bold", color="#647a8d", ha="center")
+        fig.text(.50, .558, summary_label, fontsize=18, fontweight="bold", color="#c47722", ha="center")
+        fig.text(.50, .535, f"영역별 확인: {verdict}", fontsize=10.5, color="#52616d", ha="center")
+        fig.text(.10, .43, f"최종 종합점수: {total_score:.1f} / 100", fontsize=15, fontweight="bold", color="#315b78")
+        fig.text(.10, .395, "ASD 행동점수와 환경·생활 특성 점수를 같은 비중으로 단순 평균한 프로젝트 참고점수입니다.", fontsize=9.5, color="#53626d")
+        fig.text(.10, .34, "최종 점수 구간별 관찰 안내", fontsize=14, fontweight="bold", color="#315b78")
+        guidance = {
+            "일반 관찰": ("0점 이상 ~ 25점 미만", "현재 관찰된 특성이 낮은 수준입니다. 평소와 같이 관찰합니다."),
+            "관찰 강화": ("25점 이상 ~ 50점 미만", "행동이 나타난 상황·빈도·지속시간을 기록하고 보호자와 공유합니다."),
+            "추가 확인 권고": ("50점 이상 ~ 75점 미만", "기록 내용을 보호자와 담당자에게 공유하고 추가 확인을 권합니다."),
+            "전문상담 우선 권고": ("75점 이상 ~ 100점 이하", "관찰 내용을 공유하고 관련 전문가 또는 전문기관 상담을 안내합니다."),
+        }
+        y = .275
+        for label, (range_text, detail) in guidance.items():
+            active = label == summary_label
+            fig.add_artist(FancyBboxPatch((.10, y), .80, .045, boxstyle="round,pad=.006,rounding_size=.006", facecolor="#eaf6ed" if active else "#fbfcfd", edgecolor="#a8d3b4" if active else "#dce4ec", transform=fig.transFigure))
+            fig.text(.12, y + .029, f"{range_text} · {label}", fontsize=7.2, fontweight="bold", color="#315742", va="center")
+            fig.text(.12, y + .011, detail, fontsize=6.1, color="#53626d", va="center")
+            y -= .052
+        fig.text(.10, .055, "종합점수 계산 방법", fontsize=10, fontweight="bold", color="#315b78")
+        fig.text(.10, .035, "종합점수 = (ASD 행동점수 + 환경·생활 특성 점수) ÷ 2 · 두 영역을 같은 비중으로 정리한 프로젝트 참고점수입니다.", fontsize=6.3, color="#405462")
+        pdf.savefig(fig, bbox_inches="tight")
+        plt.close(fig)
+    output.seek(0)
+    return output.getvalue()
+
+
+def preserve_checklist_scroll_position():
+    """실시간 입력으로 화면이 재실행돼도 체크리스트를 보던 높이로 되돌린다."""
+    components.html(
+        """<script>
+        const key = 'tp1-checklist-scroll-position';
+        const parentWindow = window.parent;
+        const saved = parentWindow.sessionStorage.getItem(key);
+        if (saved !== null) {
+            parentWindow.requestAnimationFrame(() => parentWindow.scrollTo(0, Number(saved)));
+        }
+        if (!parentWindow.__tp1ChecklistScrollListener) {
+            parentWindow.addEventListener('scroll', () => {
+                parentWindow.sessionStorage.setItem(key, String(parentWindow.scrollY || 0));
+            }, {passive: true});
+            parentWindow.__tp1ChecklistScrollListener = true;
+        }
+        </script>""",
+        height=0,
+    )
 
 
 def student_result_callout(student_name, text):
@@ -879,27 +1069,34 @@ def center_plot(fig, width_ratio=0.36):
 # 5. Sidebar
 # ============================================================
 st.sidebar.markdown("### 📊 TP2 Dashboard")
-menu = st.sidebar.radio(
+sidebar_options = [
+    "1. 프로젝트 개요",
+    "2. 데이터 전처리",
+    "3. 연관성 확인",
+    "4. 머신러닝 모델",
+    "5. 모델 성능 평가",
+    "6. 가중치 산출",
+    "7. 결과",
+    "NSCH 외부데이터 분석",
+]
+sidebar_current = st.session_state.get("sidebar_current", "1. 프로젝트 개요")
+sidebar_index = sidebar_options.index(sidebar_current) if sidebar_current in sidebar_options else 0
+sidebar_choice = st.sidebar.radio(
     "메뉴",
-    [
-        "1. 프로젝트 개요",
-        "2. 데이터 전처리",
-        "3. 연관성 확인",
-        "4. 머신러닝 모델",
-        "5. 모델 성능 평가",
-        "6. 가중치 산출",
-        "7. 결론 및 활용",
-        "8. NSCH 외부데이터 분석",
-    ],
+    sidebar_options,
+    index=sidebar_index,
     label_visibility="collapsed",
+    key="sidebar_menu_radio",
 )
+st.session_state["sidebar_current"] = sidebar_choice
+menu = "8. NSCH 외부데이터 분석" if sidebar_choice == "NSCH 외부데이터 분석" else sidebar_choice
 
 
 # ============================================================
 # 6. Page 1 - 프로젝트 개요
 # ============================================================
 if menu.startswith("1."):
-    page_title("아동학대 의심 예측 설문조사", "전처리부터 최종 활용까지 핵심 분석 결과를 한 화면에 요약한다.")
+    page_title("아동학대 사전 예측 솔루션", "아동학대를 조기에 발견하여 사전에 방지하는 시스템")
     st.markdown("<div class='explain-card'><b>두 단계 관찰 구조</b><br><br><b>기존 UCI 데이터</b> → 행동특성으로 ASD 선별 → <b>1차 행동특성 설문</b><br><br><b>NSCH 전체 아동 데이터</b> → 현재 ASD 있음/없음과 가족·경제·학교·생활습관 비교 → ASD와 함께 나타나는 환경·생활 특성 선정 → 머신러닝으로 재확인 → <b>2차 생활환경 설문</b><br><br><b>두 설문 결과</b> → 행동 관찰점수 + 환경·생활 특성 점수 → <b>종합 관찰 결과</b></div>", unsafe_allow_html=True)
 
     behavior_related_count = 0
@@ -1505,7 +1702,7 @@ elif menu.startswith("6."):
 
 
 # ============================================================
-# 12. Page 7 - 결론 및 활용
+# 12. Page 7 - 결과
 # ============================================================
 elif menu.startswith("8."):
     render_nsch_asd_page()
@@ -1689,105 +1886,159 @@ elif menu.startswith("10."):
     a = sum(int(r["points"]) for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows() if st.session_state.get(f"teacher_check_{r['feature']}", False)) if not weighted_checklist.empty else 0; e = float(st.session_state.get("nsch_environment_score", 0)); ah = a >= 65; eh = e >= 50
     st.metric("ASD 행동 관찰점수", a); st.metric("생활환경 관찰점수", f"{e:.1f}"); st.success("복합 추가관찰" if ah and eh else "ASD 행동 집중 관찰" if ah else "생활환경 집중 관찰" if eh else "일반 관찰")
 elif menu.startswith("7."):
-    page_title("7. 체크리스트")
+    page_title("7. 결과", "ASD 행동 특성과 환경·생활 특성을 각각 확인하고 종합 관찰 결과를 봅니다.")
+    preserve_checklist_scroll_position()
     pipeline(6)
     st.markdown("### 체크리스트")
     survey_tabs = st.tabs(["ASD 행동 설문", "생활환경 설문", "종합 결과"])
     with survey_tabs[0]:
         asd_checklist_slot = st.empty()
     with survey_tabs[1]:
+        st.subheader("생활환경 설문")
+        st.markdown('<div class="survey-section-spacer"></div>', unsafe_allow_html=True)
         env_form_col, env_result_col = st.columns([.57, .43], gap="large")
         with env_form_col:
             st.markdown('<span class="environment-panel-marker"></span>', unsafe_allow_html=True)
-            st.markdown('<div class="environment-title">생활환경 설문</div>', unsafe_allow_html=True)
-            st.caption("아동센터 선생님이 관찰하거나 알고 있는 범위에서 답하는 8개 질문입니다. 각 선택지는 NSCH 2024 원래 응답 범주를 사용합니다.")
+            st.markdown('<div class="environment-title">아동학대 의심 설문조사 (생활환경)</div>', unsafe_allow_html=True)
             with (NSCH_ASD_ART / "final_model_nsch_asd.pkl").open("rb") as f:
                 nsch_ui_model = pickle.load(f)
-            with st.form("integrated_nsch_form"):
-                nsch_values = {"fpl_i1": np.nan, "makefriend": np.nan}
-                visible_features = [x for x in NSCH_ASD_FEATURES if x not in {"fpl_i1", "makefriend"}]
-                for number, x in enumerate(visible_features, start=1):
-                    question = NSCH_SURVEY_QUESTIONS.get(x, NSCH_LABELS[x])
-                    if x in NSCH_CODE_OPTIONS:
-                        options = NSCH_CODE_OPTIONS[x]
-                        nsch_values[x] = st.selectbox(
-                            f"{number}. {question}", options,
-                            format_func=lambda value: value[1], key=f"integrated_{x}",
-                        )[0]
-                submitted = st.form_submit_button("생활환경 설문 결과 확인", use_container_width=True)
+            # 선택지가 바뀔 때마다 이 값도 다시 만들어 오른쪽 결과가 바로 갱신되게 한다.
+            nsch_values = {"fpl_i1": np.nan, "makefriend": np.nan}
+            visible_features = [x for x in NSCH_ASD_FEATURES if x not in {"fpl_i1", "makefriend"}]
+            for number, x in enumerate(visible_features, start=1):
+                question = NSCH_SURVEY_QUESTIONS.get(x, NSCH_LABELS[x])
+                if x in NSCH_CODE_OPTIONS:
+                    options = NSCH_CODE_OPTIONS[x]
+                    nsch_values[x] = st.selectbox(
+                        f"{number}. {question}", options,
+                        format_func=lambda value: value[1], key=f"integrated_{x}",
+                    )[0]
+            st.session_state["nsch_environment_answers"] = nsch_values.copy()
+            # 저장 파이프라인이 학습 때 받은 전체 열을 만들고, 실제 선택 항목 외 열은 NaN으로 둔다.
+            nsch_model_input = pd.DataFrame(
+                [{column: nsch_values.get(column, np.nan) for column in nsch_ui_model.feature_names_in_}]
+            )
+            st.session_state["nsch_environment_score"] = float(
+                nsch_ui_model.predict_proba(nsch_model_input)[0, 1] * 100
+            )
+            env_back_col, env_submit_col = st.columns(2, gap="small")
+            with env_back_col:
+                return_to_asd = st.button("이전 설문으로 돌아가기", use_container_width=True, key="environment_back")
+            with env_submit_col:
+                submitted = st.button("제출 및 결과보기", type="primary", use_container_width=True, key="environment_submit")
             if submitted:
-                st.session_state["nsch_environment_score"] = float(
-                    nsch_ui_model.predict_proba(pd.DataFrame([nsch_values], columns=NSCH_ASD_FEATURES))[0, 1] * 100
-                )
+                # 실시간으로 계산된 현재 점수를 그대로 종합 결과 탭에 사용한다.
+                move_to_checklist_tab(2)
+            elif return_to_asd:
+                move_to_checklist_tab(0)
         with env_result_col:
             env_now = st.session_state.get("nsch_environment_score")
-            st.markdown('<span class="environment-panel-marker"></span>', unsafe_allow_html=True)
-            st.markdown('<div class="environment-title">생활환경 설문 결과</div>', unsafe_allow_html=True)
+            # 결과 영역은 ASD 행동패턴 결과와 같은 흰색 카드·녹색 강조 형식을 사용한다.
+            st.markdown('<span class="result-panel-marker"></span>', unsafe_allow_html=True)
             if env_now is not None:
-                env_threshold = float(NSCH_ASD_META.get("validation_threshold", .5)) * 100
-                env_level = "높음" if float(env_now) >= env_threshold else "낮음"
-                st.markdown(f"<div class='combined-card env'><div class='combined-card-label'>🏡 환경·생활 특성 점수</div><div class='combined-card-score'>{float(env_now):.1f} / 100</div><div class='combined-card-band'>{env_level}</div></div>", unsafe_allow_html=True)
-                st.caption(f"검증자료 기준 {env_threshold:.0f}점 이상은 ‘높음’으로 표시합니다.")
+                environment_score_bands = pd.read_csv(NSCH_ASD_ART / "environment_score_bands.csv")
+                _, env_title, env_comment = environment_result_state(env_now, environment_score_bands)
+                environment_result_report_header(
+                    st.session_state.get("student_name", ""), env_now, env_title, env_comment
+                )
+                environment_action_list(env_now, environment_score_bands)
+                st.markdown('<div class="report-section-title">생활환경 특성 비교</div>', unsafe_allow_html=True)
+                environment_score_position_chart(env_now, environment_score_bands)
+                st.markdown('<div class="radar-note">현재 점수가 검증자료의 4개 환경·생활 특성 점수 구간 중 어디에 위치하는지 보여 줍니다.</div>', unsafe_allow_html=True)
+                with st.expander("검증자료 구간 기준"):
+                    criteria_view = environment_score_bands.copy()
+                    criteria_view["점수 구간"] = criteria_view.apply(
+                        lambda row: f"{float(row['lower_score'])*100:.1f}점 이상 ~ {float(row['upper_score'])*100:.1f}점 {'이하' if float(row['upper_score']) == 1 else '미만'}",
+                        axis=1,
+                    )
+                    criteria_view["검증자료 인원"] = criteria_view["validation_count"].map(lambda value: f"{int(value):,}명")
+                    criteria_view["현재 ASD 있음 비율"] = criteria_view["observed_asd_rate"].map(lambda value: f"{float(value)*100:.1f}%")
+                    st.dataframe(criteria_view[["점수 구간", "score_band", "검증자료 인원", "현재 ASD 있음 비율"]].rename(columns={"score_band": "원래 구간명"}), hide_index=True, width="stretch")
             else:
                 st.markdown("<div class='explain-card'><b>결과 안내</b><br>왼쪽 8개 질문에 응답한 뒤 결과 확인 버튼을 누르면 점수가 표시됩니다.</div>", unsafe_allow_html=True)
     with survey_tabs[2]:
+        # ASD는 기존 가중 체크리스트 합계, 환경 점수는 NSCH-ASD 모델 predict_proba × 100이다.
+        # 동일한 아동을 두 데이터에서 함께 관찰한 자료가 없으므로, 별도 결합 모델 없이 두 점수를 같은 비중으로 평균한다.
         env = float(st.session_state.get("nsch_environment_score", 0.0)); asd = sum(int(r["points"]) for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows() if st.session_state.get(f"teacher_check_{r['feature']}", False)) if not weighted_checklist.empty else 0; asd_pct = min(100.0, float(asd)); avg = (asd_pct + env) / 2
         high = asd >= int(meta.get("weighted_checklist", {}).get("high_cutoff", 65)); env_high = env >= float(NSCH_ASD_META.get("validation_threshold", .5)) * 100
         verdict = "복합 추가관찰" if high and env_high else "ASD 행동 집중 관찰" if high else "생활환경 집중 관찰" if env_high else "일반 관찰"
-        asd_band = "높음" if high else "낮음"; env_band = "높음" if env_high else "낮음"
-        verdict_text = "ASD 행동 특성과 환경·생활 특성이 모두 높게 관찰되었습니다." if high and env_high else "ASD 행동 특성은 높고 환경·생활 특성은 낮게 관찰되었습니다." if high else "환경·생활 특성은 높고 ASD 행동 특성은 낮게 관찰되었습니다." if env_high else "ASD 행동 특성과 환경·생활 특성이 모두 낮게 관찰되었습니다."
-        observe_threshold = int(meta.get("weighted_checklist", {}).get("observe_cutoff", 50))
-        asd_threshold = int(meta.get("weighted_checklist", {}).get("high_cutoff", 65))
-        very_high_threshold = int(meta.get("weighted_checklist", {}).get("very_high_cutoff", 80))
-        threshold_text = float(NSCH_ASD_META.get("validation_threshold", .5)) * 100
+        asd_observe_cutoff = int(meta.get("weighted_checklist", {}).get("observe_cutoff", 50))
+        asd_high_cutoff = int(meta.get("weighted_checklist", {}).get("high_cutoff", 65))
+        asd_very_high_cutoff = int(meta.get("weighted_checklist", {}).get("very_high_cutoff", 80))
+        asd_band = (
+            "ASD 선별 매우 고관찰 구간" if asd >= asd_very_high_cutoff else
+            "ASD 선별 고관찰 구간" if asd >= asd_high_cutoff else
+            "추가 관찰 구간" if asd >= asd_observe_cutoff else
+            "일반 관찰 구간"
+        )
         environment_score_bands = pd.read_csv(NSCH_ASD_ART / "environment_score_bands.csv")
-        env_row_classes = ["low", "mid", "high", "vhigh"]
-        asd_current_index = 0 if asd < observe_threshold else 1 if asd < asd_threshold else 2 if asd < very_high_threshold else 3
-        env_current_index = next(
-            (i for i, (_, row) in enumerate(environment_score_bands.iterrows()) if env < float(row["upper_score"]) * 100 or i == len(environment_score_bands) - 1),
-            len(environment_score_bands) - 1,
-        )
-        environment_band_rows = "".join(
-            f"<div class='criteria-row {env_row_classes[i]}{' current' if i == env_current_index else ''}'><b>{float(row['lower_score'])*100:.1f}~{float(row['upper_score'])*100:.1f}점 · {row['score_band']}</b><br>검증자료 {int(row['validation_count']):,}명 · 현재 ASD 있음 {float(row['observed_asd_rate'])*100:.1f}%</div>"
-            for i, (_, row) in enumerate(environment_score_bands.iterrows())
-        )
-        asd_criteria = f"{asd_threshold}점 이상" if high else f"{asd_threshold}점 미만"
-        env_criteria = f"{threshold_text:.0f}점 이상" if env_high else f"{threshold_text:.0f}점 미만"
-        card1, card2 = st.columns(2, gap="large")
+        _, env_band, _ = environment_result_state(env, environment_score_bands)
+        env_band = env_band or "생활환경 일반 관찰 구간"
+        verdict_text = "ASD 행동 특성과 환경·생활 특성이 모두 높게 관찰되었습니다." if high and env_high else "ASD 행동 특성은 높고 환경·생활 특성은 낮게 관찰되었습니다." if high else "환경·생활 특성은 높고 ASD 행동 특성은 낮게 관찰되었습니다." if env_high else "ASD 행동 특성과 환경·생활 특성이 모두 낮게 관찰되었습니다."
+        if avg < 25:
+            summary_label = "일반 관찰"
+            summary_action = "현재 관찰된 ASD 행동 특성과 환경·생활 특성은 모두 낮은 수준입니다. 평소와 같이 아동의 놀이, 의사소통, 또래관계와 일상 적응을 관찰하고, 의미 있는 변화가 반복되면 날짜와 상황을 객관적으로 기록해 주세요."
+        elif avg < 50:
+            summary_label = "관찰 강화"
+            summary_action = "특정 행동이 반복되는지 조금 더 자세히 확인하고, 약 2~4주 동안 나타난 상황·빈도·지속시간을 객관적으로 기록해 보호자와 관찰 사실을 공유해 주세요."
+        elif avg < 75:
+            summary_label = "추가 확인 권고"
+            summary_action = "기록한 내용을 보호자와 담당자에게 공유하고, 필요한 경우 훈련받은 담당자의 표준화된 발달 선별검사 또는 소아청소년 발달 전문가와의 상담을 권합니다."
+        else:
+            summary_label = "전문상담 우선 권고"
+            summary_action = "보호자에게 관찰 내용을 신속하게 공유하고 소아청소년과, 발달 전문가 또는 관련 전문기관에 상담할 수 있도록 안내해 주세요. 이 결과만으로 아동을 ASD라고 판단하거나 낙인찍지 않도록 합니다."
+
+        # 좌우 여백을 두어 기존보다 약 15% 좁은 두 카드를 가운데에 배치한다.
+        _, card1, card2, _ = st.columns([.15, .35, .35, .15], gap="large")
         with card1:
             st.markdown(f"<div class='combined-card asd'><div class='combined-card-label'>🧩 ASD 행동점수</div><div class='combined-card-score'>{asd_pct:.0f} / 100</div><div class='combined-card-band'>{asd_band}</div></div>", unsafe_allow_html=True)
         with card2:
             st.markdown(f"<div class='combined-card env'><div class='combined-card-label'>🏡 환경·생활 특성 점수</div><div class='combined-card-score'>{env:.0f} / 100</div><div class='combined-card-band'>{env_band}</div></div>", unsafe_allow_html=True)
         st.markdown("<div style='text-align:center;font-size:1.4rem;color:#7f9db6;margin:.35rem 0'>↓</div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='combined-result'><div class='combined-result-title'>종합 관찰 결과</div><div class='combined-result-value'>🟠 {verdict}</div><div class='combined-result-text'>{verdict_text}<br><br><b>{verdict} 기준</b><br>ASD 행동점수 {asd_pct:.0f}점 ({asd_criteria}) + 환경·생활 특성 점수 {env:.0f}점 ({env_criteria})</div></div>", unsafe_allow_html=True)
+        child_name = st.session_state.get("student_name", "").strip() or "미입력"
+        st.markdown(f"<div class='combined-result'><div class='combined-result-title'>종합 관찰 결과</div><div class='combined-result-value'>🟠 {summary_label}</div><div class='combined-result-text'><b>아이 이름: {child_name}</b><br><br>{summary_action}<br><br><b>영역별 확인: {verdict}</b><br>{verdict_text}</div></div>", unsafe_allow_html=True)
         st.markdown("<div style='height:.55rem'></div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='result-line'><b>종합 참고점수: {avg:.1f} / 100</b><br>ASD 행동점수와 환경·생활 특성 점수를 같은 비중으로 단순 평균한 학습용 참고 수치입니다.</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='result-line'><b>최종 종합점수: {avg:.1f} / 100</b><br>ASD 행동점수와 환경·생활 특성 점수를 같은 비중으로 단순 평균한 프로젝트 참고점수입니다.</div>", unsafe_allow_html=True)
         st.markdown(
             f"""<div class='criteria-wrap'>
-            <div class='criteria-heading'>점수 구간과 종합 판정 기준</div>
-            <div style='display:grid;grid-template-columns:1fr 1fr;gap:.55rem'>
-              <div class='criteria-panel'>
-                <div class='criteria-panel-title'>🧩 ASD 행동점수 구간</div>
-                <div class='criteria-row low{' current' if asd_current_index == 0 else ''}'><b>0~{observe_threshold-1}점 · 일반 관찰</b><br>일상 행동 변화를 지속적으로 관찰</div>
-                <div class='criteria-row mid{' current' if asd_current_index == 1 else ''}'><b>{observe_threshold}~{asd_threshold-1}점 · 추가 관찰</b><br>반복 행동의 빈도·상황·지속 여부를 기록</div>
-                <div class='criteria-row high{' current' if asd_current_index == 2 else ''}'><b>{asd_threshold}~{very_high_threshold-1}점 · ASD 선별 고관찰</b><br>관찰 내용을 아이의 보호자와 공유</div>
-                <div class='criteria-row vhigh{' current' if asd_current_index == 3 else ''}'><b>{very_high_threshold}~100점 · ASD 선별 매우 고관찰</b><br>행동 특성을 조금 더 자세히 기록</div>
-              </div>
-              <div class='criteria-panel'>
-                <div class='criteria-panel-title'>🏡 환경·생활 특성 점수 구간</div>
-                {environment_band_rows}
-              </div>
+            <div class='criteria-heading'>최종 점수 구간별 관찰 안내</div>
+            <div class='criteria-panel'>
+              <div class='criteria-row{' current' if avg < 25 else ''}'><b>0점 이상 ~ 25점 미만 · 일반 관찰</b><br>현재 관찰된 특성이 낮은 수준입니다. 평소와 같이 놀이, 의사소통, 또래관계와 일상 적응을 관찰하고, 이전과 다른 변화가 반복되면 날짜와 상황을 간단히 기록합니다.</div>
+              <div class='criteria-row{' current' if 25 <= avg < 50 else ''}'><b>25점 이상 ~ 50점 미만 · 관찰 강화</b><br>약 2~4주 동안 행동이 나타난 상황, 빈도와 지속시간을 객관적으로 기록하고 보호자와 관찰 사실을 공유합니다.</div>
+              <div class='criteria-row{' current' if 50 <= avg < 75 else ''}'><b>50점 이상 ~ 75점 미만 · 추가 확인 권고</b><br>기록한 내용을 보호자와 담당자에게 공유하고, 필요한 경우 표준화된 발달 선별검사 또는 발달 전문가와의 상담을 권합니다.</div>
+              <div class='criteria-row{' current' if 75 <= avg <= 100 else ''}'><b>75점 이상 ~ 100점 이하 · 전문상담 우선 권고</b><br>보호자에게 관찰 내용을 신속하게 공유하고 관련 전문가 또는 전문기관 상담을 안내합니다. 이 결과만으로 아동을 ASD라고 판단하거나 낙인찍지 않도록 합니다.</div>
             </div>
             <div class='combine-algorithm'>
-              <div class='combine-algorithm-title'>두 설문을 합치는 공식과 근거</div>
+              <div class='combine-algorithm-title'>종합점수 계산 방법</div>
               <div style='font-size:.76rem;line-height:1.65;color:#4b606f;text-align:left'>
-                <b>종합 판정 = 2×2(ASD 행동점수 {asd_threshold}점 기준, 환경·생활 특성 점수 {threshold_text:.0f}점 기준)</b>입니다. 두 점수를 평균해 하나의 모델로 다시 계산하지 않고, 각 점수가 기준 이상인지 확인한 뒤 네 가지 조합으로 판정합니다.<br><br>
-                ASD 행동점수는 기존 A1~A10 <b>로지스틱 회귀 계수 기반 가중점수</b>를 사용합니다. 환경·생활 특성 점수는 4개 모델을 비교해 선택한 <b>로지스틱 회귀</b>의 학습 계수로 계산합니다. 환경 점수의 {threshold_text:.0f}점 기준은 검증자료에서 F1 점수가 가장 높았던 지점입니다.<br><br>
-                이 방식은 서로 다른 자료와 알고리즘으로 만든 두 점수 중 하나가 높을 때 평균 때문에 의미가 약해지는 것을 막고, 각 영역을 독립적으로 확인할 수 있어 프로젝트의 종합 관찰 목적에 적합합니다.
+                ASD 행동점수는 A1~A10 문항의 기존 가중치를 더해 계산하고, 환경·생활 특성 점수는 NSCH-ASD 로지스틱 회귀 모델이 계산한 0~1 범위의 점수에 100을 곱해 계산합니다. 두 원자료는 같은 아동을 함께 조사한 자료가 아니므로, 두 예측값과 실제 정답으로 학습한 결합·스태킹 모델은 현재 존재하지 않습니다.<br><br>
+                <b>종합점수 = (ASD 행동점수 + 환경·생활 특성 점수) ÷ 2</b><br><br>
+                따라서 최종 종합점수는 두 영역을 같은 비중으로 정리한 프로젝트 참고점수이며, 두 영역이 각각 높은지 여부는 위의 ‘영역별 확인’ 2×2 결과로 별도로 표시합니다.
               </div>
+            </div>
+            <div class='warning-line'>이 결과는 관찰과 상담의 우선순위를 돕기 위한 참고정보이며, 의학적 진단 결과가 아닙니다. 점수가 낮더라도 발달 퇴행이나 뚜렷한 우려가 관찰되면 보호자와 상의하여 전문가 상담을 권장합니다.</div>
             </div></div>""",
             unsafe_allow_html=True,
         )
+        # 현재 종합 결과 값을 그대로 1페이지 PDF 보고서로 만들어 다운로드한다.
+        summary_pdf = make_summary_pdf(
+            st.session_state.get("student_name", ""),
+            float(asd_pct),
+            float(env),
+            float(avg),
+            verdict,
+            summary_label,
+        )
+        pdf_left, pdf_button, pdf_right = st.columns([.30, .40, .30], gap="small")
+        with pdf_button:
+            st.download_button(
+                "결과 출력하기 (PDF)",
+                data=summary_pdf,
+                file_name="아동_관찰_결과.pdf",
+                mime="application/pdf",
+                use_container_width=True,
+                type="primary",
+            )
 
     asd_checklist_container = asd_checklist_slot.container()
     asd_checklist_container.__enter__()
@@ -1809,13 +2060,15 @@ elif menu.startswith("7."):
         st.subheader("ASD 행동 체크리스트")
         st.markdown('<div class="survey-section-spacer"></div>', unsafe_allow_html=True)
         check_col, result_col = st.columns([.57, .43], gap="large")
+        asd_next = False
 
         with check_col:
             st.markdown('<span class="survey-panel-marker"></span>', unsafe_allow_html=True)
             st.markdown(
-                '<div class="survey-title">아동학대 의심 설문조사</div>',
+                '<div class="survey-title">아동학대 의심 설문조사 (행동패턴)</div>',
                 unsafe_allow_html=True,
             )
+            # 일반 체크박스로 두어 문항을 누를 때마다 오른쪽 점수와 결과가 바로 갱신되게 한다.
             student_name = st.text_input(
                 "학생 이름",
                 placeholder="예: 김민수",
@@ -1832,6 +2085,7 @@ elif menu.startswith("7."):
                 if checked:
                     total_score += points
                     checked_items.append(feature)
+            asd_next = st.button("다음 설문으로 넘어가기", type="primary", use_container_width=True, key="asd_next")
 
         if total_score >= very_high_cutoff:
             result_title = "ASD 선별 매우 고관찰 구간"
@@ -1946,6 +2200,10 @@ elif menu.startswith("7."):
                 '현재 설문 응답 패턴을 비교합니다.</div>',
                 unsafe_allow_html=True,
             )
+
+        if asd_next:
+            # 버튼 제출 후 선택한 응답은 session_state에 남아 있고, 생활환경 설문 탭만 연다.
+            move_to_checklist_tab(1)
 
     with st.expander("점수 구간별 선정 기준"):
         st.markdown("이 점수 구간은 <b>프로젝트 데이터의 가중점수 분포를 바탕으로 만든 관찰 단계</b>입니다.", unsafe_allow_html=True)
