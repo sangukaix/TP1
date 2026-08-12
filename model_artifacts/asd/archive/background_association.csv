@@ -1,0 +1,9 @@
+﻿feature,group,test,statistic,p_value,effect_size,effect_method,significant_0_05,n_used,category_count,expected_lt5_ratio,caution,association_rank
+country_of_res,background,Chi-square,12.445997732426305,0.0527274276802034,0.19251199011022296,Bias-corrected Cramer's V,False,174,7.0,0.14285714285714285,,11
+ethnicity,background,Chi-square,8.625083097310956,0.12498565624687792,0.14417999196383538,Bias-corrected Cramer's V,False,174,6.0,0.08333333333333333,,12
+age,background,Welch t-test,-0.25125787675527866,0.8019220310358527,0.019213020427892705,|Point-biserial r|,False,174,,,,13
+relation,background,Chi-square,3.6977979733560096,0.4484462773942627,0.0,Bias-corrected Cramer's V,False,174,5.0,0.6,희소 범주 주의,14
+gender,background,Chi-square,0.28240519726175456,0.5951290813598971,0.0,Bias-corrected Cramer's V,False,174,2.0,0.0,,15
+family_asd,background,Chi-square,0.17638558848196847,0.6744979873062071,0.0,Bias-corrected Cramer's V,False,174,2.0,0.0,,16
+jaundice,background,Chi-square,0.03248539335088891,0.8569664748273462,0.0,Bias-corrected Cramer's V,False,174,2.0,0.0,,17
+used_app_before,background,Chi-square,0.0,1.0,0.0,Bias-corrected Cramer's V,False,174,2.0,0.5,희소 범주 주의,18

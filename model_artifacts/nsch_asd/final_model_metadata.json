@@ -1,0 +1,51 @@
+{
+  "analysis_question": "Current ASD status and environmental/lifestyle characteristics",
+  "target": {
+    "ever_asd_column": "k2q35a",
+    "current_asd_column": "k2q35b",
+    "yes_rule": "k2q35a=1 and k2q35b=1",
+    "no_rule": "k2q35a=2 or (k2q35a=1 and k2q35b=2)",
+    "excluded": "missing, logical skip, not in universe, or invalid current status"
+  },
+  "candidate_count": 17,
+  "final_features": [
+    "makefriend",
+    "screentime",
+    "k7q82_r",
+    "k7q04r_r",
+    "fpl_i1",
+    "a1_employed_r",
+    "a1_grade",
+    "family_r",
+    "foodsit",
+    "k10q40_r"
+  ],
+  "final_feature_count": 10,
+  "model": "LogisticRegression",
+  "validation_threshold": 0.8500000000000002,
+  "environment_score_bands": {
+    "method": "validation prediction-score quartiles",
+    "source": "validation only",
+    "thresholds": [
+      0.0,
+      0.17578060739823512,
+      0.23056304020158497,
+      0.38351539054170436,
+      1.0
+    ]
+  },
+  "categorical_features": [
+    "makefriend",
+    "screentime",
+    "k7q82_r",
+    "k7q04r_r",
+    "a1_employed_r",
+    "a1_grade",
+    "family_r",
+    "foodsit",
+    "k10q40_r"
+  ],
+  "numeric_features": [
+    "fpl_i1"
+  ]
+}

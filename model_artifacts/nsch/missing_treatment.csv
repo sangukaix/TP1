@@ -1,0 +1,28 @@
+﻿column,method,fill_value_fitted_on_train,reason,train_missing_before,validation_missing_before,test_missing_before,train_missing_after,validation_missing_after,test_missing_after
+sc_age_years,train median,10.0,연속형·수치형 변수의 극단값 영향을 줄이고 Train 정보만 사용,0,0,0,0,0,0
+sc_sex,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,0,0,0,0,0,0
+sc_race_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,0,0,0,0,0,0
+k2q35a,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,109,38,55,0,0,0
+k2q31a,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,192,75,55,0,0,0
+k2q33a,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,156,45,53,0,0,0
+k2q32a,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,139,63,42,0,0,0
+k2q34a,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,55,17,20,0,0,0
+a1_menthealth,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,177,53,42,0,0,0
+a2_menthealth,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,4436,1475,1480,0,0,0
+a1_employed_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,218,67,60,0,0,0
+a2_employed_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,4405,1470,1490,0,0,0
+a1_grade,train mode,7.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,0,0,0,0,0,0
+family_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,116,41,35,0,0,0
+fpl_i1,train median,372.0,연속형·수치형 변수의 극단값 영향을 줄이고 Train 정보만 사용,0,0,0,0,0,0
+foodsit,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,107,31,44,0,0,0
+missmortgage,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,84,34,36,0,0,0
+k10q40_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,103,36,41,0,0,0
+k10q22,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,98,33,35,0,0,0
+k10q23,train mode,2.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,72,24,23,0,0,0
+moves,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,160,31,44,0,0,0
+hoursleep,train mode,4.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,7829,2598,2709,0,0,0
+screentime,train mode,3.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,112,39,34,0,0,0
+k10q41_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,7892,2622,2722,0,0,0
+k7q04r_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,8019,2669,2766,0,0,0
+k7q82_r,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,7877,2618,2738,0,0,0
+makefriend,train mode,1.0,이진·범주형 응답에서 가장 일반적인 Train 응답으로 대치,7881,2611,2733,0,0,0

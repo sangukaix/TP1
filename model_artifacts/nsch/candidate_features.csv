@@ -1,0 +1,28 @@
+﻿column,korean_description,domain,use_for_ml_candidate,reason,english_description,dtype,missing_count,missing_pct
+sc_age_years,아동 연령(세),아동 기본정보,Y,연령에 따른 ACE 경험 차이를 통제,Age of Selected Child - In Years,int8,0,0.0
+sc_sex,아동 성별,아동 기본정보,Y,기본 인구학적 특성,Sex of Selected Child,int8,0,0.0
+sc_race_r,아동 인종/민족,아동 기본정보,Y,사회적 맥락의 인구학적 특성,"Race of Selected Child, Detailed",int8,0,0.0
+k2q35a,ASD 진단 경험 여부,ASD,Y,전체 응답자 대상 자폐 스펙트럼 장애 진단 경험,Autism ASD,float64,246,0.4788
+k2q31a,ADHD 진단 경험 여부,ADHD,Y,전체 응답자 대상 ADD/ADHD 진단 경험,ADD/ADHD,float64,377,0.7338
+k2q33a,불안 진단 경험 여부,불안,Y,전체 응답자 대상 불안 진단 경험,Anxiety,float64,295,0.5742
+k2q32a,우울 진단 경험 여부,우울,Y,전체 응답자 대상 우울 진단 경험,Depression,float64,293,0.5703
+k2q34a,행동문제 진단 경험 여부,행동문제,Y,전체 응답자 대상 행동문제 진단 경험,Behavior Problems,float64,109,0.2122
+a1_menthealth,보호자 1 정신·정서 건강,가족/보호자 환경,Y,주 보호자 건강 환경,Adult 1 - Mental or Emotional Health,float64,1620,3.1533
+a2_menthealth,보호자 2 정신·정서 건강,가족/보호자 환경,Y,두 번째 보호자 건강 환경,Adult 2 - Mental or Emotional Health,float64,9200,17.9075
+a1_employed_r,보호자 1 고용 상태,가족/보호자 환경,Y,가구 고용 환경,Adult 1 - Current Employment Status,float64,1691,3.2915
+a2_employed_r,보호자 2 고용 상태,가족/보호자 환경,Y,가구 고용 환경,Adult 2 - Current Employment Status,float64,9177,17.8628
+a1_grade,보호자 1 최종 학력,가족/보호자 환경,Y,가구 교육 자원,Adult 1 - Highest Completed Year of School,int8,0,0.0
+family_r,가족 구조,가족/보호자 환경,Y,가구 구성 맥락,Family Structure,float64,1328,2.5849
+fpl_i1,"가구 빈곤비율(FPL, 1차 대치값)",경제 상황,Y,경제적 자원 수준,"Family Poverty Ratio, First Implicate",int16,0,0.0
+foodsit,최근 12개월 가구 식품 상황,경제 상황,Y,식품 접근성,Food Situation In Household - Past 12 Months,float64,1253,2.4389
+missmortgage,주택담보·임대료 미납 여부,경제 상황,Y,주거비 부담,Not Able to Pay Mortgage or Rent,float64,1252,2.437
+k10q40_r,아동의 동네 안전 인식,동네 안전,Y,거주 지역 안전,Child is Safe In Neighborhood,float64,1537,2.9917
+k10q22,동네 노후·불량 주택,주거 환경,Y,주거 주변 환경,Neighborhood - Poorly Kept or Rundown Housing,float64,1391,2.7075
+k10q23,동네 기물파손,동네 안전,Y,거주 지역 위험 신호,Neighborhood - Vandalism,float64,1328,2.5849
+moves,아동 이사 횟수,이사 경험,Y,주거 안정성,Number of Times Child Has Moved,float64,1373,2.6725
+hoursleep,최근 1주 평균 수면시간,수면,Y,건강 행동 지표,Past Week - How Many Hours of Sleep Average,float64,14336,27.9046
+screentime,TV·휴대폰·컴퓨터 사용시간,스크린타임,Y,일상 행동 지표,"How Much Time Spent with TV, Cellphone, Computer",float64,868,1.6895
+k10q41_r,아동의 학교 안전 인식,학교/사회생활,Y,학교 환경 안전,Child Is Safe at School,float64,15030,29.2555
+k7q04r_r,학교가 가정에 문제를 연락한 횟수,학교/사회생활,Y,학교 적응 신호,Times School Contacted Household About Problems,float64,14606,28.4302
+k7q82_r,학교에서 잘하려는 태도,학교/사회생활,Y,학교 참여·태도,Cares About Doing Well in School,float64,14424,28.0759
+makefriend,친구를 사귀거나 유지하는 어려움,학교/사회생활,Y,또래 관계,Difficulty Making or Keeping Friends,float64,14360,27.9513

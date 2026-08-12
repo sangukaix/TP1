@@ -1,0 +1,7 @@
+﻿split,ACE_HIGH,count,pct_of_usable
+test,0,7995,16.6417
+test,1,1614,3.3596
+train,0,23985,49.9251
+train,1,4840,10.0745
+validation,0,7995,16.6417
+validation,1,1613,3.3575

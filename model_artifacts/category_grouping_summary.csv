@@ -1,3 +1,0 @@
-﻿stage,feature,min_count,original_category_count,retained_category_count,after_grouping_category_count,grouped_to_other_rows,retained_categories
-selection_train,ethnicity,10,10,5,6,27,White-European | Unknown | Asian | Middle Eastern  | Others
-selection_train,country_of_res,10,40,6,7,60,United Kingdom | United States | India | Jordan | New Zealand | Australia

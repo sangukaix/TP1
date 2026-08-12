@@ -1,0 +1,18 @@
+﻿column,method,fill_value,train_missing
+family_r,train mode,1.0,800
+a1_employed_r,train mode,1.0,1024
+a2_employed_r,train mode,1.0,5509
+a1_grade,train mode,7.0,0
+fpl_i1,train median,365.0,0
+foodsit,train mode,1.0,756
+missmortgage,train mode,2.0,760
+k10q40_r,train mode,1.0,911
+k10q22,train mode,2.0,823
+k10q23,train mode,2.0,783
+moves,train mode,1.0,831
+hoursleep,train mode,4.0,8609
+screentime,train mode,3.0,529
+k10q41_r,train mode,1.0,9007
+k7q04r_r,train mode,1.0,8758
+k7q82_r,train mode,1.0,8645
+makefriend,train mode,1.0,8622

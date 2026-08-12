@@ -1,0 +1,458 @@
+﻿column,english_description,dtype,missing_count,missing_pct
+height,Child's Height (CM),float64,15140,29.4696
+fipsst,State FIPS Code,int8,0,0.0
+stratum,Sampling Stratum,object,0,0.0
+hhid,Unique Household ID,int32,0,0.0
+formtype,Form Type,object,0,0.0
+totkids_r,Number of Children in Household,int8,0,0.0
+tenure,The Conditions under Which Land or Buildings Are Held or Occupied,int8,0,0.0
+hhlanguage,Primary Household Language,float64,255,0.4964
+sc_age_years,Age of Selected Child - In Years,int8,0,0.0
+sc_sex,Sex of Selected Child,int8,0,0.0
+k2q35a_1_years,Autism ASD - First Told Age in Years,float64,49174,95.7158
+birth_mo,Birth Month,float64,378,0.7358
+birth_yr,Birth Year,float64,494,0.9616
+k6q41r_still,Stopped Breastfeeding - Still Breastfeeding,float64,39693,77.2613
+k6q42r_never,First Fed Formula - Never,float64,37619,73.2243
+k6q43r_never,First Fed Other - Never,float64,37687,73.3567
+k6q13a,Questionnaire Covers Talks or Speech Sounds Concerns,float64,50239,97.7888
+k6q13b,Questionnaire Covers Interaction Concerns,float64,50239,97.7888
+k6q14a,Questionnaire Covers Words and Phrases Concerns,float64,46946,91.3791
+k6q14b,Questionnaire Covers Behaves and Gets Along Concerns,float64,46946,91.3791
+eyecare1,Eye Doctor Care - Examination,float64,28977,56.4029
+eyecare2,Eye Doctor Care - Corrective Lenses,float64,28977,56.4029
+eyecare3,Eye Doctor Care - Vision Disorder,float64,28977,56.4029
+eyecare4,Eye Doctor Care - Some other care,float64,28977,56.4029
+k4q30_r_1,Dental Provider Visit - Dentist,float64,164,0.3192
+k4q30_r_2,Dental Provider Visit - Other,float64,164,0.3192
+k4q30_r_3,Dental Provider Visit - No,float64,164,0.3192
+dentalserv1,Dental Service - Check-up,float64,9163,17.8355
+dentalserv2,Dental Service - Cleaning,float64,9163,17.8355
+dentalserv3,Dental Service - Instructions on Toothbrushing,float64,9163,17.8355
+dentalserv4,Dental Service - X-Rays,float64,9163,17.8355
+dentalserv5,Dental Service - Fluoride Treatment,float64,9163,17.8355
+dentalserv6,Dental Service - Sealant,float64,9163,17.8355
+dentalserv7,Dental Service - Don't Know,float64,9163,17.8355
+k4q28x01,Needed Health Care Not Received - Medical Care,float64,49676,96.6929
+k4q28x02,Needed Health Care Not Received - Dental Care,float64,49676,96.6929
+k4q28x03,Needed Health Care Not Received - Vision Care,float64,49676,96.6929
+k4q28x_ear,Needed Health Care Not Received - Hearing Care,float64,49676,96.6929
+k4q28x04,Needed Health Care Not Received - Mental Health Services,float64,49676,96.6929
+k4q28x05,Needed Health Care Not Received - Other,float64,49676,96.6929
+sesplanyr,Special Education Plan - Age in Years,float64,43068,83.8307
+sesplanmo,Special Education Plan - Age in Months (use with SESPLANYR),float64,49936,97.199
+k4q37,Received Special Services - Age in Years,float64,42053,81.855
+spcservmo,Received Special Services - Age in Months (use with K4Q37),float64,48667,94.729
+liveusa_yr,How Long Living in the United States - Years,float64,49727,96.7922
+liveusa_mo,How Long Living in the United States - Months,float64,51229,99.7158
+k11q43r,How Many Times Moved to New Address,float64,1577,3.0696
+a1_age,Adult 1 - Age in Years,float64,1478,2.8769
+a2_age,Adult 2 - Age in Years,float64,9160,17.8297
+hhcount,Number of People Living at Address,int8,0,0.0
+famcount,Number of People That Are Family Members,float64,1591,3.0968
+breathing,Difficulty Breathing Past 12 Months,float64,199,0.3873
+swallowing,Difficulty Swallowing Past 12 Months,float64,334,0.6501
+stomach,Difficulty Stomach Past 12 Months,float64,380,0.7397
+physicalpain,Difficulty Physical Pain Past 12 Months,float64,259,0.5041
+hands,Difficulty Hands Past 12 Months,float64,37589,73.1659
+coordination,Difficulty Coordination Past 12 Months,float64,37585,73.1582
+toothaches,Difficulty Toothaches Past 12 Months,float64,362,0.7046
+gumbleed,Difficulty Bleeding Gums Past 12 Months,float64,349,0.6793
+cavities,Difficulty Cavities Past 12 Months,float64,200,0.3893
+memorycond,"Serious Difficulty Concentrating, Remembering, or Making Decisions",float64,14143,27.529
+walkstairs,Serious Difficulty Walking or Climbing Stairs,float64,14173,27.5873
+dressing,Difficulty Dressing or Bathing,float64,14227,27.6925
+errandalone,Difficulty Doing Errands Alone,float64,29614,57.6428
+k2q43b,Deafness,float64,266,0.5178
+blindness,Blindness,float64,198,0.3854
+allergies,Allergies,float64,121,0.2355
+allergies_curr,Allergies Currently,float64,35869,69.818
+k2q40a,Asthma,float64,446,0.8681
+k2q40b,Asthma Currently,float64,45839,89.2243
+autoimmune,Autoimmune Disease,float64,178,0.3465
+k2q61a,Cerebral Palsy,float64,361,0.7027
+diabetes,Diabetes,float64,136,0.2647
+diabetes_curr,Diabetes Currently,float64,51321,99.8949
+k2q42a,Epilepsy,float64,334,0.6501
+k2q42b,Epilepsy Currently,float64,50835,98.9489
+heart,Heart Condition,float64,100,0.1946
+heart_born,Heart Born,float64,50043,97.4073
+heart_curr,Heart Condition Currently,float64,50045,97.4112
+headache,Headaches,float64,166,0.3231
+headache_curr,Headaches Currently,float64,49388,96.1324
+k2q38a,Tourette Syndrome,float64,312,0.6073
+k2q38b,Tourette Syndrome Currently,float64,51195,99.6496
+k2q33a,Anxiety,float64,295,0.5742
+k2q33b,Anxiety Currently,float64,44026,85.6954
+k2q32a,Depression,float64,293,0.5703
+k2q32b,Depression Currently,float64,48154,93.7304
+downsyn,Down Syndrome,float64,180,0.3504
+blood,Blood Disorder,float64,223,0.4341
+sicklecell,Blood Disorder Sickle Cell,float64,51106,99.4764
+thalassemia,Blood Disorder Thalassemia,float64,51109,99.4822
+hemophilia,Blood Disorder Hemophilia,float64,51116,99.4959
+blood_other,Blood Disorder Other (includes Hemophilia),float64,51091,99.4472
+blood_screen,Blood Disorder Newborn Screening,float64,51082,99.4297
+cystfib,Cystic Fibrosis,float64,96,0.1869
+cystfib_screen,Cystic Fibrosis Newborn Screening,float64,51335,99.9221
+fasd,Fetal Alcohol Spectrum Disorder (FASD),float64,213,0.4146
+k2q34a,Behavior Problems,float64,109,0.2122
+k2q34b,Behavior Problems Currently,float64,46604,90.7134
+k2q36a,Developmental Delay,float64,235,0.4574
+k2q36b,Developmental Delay Currently,float64,47529,92.5139
+k2q60a,Intellectual Disability,float64,211,0.4107
+k2q60b,Intellectual Disability Currently,float64,50687,98.6608
+k2q37a,Speech Disorder,float64,167,0.3251
+k2q37b,Speech Disorder Currently,float64,46660,90.8224
+k2q30a,Learning Disability,float64,224,0.436
+k2q30b,Learning Disability Currently,float64,47249,91.9689
+k2q35a,Autism ASD,float64,246,0.4788
+k2q35b,Autism ASD Currently,float64,49031,95.4375
+autismmed,Autism ASD - Medication Currently,float64,49018,95.4122
+autismtreat,Autism ASD - Behavioral Treatment,float64,49017,95.4102
+k2q31a,ADD/ADHD,float64,377,0.7338
+k2q31b,ADD/ADHD Currently,float64,44732,87.0696
+k2q31d,ADD/ADHD - Medication Currently,float64,44628,86.8672
+addtreat,ADD/ADHD - Behavioral Treatment,float64,44612,86.836
+concussion,Concussion/Brain Injury,float64,249,0.4847
+seekcare,Concussion/Brain Injury - Seek Care,float64,48431,94.2696
+confirminjury,Concussion/Brain Injury - Confirmed Injury,float64,48809,95.0054
+k2q05,Born 3 or More Weeks Before Due Date,float64,560,1.09
+k6q40,Ever Breastfed,float64,37673,73.3294
+s4q01,Doctor Visit,float64,100,0.1946
+docprivate,Child Spoke with Doctor Privately,float64,32977,64.1888
+overweight,Doctor Identified as Overweight,float64,324,0.6307
+k6q10,"Asked about Learning, Development, Behavior Concerns",float64,37581,73.1504
+k6q12,Questionnaire - Development Concerns,float64,38796,75.5153
+engage_fast,Eating Engagement - Fasting,float64,14117,27.4783
+engage_interest,Eating Engagement - No Interest,float64,14178,27.5971
+engage_picky,Eating Engagement - Picky,float64,14151,27.5445
+engage_binge,Eating Engagement - Binging,float64,14289,27.8131
+engage_purg,Eating Engagement - Purging,float64,14257,27.7509
+engage_pills,Eating Engagement - Pills,float64,14213,27.6652
+engage_exercise,Eating Engagement - Over-Exercise,float64,14294,27.8229
+engage_noeat,Eating Engagement - Not Eating,float64,14213,27.6652
+k4q01,Place Usually Goes Sick,float64,217,0.4224
+usualgo,Place Usually Goes for Preventive Care,float64,418,0.8136
+usualsick,Place Usually Goes for Sick Same As Preventive,float64,3876,7.5445
+visionscreenother,Vision Screening from Other Provider,float64,194,0.3776
+visionexamrec,Vision Test Recommended ,float64,21510,41.8686
+eyedoctor,Vision Tested by Eye Doctor,float64,240,0.4672
+k4q23,Emotions Concentration Behavior Medication,float64,959,1.8667
+k4q27,Needed Health Care Not Received,float64,245,0.4769
+notelig,Needed Health Care Not Received Due to - Not Eligible,float64,49650,96.6423
+available,Needed Health Care Not Received Due to - Not Available,float64,49650,96.6423
+appointment,Needed Health Care Not Received Due to - Getting Appointment,float64,49650,96.6423
+transportcc,Needed Health Care Not Received Due to - Getting Transportation,float64,49650,96.6423
+notopen,Needed Health Care Not Received Due to - Office Not Open,float64,49650,96.6423
+issuecost,Needed Health Care Not Received Due to - Cost,float64,49650,96.6423
+hospitalstay,Admitted to Hospital,float64,268,0.5217
+k6q15,Special Education Plan,float64,204,0.3971
+sescurrsvc,Special Education Plan - Currently,float64,42986,83.671
+k4q36,Received Special Services,float64,1363,2.653
+k4q38,Received Special Services - Currently,float64,41905,81.5669
+k5q10,Need a Referral,float64,350,0.6813
+decisions_r,Health Care Decisions Needed,float64,7016,13.6564
+k5q21,Arrange Or Coordinate Care Extra Help,float64,22695,44.1752
+treatchild,Doctors Treat Only Children,float64,29706,57.8219
+treatadult,Talked About Child Seeing Doctors Who Treat Adults,float64,37865,73.7032
+medhistory,Receive Summary of Medical History,float64,29697,57.8044
+writeplan,Doctor Worked with You and Child To Create Written Plan,float64,29717,57.8433
+receivecopy,Have Access to Plan of Care,float64,45105,87.7956
+healthknow,How Child Will Be Insured as an Adult,float64,29739,57.8861
+keepinsadult,How to Obtain/Keep Health Insurance as Child Becomes Adult,float64,43093,83.8793
+currcov,Health Insurance Coverage - Currently Covered (Use CURRINS),float64,369,0.7182
+k12q03,Health Insurance - Current/Former Employer or Union,float64,3092,6.0185
+k12q04,Health Insurance - Insurance Company,float64,3092,6.0185
+k12q12,Health Insurance - Government Assistance Plan,float64,3092,6.0185
+tricare,Health Insurance - TRICARE,float64,3092,6.0185
+k11q03r,Health Insurance - Indian Health Service,float64,3092,6.0185
+hccovoth,Health Insurance - Other,float64,3092,6.0185
+k3q25,Problems Paying for Medical or Health Care,float64,12413,24.1616
+stopwork,Past 12 Months - Stopped Working because of Health Status,float64,566,1.1017
+cuthours,Past 12 Months -Cut Hours because of Health Conditions,float64,690,1.3431
+avoidchg,Past 12 Months - Avoided Changing Jobs to Maintain Health Insurance,float64,663,1.2905
+oneword,Say One Word,float64,39257,76.4127
+twowords,Use Two Words Together,float64,39257,76.4127
+threewords,Use Three Words Together,float64,39257,76.4127
+askquestion,"Ask Questions: Who, What, When, Where",float64,39257,76.4127
+askquestion2,"Ask Questions:  Why, How",float64,39257,76.4127
+tellstory,Tell a Story,float64,39257,76.4127
+understand,Understand 'No',float64,39257,76.4127
+directions,Follow Verbal Directions,float64,39257,76.4127
+point,Point to Things,float64,39257,76.4127
+directions2,Follow Two Step Directions,float64,39257,76.4127
+understand2,"Understand 'In', 'On', 'Under'",float64,39257,76.4127
+repeated,Child Repeated Any Grades,float64,14577,28.3737
+k7q30,Sports Team or Sports Lessons - Past 12 Months,float64,14393,28.0156
+k7q31,Clubs or Organizations - Past 12 Months,float64,14579,28.3776
+k7q32,Organized Activities or Lessons - Past 12 Months,float64,14622,28.4613
+k7q37,Community Service or Volunteer Work - Past 12 Months,float64,14568,28.3562
+k7q38,Paid Work or Regular Job - Past 12 Months,float64,14634,28.4847
+bornusa,Born in the United States,float64,390,0.7591
+k8q35,Someone to Turn To for Emotional Support,float64,1121,2.182
+k6q27,Job Change Because Problems with Child Care,float64,37799,73.5747
+k9q40,Anyone in Household Use Cigarettes,float64,1018,1.9815
+k9q41,Anyone Smoke Inside of Home,float64,46460,90.4331
+vape,Vape/E-Cigarettes inside of Home,float64,1108,2.1567
+k11q60,Cash Assistance from Government - Past 12 Months,float64,1314,2.5577
+k11q61,Food Stamps - Past 12 Months,float64,1350,2.6277
+k11q62,Free or Reduced Cost Meals - Past 12 Months,float64,1369,2.6647
+ebtcards,School Meal Debit ,float64,1481,2.8827
+s9q34,WIC Benefits - Past 12 Months,float64,1368,2.6628
+ssi,Receive SSI ,float64,1097,2.1353
+ssidisability,Receive SSI for Disability ,float64,50214,97.7401
+k10q11,Neighborhood - Sidewalks or Walking Paths,float64,1274,2.4798
+k10q12,Neighborhood - Park or Playground,float64,1390,2.7056
+k10q13,Neighborhood - Recreation Center,float64,1404,2.7328
+k10q14,Neighborhood - Library or Bookmobile,float64,1402,2.729
+k10q20,Neighborhood - Litter or Garbage,float64,1362,2.6511
+k10q22,Neighborhood - Poorly Kept or Rundown Housing,float64,1391,2.7075
+k10q23,Neighborhood - Vandalism,float64,1328,2.5849
+k9q96,Other Adult Child Can Rely On For Advice,float64,15076,29.345
+ace3,Child Experienced - Parent or Guardian Divorced,float64,1823,3.5484
+ace4,Child Experienced - Parent or Guardian Died,float64,1885,3.6691
+ace5,Child Experienced - Parent or Guardian Time in Jail,float64,1973,3.8404
+ace6,"Child Experienced - Adults Slap, Hit, Kick, Punch Others",float64,1972,3.8384
+ace7,Child Experienced - Victim of Violence,float64,1942,3.78
+ace8,Child Experienced - Lived with Mentally Ill,float64,1969,3.8326
+ace9,Child Experienced - Lived with Person with Alcohol/Drug Problem,float64,2013,3.9182
+ace10,Child Experienced - Treated Unfairly Because of Race,float64,2010,3.9124
+ace11,Child Experienced - Treated Unfairly Because of Health Condition,float64,1872,3.6438
+videophone,Virtual Health Care Visits,float64,1687,3.2837
+a1_deplstat,Adult 1 - Deployment Status,float64,49136,95.6418
+a2_deplstat,Adult 2 - Deployment Status,float64,48869,95.1221
+allergies_desc,Allergies Severity Description,float64,38581,75.0968
+k2q40c,Asthma Severity Description,float64,47533,92.5217
+autoimmune_desc,Autoimmune Disease Description,float64,50727,98.7387
+cerpals_desc,Cerebral Palsy Severity Description,float64,51248,99.7528
+diabetes_desc,Diabetes Severity Description,float64,51335,99.9221
+k2q42c,Epilepsy Severity Description,float64,51045,99.3577
+heart_desc,Heart Condition Severity Description,float64,50658,98.6044
+headache_desc,Headaches Severity Description,float64,49886,97.1017
+k2q38c,Tourette Syndrome Severity Description,float64,51223,99.7041
+k2q33c,Anxiety Severity Description,float64,44697,87.0015
+k2q32c,Depression Severity Description,float64,48843,95.0715
+blood_desc,Blood Disorder Severity Description,float64,51119,99.5017
+cystfib_desc,Cystic Fibrosis Severity Description,float64,51340,99.9319
+k2q34c,Behavior Problems Severity Description,float64,47570,92.5937
+k2q36c,Developmental Delay Severity Description,float64,48489,94.3825
+k2q60c,Intellectual Disability Severity Description,float64,50714,98.7134
+k2q37c,Speech Disorder Severity Description,float64,48361,94.1333
+k2q30c,Learning Disability Severity Description,float64,47522,92.5002
+k2q35c,Autism ASD Severity Description,float64,49162,95.6925
+k2q31c,ADD/ADHD Severity Description,float64,45107,87.7995
+engageconcern,Concerned over Child's Engagement in Eating Behaviors,float64,39869,77.6039
+bodyimage,Child's concern over body image ,float64,14213,27.6652
+bounceaball,Bounce Ball,float64,44059,85.7596
+drawacircle,Draw a Circle,float64,44049,85.7401
+drawaface,Draw a Face,float64,44056,85.7538
+drawaperson,Draw a Person,float64,44057,85.7557
+a1_sex,Adult 1 - Sex,float64,1453,2.8282
+a1_born,Adult 1 - Where Born,float64,1424,2.7718
+a1_employed_r,Adult 1 - Current Employment Status,float64,1691,3.2915
+a1_grade,Adult 1 - Highest Completed Year of School,int8,0,0.0
+a1_marital,Adult 1 - Marital Status,float64,1672,3.2545
+a1_relation,Adult 1 - How Related to Child,float64,1262,2.4564
+a2_sex,Adult 2 - Sex,float64,9243,17.9912
+a2_born,Adult 2 - Where Born,float64,9366,18.2307
+a2_employed_r,Adult 2 - Current Employment Status,float64,9177,17.8628
+a2_grade,Adult 2 - Highest Completed Year of School,float64,9186,17.8803
+a2_marital,Adult 2 - Marital Status,float64,9298,18.0983
+a2_relation,Adult 2 - How Related to Child,float64,1668,3.2467
+a1_active,Adult 1 - Active Duty,float64,1607,3.128
+a2_active,Adult 2 - Active Duty,float64,9122,17.7557
+a1_physhealth,Adult 1 - Physical Health,float64,1622,3.1572
+a1_menthealth,Adult 1 - Mental or Emotional Health,float64,1620,3.1533
+a2_physhealth,Adult 2 - Physical Health,float64,9206,17.9192
+a2_menthealth,Adult 2 - Mental or Emotional Health,float64,9200,17.9075
+k2q01,General Health,float64,161,0.3134
+k2q01_d,Teeth Description,float64,119,0.2316
+k5q40,How Often - Spend Enough Time,float64,7104,13.8277
+k5q41,How Often - Listen Carefully,float64,7211,14.036
+k5q42,How Often - Show Sensitivity,float64,7231,14.0749
+k5q43,How Often - Provide Specific Information,float64,7224,14.0613
+k5q44,How Often - Feel Like a Partner,float64,7168,13.9523
+discussopt,How Often - Provider Discussed Range of Options,float64,31216,60.7611
+raiseconc,How Often - Easy to Raise Concerns or Disagree,float64,31224,60.7766
+bestforchild,How Often - Work to Decide Together Treatment,float64,31198,60.726
+k3q20,Health Insurance - Benefits Cover Services,float64,3077,5.9893
+k3q22,Health Insurance - Allow to See Provider,float64,3115,6.0633
+k3q21b,How Often Costs Reasonable,float64,12431,24.1966
+k6q70_r,Affectionate,float64,37736,73.4521
+k6q73_r,Bounces Back,float64,37749,73.4774
+k6q71_r,Show Interest and Curiosity,float64,628,1.2224
+k6q72_r,Smiles Laughs,float64,37727,73.4345
+k7q84_r,Works to Finish Tasks Started,float64,14392,28.0136
+k7q85_r,Stays Calm and In Control When Challenged,float64,14402,28.0331
+k7q82_r,Cares About Doing Well in School,float64,14424,28.0759
+k7q83_r,Does All Required Homework,float64,14456,28.1382
+k7q70_r,Argues Too Much,float64,14416,28.0603
+bullied_r,"Bullied, Picked On, or Excluded by Others",float64,14414,28.0564
+bully,"Bullies Others, Picks on Them, or Excludes Them",float64,14394,28.0175
+recogbegin,Recognize Beginning Sound of a Word,float64,44026,85.6954
+samesound,Words with Same Start Sound,float64,44027,85.6973
+clearexp,How Often - Explain Things Good Idea,float64,44021,85.6856
+writename,How Often - Write First Name,float64,44022,85.6876
+focuson,Focus on a Task,float64,44027,85.6973
+readonedigit,Read One Digit,float64,44029,85.7012
+simpleaddition,Simple Addition,float64,44027,85.6973
+groupofobjects,Group of Objects,float64,44034,85.7109
+nameemotions,Recognize Emotion,float64,44037,85.7168
+startnewact,How Often - Difficulty End/Starting Activities,float64,44039,85.7207
+temper_r,How Often - Loses Temper,float64,44035,85.7129
+playwell,How Often - Play Well with Others,float64,44036,85.7148
+distracted,How Often - Easily Distracted,float64,44028,85.6993
+hurtsad,How Often - Show Concern,float64,44043,85.7285
+calmdown_r,How Often - Calms Down When Excited,float64,44046,85.7343
+waitforturn,How Often - Waits for Their Turn,float64,44043,85.7285
+hardwork,How Often - Work even when hard ,float64,44041,85.7246
+sharetoys,Share Toys,float64,44051,85.744
+recogabc,Recognize Letters of Alphabet,float64,44033,85.709
+talkabout,Facing Problems - How Often Talk Together,float64,1873,3.6457
+wktosolve,Facing Problems - How Often Work Together,float64,1936,3.7684
+strengths,Facing Problems - How Often Draw on Strengths,float64,1982,3.8579
+hopeful,Facing Problems - How Often Stay Hopeful,float64,1883,3.6652
+k10q30,People In Neighborhood Help Each Other Out,float64,1512,2.9431
+k10q31,Watch Out for Other's Children,float64,1602,3.1182
+k10q40_r,Child is Safe In Neighborhood,float64,1537,2.9917
+goforhelp,Know Where to Go For Help,float64,1618,3.1494
+k10q41_r,Child Is Safe at School,float64,15030,29.2555
+k8q31,How Often Have You Felt - Child Hard to Care For,float64,991,1.929
+k8q32,How Often Have You Felt - Child Really Bothers You,float64,1028,2.001
+k8q34,How Often Have You Felt - Angry with Child,float64,1089,2.1197
+howmuch,How Much Medical Health Care - Past 12 Months,float64,641,1.2477
+athomehc,Hours Spent Providing Home Health Care,float64,588,1.1445
+arrangehc,Hours Spent Arranging Health Medical Care,float64,582,1.1328
+k7q02r_r,Days Child Missed School - Illness or Injury,float64,14323,27.8793
+k7q04r_r,Times School Contacted Household About Problems,float64,14606,28.4302
+physactiv,"Exercise, Play Sport, or Physical Activity for 60 Minutes",float64,14349,27.9299
+hoursleep05,Past Week - How Many Hours of Sleep Average,float64,37666,73.3158
+hoursleep,Past Week - How Many Hours of Sleep Average,float64,14336,27.9046
+outdoorswkday,Time Spent Playing Outdoors - Weekday,float64,44036,85.7148
+outdoorswkend,Time Spent Playing Outdoors - Weekend,float64,44033,85.709
+screentime,"How Much Time Spent with TV, Cellphone, Computer",float64,868,1.6895
+k6q60_r,How Many Days Read to Child,float64,37787,73.5513
+k6q61_r,How Many Days Tell Stories or Sing to Child,float64,37787,73.5513
+k8q11,How Many Days - Family Eat Meal Together,float64,924,1.7985
+foodsit,Food Situation In Household - Past 12 Months,float64,1253,2.4389
+evalfasd,Evaluation for a Fetal Alcohol Spectrum Disorder Recommended,float64,270,0.5255
+recevalfasd,Received an Evaluation for FASD,float64,328,0.6384
+poschoice,Doctor Worked with Child to Make Positive Choices,float64,29711,57.8316
+gainskills,Doctor Worked with Child to Gain Skills to Manage Health,float64,29787,57.9796
+changeage,Doctor Worked with Child to Understand Health Care Changes,float64,29764,57.9348
+missmortgage,Not Able to Pay Mortgage or Rent,float64,1252,2.437
+everhomeless,Homeless or Lived in Shelter ,float64,1380,2.6861
+k2q35d,Autism ASD - First Told Doctor Type,float64,49046,95.4667
+hcability,Health Affected Ability - How Often,float64,324,0.6307
+hcextent,Health Affected Ability - Extent,float64,43077,83.8482
+k4q20r,Preventive Visit - How Many Times,float64,6917,13.4637
+docroom,Preventive Visit - How Long with Doctor,float64,6814,13.2633
+wgtconc,Concerned About Weight,float64,263,0.5119
+gowhensick,Place Usually Goes Sick - Where,float64,9147,17.8044
+dentistvisit,Preventive Dental Visit - How Many Visits,float64,8056,15.6808
+k4q22_r,Mental Health Professional Treatment,float64,237,0.4613
+treatneed,Mental Health Professional Treatment - Problem,float64,42961,83.6224
+k4q24_r,Specialist Visit,float64,249,0.4847
+k4q26,Specialist Visit - Problem,float64,41942,81.6389
+c4q04,Frustrated In Efforts to Get Service,float64,313,0.6092
+hospitaler,Hospital Emergency Room Visits,float64,251,0.4886
+k4q04_r,Personal Doctor or Nurse - One or More,float64,309,0.6015
+k5q11,Need a Referral - Problem,float64,40163,78.1762
+k5q20_r,Arrange Or Coordinate Care Among Doctors,float64,7207,14.0282
+k5q22,Arrange Or Coordinate As Much Help As Wanted,float64,48167,93.7557
+k5q30,Communication Satisfaction Among Doctors,float64,22682,44.1499
+k5q32,"Communication Satisfaction with School, Child Care, Special Education Program",float64,46466,90.4448
+k5q31_r,"Provider Communication with School, Child Care, Special Education Program",float64,7053,13.7285
+k8q21,Share Ideas or Talk About Things That Matter,float64,14536,28.2939
+k8q30,How Well Handling Demands of Raising Children,float64,838,1.6311
+countto_r,Can Count How High,float64,44019,85.6818
+k7q33,How Often Attend Events or Activities,float64,14363,27.9572
+bedtime,How Often - Go to Bed at Same Time,float64,657,1.2788
+k3q04_r,Health Insurance Coverage - Past 12 Months (Use INSGAP),float64,378,0.7358
+ace1,Hard to Cover Basics Like Food or Housing,float64,914,1.7791
+makefriend,Difficulty Making or Keeping Friends,float64,14360,27.9513
+startschool,Has Child Started School,float64,44007,85.6584
+sugardrink,How Many Surgary Drinks,float64,2247,4.3737
+vegetables,How Many Vegetables,float64,39343,76.58
+fruit,How Many Fruits,float64,39300,76.4964
+planneeds_r,Plan Address Transition,float64,45104,87.7937
+rhymeword_r,Rhyme Words,float64,44037,85.7168
+grades,Grades Received in School ,float64,14412,28.0526
+homeevic,Worried about Being Evicted ,float64,1190,2.3163
+moves,Number of Times Child Has Moved,float64,1373,2.6725
+year,Survey Year,int16,0,0.0
+cbsafp_yn,Core Based Statistical Area Status,float64,14894,28.9908
+metro_yn,Metropolitan Statistical Area Status,float64,4850,9.4404
+mpc_yn,Metropolitan Principal City Status,float64,7138,13.8939
+totage_0_5,Count of Children Ages 0 to 5 in Household,int8,0,0.0
+totage_6_11,Count of Children Ages 6 to 11 in Household,int8,0,0.0
+totage_12_17,Count of Children Ages 12 to 17 in Household,int8,0,0.0
+totcshcn,Count of Children with Special Health Care Needs in Household,int8,0,0.0
+totnonshcn,Count of Children without Special Health Care Needs in Household,int8,0,0.0
+sc_cshcn,Special Health Care Needs Status of Selected Child,int8,0,0.0
+sc_race_r,"Race of Selected Child, Detailed",int8,0,0.0
+sc_hispanic_r,"Hispanic Origin of Selected Child, Recode",int8,0,0.0
+sc_english,SC  Speaks English,float64,9512,18.5148
+sc_k2q10,SC Needs or Uses Medication Currently,float64,36,0.0701
+sc_k2q11,SC Medication Used or Needed for Health Condition,float64,39941,77.744
+sc_k2q12,SC Medication Currently for 12 Months,float64,41120,80.0389
+sc_k2q13,SC Needs or Uses More Medical Care than Others,float64,48,0.0934
+sc_k2q14,SC Medical Care Used or Needed for Health Condition,float64,42605,82.9294
+sc_k2q15,SC Medical Care Currently for 12 Months,float64,43704,85.0686
+sc_k2q16,SC Limited Ability,float64,44,0.0856
+sc_k2q17,SC Limited Ability from Health Condition,float64,47722,92.8895
+sc_k2q18,SC Limited Ability from Health Condition for 12 Months,float64,48001,93.4326
+sc_k2q19,SC Special Therapy,float64,35,0.0681
+sc_k2q20,SC Special Therapy for Health Condition,float64,45568,88.6968
+sc_k2q21,SC Special Therapy for Health Condition for 12 Months,float64,47206,91.8852
+sc_k2q22,SC Needs Treatment for Emotion Develop Behave,float64,37,0.072
+sc_k2q23,SC Treatment for Chronic Emotion Develop Behave,float64,43662,84.9869
+sc_age_lt4,Age of Selected Child - Less than 4 Months,int8,0,0.0
+sc_age_lt6,Age of Selected Child - Less than 6 Months,int8,0,0.0
+sc_age_lt9,Age of Selected Child - Less than 9 Months,int8,0,0.0
+sc_age_lt10,Age of Selected Child - Less than 10 Months,int8,0,0.0
+agepos4,Birth Order of Selected Children in Household,int8,0,0.0
+tenure_if,Imputation Flag for TENURE,int8,0,0.0
+totmale,Count of Male Children in Household,int8,0,0.0
+totfemale,Count of Female Children in Household,int8,0,0.0
+sc_race_r_if,Imputation Flag for SC_RACE_R,int8,0,0.0
+sc_racer,"Race of Selected Child, Recode",int8,0,0.0
+sc_hispanic_r_if,Imputation Flag for SC_HISPANIC_R,int8,0,0.0
+sc_sex_if,Imputation Flag for SC_SEX,int8,0,0.0
+birthwt_oz_s,"Standardized Birth Weight, Ounces",float64,2076,4.0409
+breastfedend_day_s,Stopped Breastfeeding - Days (Standardized),float64,51242,99.7411
+breastfedend_wk_s,Stopped Breastfeeding - Weeks (Standardized),float64,49706,96.7513
+breastfedend_mo_s,Stopped Breastfeeding - Months (Standardized),float64,41257,80.3056
+frstformula_day_s,First Fed Formula - Days (Standardized),float64,46023,89.5825
+frstformula_wk_s,First Fed Formula - Weeks (Standardized),float64,44378,86.3805
+frstformula_mo_s,First Fed Formula - Months (Standardized),float64,41354,80.4944
+frstsolids_day_s,First Fed Solids - Days (Standardized),float64,51028,99.3246
+frstsolids_wk_s,First Fed Solids - Days (Standardized),float64,50880,99.0365
+frstsolids_mo_s,First Fed Solids - Days (Standardized),float64,38871,75.6613
+house_gen,Parental Nativity,float64,724,1.4092
+family_r,Family Structure,float64,1328,2.5849
+currins,Health Insurance Coverage - Currently Covered,float64,368,0.7163
+insgap,Health Insurance Coverage - Past 12 Months,float64,546,1.0628
+instype,Insurance Type (Revised),float64,958,1.8647
+birthwt_vl,Birth Weight is Very Low (<1500g),float64,2076,4.0409
+birthwt_l,Birth Weight is Low (<2500g),float64,2076,4.0409
+birthwt,Birth Weight Status,float64,2076,4.0409
+fpl_if,Imputation Flag for FPL,int8,0,0.0
+a1_grade_if,Imputation Flag for A1_GRADE,int8,0,0.0
+birth_yr_f,BIRTH_YR Data Quality Flag,int8,0,0.0
+sc_asian,Asian Alone or in Combination with Other Race,float64,54,0.1051
+sc_aian,American Indian or Alaska Native Alone or in Combination with Other Race,int8,0,0.0
+sc_nhpi,Native Hawaiian or Other Pacific Islanders Alone or in Combination with Other Race,int8,0,0.0
+weight,Child's Weight (KG),float64,14623,28.4633
+bmiclass,"Body Mass Index, Percentile",float64,15412,29.999
+hhcount_if,Imputation Flag for HHCOUNT,int8,0,0.0
+higrade,Highest Level of Education among Reported Adults,int8,0,0.0
+higrade_tvis,"Highest Level of Education among Reported Adults, Detail",int8,0,0.0
+fpl_i1,"Family Poverty Ratio, First Implicate",int16,0,0.0
+fpl_i2,"Family Poverty Ratio, Second Implicate",int16,0,0.0
+fpl_i3,"Family Poverty Ratio, Third Implicate",int16,0,0.0
+fpl_i4,"Family Poverty Ratio, Fourth Implicate",int16,0,0.0
+fpl_i5,"Family Poverty Ratio, Fifth Implicate",int16,0,0.0
+fpl_i6,"Family Poverty Ratio, Sixth Implicate",int16,0,0.0
+fwc,Selected Child Weight,float64,0,0.0

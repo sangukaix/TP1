@@ -1,0 +1,490 @@
+{
+  "selected_features": [
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score"
+  ],
+  "selected_model": "Logistic Regression",
+  "validation": [
+    {
+      "model": "Logistic Regression",
+      "configuration": "Association-selected features",
+      "feature_set": "A1_Score, A2_Score, A3_Score, A4_Score, A5_Score, A6_Score, A7_Score, A8_Score, A9_Score, A10_Score",
+      "tn": 30,
+      "fp": 0,
+      "fn": 0,
+      "tp": 28,
+      "accuracy": 1.0,
+      "precision": 1.0,
+      "recall": 1.0,
+      "f1": 1.0,
+      "roc_auc": 1.0,
+      "selection_rank": 1
+    },
+    {
+      "model": "KNN",
+      "configuration": "Association-selected features",
+      "feature_set": "A1_Score, A2_Score, A3_Score, A4_Score, A5_Score, A6_Score, A7_Score, A8_Score, A9_Score, A10_Score",
+      "tn": 28,
+      "fp": 2,
+      "fn": 1,
+      "tp": 27,
+      "accuracy": 0.9482758620689655,
+      "precision": 0.9310344827586207,
+      "recall": 0.9642857142857143,
+      "f1": 0.9473684210526315,
+      "roc_auc": 0.9886904761904762,
+      "selection_rank": 2
+    },
+    {
+      "model": "Decision Tree",
+      "configuration": "Association-selected features",
+      "feature_set": "A1_Score, A2_Score, A3_Score, A4_Score, A5_Score, A6_Score, A7_Score, A8_Score, A9_Score, A10_Score",
+      "tn": 27,
+      "fp": 3,
+      "fn": 1,
+      "tp": 27,
+      "accuracy": 0.9310344827586207,
+      "precision": 0.9,
+      "recall": 0.9642857142857143,
+      "f1": 0.9310344827586207,
+      "roc_auc": 0.9321428571428573,
+      "selection_rank": 3
+    },
+    {
+      "model": "Random Forest",
+      "configuration": "Association-selected features",
+      "feature_set": "A1_Score, A2_Score, A3_Score, A4_Score, A5_Score, A6_Score, A7_Score, A8_Score, A9_Score, A10_Score",
+      "tn": 27,
+      "fp": 3,
+      "fn": 2,
+      "tp": 26,
+      "accuracy": 0.9137931034482759,
+      "precision": 0.896551724137931,
+      "recall": 0.9285714285714286,
+      "f1": 0.9122807017543859,
+      "roc_auc": 0.9869047619047618,
+      "selection_rank": 4
+    }
+  ],
+  "final_test": {
+    "accuracy": 1.0,
+    "precision": 1.0,
+    "recall": 1.0,
+    "f1": 1.0,
+    "roc_auc": 1.0,
+    "train_accuracy": 1.0,
+    "generalization_gap": 0.0,
+    "tn": 30,
+    "fp": 0,
+    "fn": 0,
+    "tp": 28
+  },
+  "weighted_checklist": {
+    "weights": [
+      {
+        "rank": 1,
+        "feature": "A10_Score",
+        "observation": "새 친구를 사귀기 어려움",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 2.0286630162197614,
+        "normalized_weight": 0.12639831435928958,
+        "points": 13
+      },
+      {
+        "rank": 2,
+        "feature": "A1_Score",
+        "observation": "다른 사람이 잘 알아차리지 못하는 작은 소리를 자주 알아차림",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.9406302337451795,
+        "normalized_weight": 0.12091332487400792,
+        "points": 12
+      },
+      {
+        "rank": 3,
+        "feature": "A4_Score",
+        "observation": "한 활동에서 다른 활동으로 전환하기 어려움",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.7992854323805934,
+        "normalized_weight": 0.11210666526958353,
+        "points": 11
+      },
+      {
+        "rank": 4,
+        "feature": "A8_Score",
+        "observation": "또래와 가상놀이·역할놀이를 즐기는 경향이 적음",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.768552897511329,
+        "normalized_weight": 0.1101918373398559,
+        "points": 11
+      },
+      {
+        "rank": 5,
+        "feature": "A7_Score",
+        "observation": "이야기 속 인물의 의도나 감정을 파악하기 어려움",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.534511957593909,
+        "normalized_weight": 0.09560963218300837,
+        "points": 10
+      },
+      {
+        "rank": 6,
+        "feature": "A5_Score",
+        "observation": "또래와 대화를 계속 이어가는 방법을 어려워함",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.4991201677101287,
+        "normalized_weight": 0.09340450370789874,
+        "points": 9
+      },
+      {
+        "rank": 7,
+        "feature": "A3_Score",
+        "observation": "여러 사람의 대화를 동시에 따라가기 어려움",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.4640884425439995,
+        "normalized_weight": 0.09122180950255569,
+        "points": 9
+      },
+      {
+        "rank": 8,
+        "feature": "A9_Score",
+        "observation": "표정만 보고 상대의 생각이나 감정을 파악하기 어려움",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.401102258537999,
+        "normalized_weight": 0.08729737877028071,
+        "points": 9
+      },
+      {
+        "rank": 9,
+        "feature": "A6_Score",
+        "observation": "가벼운 사회적 대화(잡담)를 어려워함",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.3697029608397773,
+        "normalized_weight": 0.08534100737227676,
+        "points": 8
+      },
+      {
+        "rank": 10,
+        "feature": "A2_Score",
+        "observation": "전체보다 작은 세부사항에 더 집중하는 경향",
+        "weight_source": "Logistic Regression coefficient magnitude",
+        "raw_importance": 1.2441058477435003,
+        "normalized_weight": 0.07751552662124268,
+        "points": 8
+      }
+    ],
+    "observe_cutoff": 50,
+    "high_cutoff": 65,
+    "very_high_cutoff": 80,
+    "cutoff_basis": {
+      "development_no_max": 64,
+      "development_yes_min": 67,
+      "development_yes_median": 80.0
+    },
+    "validation": [
+      {
+        "threshold": 0,
+        "flagged_count": 58,
+        "yes_count": 28,
+        "yes_rate_precision": 0.4827586206896552,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 5,
+        "flagged_count": 58,
+        "yes_count": 28,
+        "yes_rate_precision": 0.4827586206896552,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 10,
+        "flagged_count": 58,
+        "yes_count": 28,
+        "yes_rate_precision": 0.4827586206896552,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 15,
+        "flagged_count": 56,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 20,
+        "flagged_count": 55,
+        "yes_count": 28,
+        "yes_rate_precision": 0.509090909090909,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 25,
+        "flagged_count": 53,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5283018867924528,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 30,
+        "flagged_count": 49,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5714285714285714,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 35,
+        "flagged_count": 47,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5957446808510638,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 40,
+        "flagged_count": 47,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5957446808510638,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 45,
+        "flagged_count": 43,
+        "yes_count": 28,
+        "yes_rate_precision": 0.6511627906976745,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 50,
+        "flagged_count": 37,
+        "yes_count": 28,
+        "yes_rate_precision": 0.7567567567567568,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 55,
+        "flagged_count": 33,
+        "yes_count": 28,
+        "yes_rate_precision": 0.8484848484848485,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 60,
+        "flagged_count": 29,
+        "yes_count": 28,
+        "yes_rate_precision": 0.9655172413793104,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 65,
+        "flagged_count": 28,
+        "yes_count": 28,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 70,
+        "flagged_count": 23,
+        "yes_count": 23,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.8214285714285714
+      },
+      {
+        "threshold": 75,
+        "flagged_count": 16,
+        "yes_count": 16,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.5714285714285714
+      },
+      {
+        "threshold": 80,
+        "flagged_count": 13,
+        "yes_count": 13,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.4642857142857143
+      },
+      {
+        "threshold": 85,
+        "flagged_count": 11,
+        "yes_count": 11,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.39285714285714285
+      },
+      {
+        "threshold": 90,
+        "flagged_count": 6,
+        "yes_count": 6,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.21428571428571427
+      },
+      {
+        "threshold": 95,
+        "flagged_count": 4,
+        "yes_count": 4,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.14285714285714285
+      },
+      {
+        "threshold": 100,
+        "flagged_count": 4,
+        "yes_count": 4,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.14285714285714285
+      }
+    ],
+    "final_test": [
+      {
+        "threshold": 0,
+        "flagged_count": 58,
+        "yes_count": 28,
+        "yes_rate_precision": 0.4827586206896552,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 5,
+        "flagged_count": 57,
+        "yes_count": 28,
+        "yes_rate_precision": 0.49122807017543857,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 10,
+        "flagged_count": 57,
+        "yes_count": 28,
+        "yes_rate_precision": 0.49122807017543857,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 15,
+        "flagged_count": 57,
+        "yes_count": 28,
+        "yes_rate_precision": 0.49122807017543857,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 20,
+        "flagged_count": 57,
+        "yes_count": 28,
+        "yes_rate_precision": 0.49122807017543857,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 25,
+        "flagged_count": 56,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 30,
+        "flagged_count": 54,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5185185185185185,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 35,
+        "flagged_count": 51,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5490196078431373,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 40,
+        "flagged_count": 48,
+        "yes_count": 28,
+        "yes_rate_precision": 0.5833333333333334,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 45,
+        "flagged_count": 45,
+        "yes_count": 28,
+        "yes_rate_precision": 0.6222222222222222,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 50,
+        "flagged_count": 38,
+        "yes_count": 28,
+        "yes_rate_precision": 0.7368421052631579,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 55,
+        "flagged_count": 36,
+        "yes_count": 28,
+        "yes_rate_precision": 0.7777777777777778,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 60,
+        "flagged_count": 31,
+        "yes_count": 28,
+        "yes_rate_precision": 0.9032258064516129,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 65,
+        "flagged_count": 28,
+        "yes_count": 28,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 1.0
+      },
+      {
+        "threshold": 70,
+        "flagged_count": 26,
+        "yes_count": 26,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.9285714285714286
+      },
+      {
+        "threshold": 75,
+        "flagged_count": 23,
+        "yes_count": 23,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.8214285714285714
+      },
+      {
+        "threshold": 80,
+        "flagged_count": 20,
+        "yes_count": 20,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.7142857142857143
+      },
+      {
+        "threshold": 85,
+        "flagged_count": 13,
+        "yes_count": 13,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.4642857142857143
+      },
+      {
+        "threshold": 90,
+        "flagged_count": 8,
+        "yes_count": 8,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.2857142857142857
+      },
+      {
+        "threshold": 95,
+        "flagged_count": 3,
+        "yes_count": 3,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.10714285714285714
+      },
+      {
+        "threshold": 100,
+        "flagged_count": 3,
+        "yes_count": 3,
+        "yes_rate_precision": 1.0,
+        "yes_recall": 0.10714285714285714
+      }
+    ]
+  }
+}

@@ -1,0 +1,7 @@
+﻿split,current_asd,count
+test,0,9777
+test,1,446
+train,0,29328
+train,1,1338
+validation,0,9776
+validation,1,446

@@ -1,0 +1,27 @@
+{
+  "model": "LogisticRegression",
+  "features": [
+    "family_r",
+    "fpl_i1",
+    "foodsit",
+    "sc_age_years",
+    "screentime",
+    "missmortgage",
+    "a1_grade",
+    "k7q04r_r",
+    "k7q82_r",
+    "k10q41_r",
+    "makefriend",
+    "hoursleep"
+  ],
+  "selection_rule": "top 12 by combined RF importance and train statistical relationship rank",
+  "association_excluded": [
+    "a1_menthealth",
+    "a2_menthealth",
+    "k2q31a",
+    "k2q32a",
+    "k2q33a",
+    "k2q34a",
+    "k2q35a"
+  ]
+}

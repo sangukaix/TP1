@@ -1,0 +1,33 @@
+﻿section,column,rule,value,count,pct
+ACE response distribution,ace1,3=Somewhat often 또는 4=Very often을 ACE 경험(1)으로 계산; 1=Never·2=Rarely는 0,1,29879,58.1586
+ACE response distribution,ace1,3=Somewhat often 또는 4=Very often을 ACE 경험(1)으로 계산; 1=Never·2=Rarely는 0,2,14472,28.1693
+ACE response distribution,ace1,3=Somewhat often 또는 4=Very often을 ACE 경험(1)으로 계산; 1=Never·2=Rarely는 0,3,4919,9.5747
+ACE response distribution,ace1,3=Somewhat often 또는 4=Very often을 ACE 경험(1)으로 계산; 1=Never·2=Rarely는 0,4,1191,2.3182
+ACE response distribution,ace1,3=Somewhat often 또는 4=Very often을 ACE 경험(1)으로 계산; 1=Never·2=Rarely는 0,missing,914,1.7791
+ACE response distribution,ace3,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,10289,20.0273
+ACE response distribution,ace3,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,39263,76.4243
+ACE response distribution,ace3,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1823,3.5484
+ACE response distribution,ace4,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,1563,3.0423
+ACE response distribution,ace4,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,47927,93.2886
+ACE response distribution,ace4,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1885,3.6691
+ACE response distribution,ace5,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,2689,5.2341
+ACE response distribution,ace5,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,46713,90.9255
+ACE response distribution,ace5,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1973,3.8404
+ACE response distribution,ace6,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,2196,4.2745
+ACE response distribution,ace6,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,47207,91.8871
+ACE response distribution,ace6,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1972,3.8384
+ACE response distribution,ace7,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,1822,3.5465
+ACE response distribution,ace7,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,47611,92.6735
+ACE response distribution,ace7,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1942,3.78
+ACE response distribution,ace8,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,4968,9.6701
+ACE response distribution,ace8,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,44438,86.4973
+ACE response distribution,ace8,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,1969,3.8326
+ACE response distribution,ace9,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,4583,8.9207
+ACE response distribution,ace9,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,44779,87.1611
+ACE response distribution,ace9,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,2013,3.9182
+ACE response distribution,ace10,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,1,1906,3.71
+ACE response distribution,ace10,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,2,47459,92.3776
+ACE response distribution,ace10,1=Yes를 ACE 경험(1)으로 계산; 2=No는 0,missing,2010,3.9124
+ACE_HIGH,ACE_HIGH,ACE_COUNT 0~1 = 0; 2 이상 = 1,0,39975,83.2084
+ACE_HIGH,ACE_HIGH,ACE_COUNT 0~1 = 0; 2 이상 = 1,1,8067,16.7916
+ACE_HIGH,ACE_HIGH,9개 ACE 문항 모두 정상 응답,usable rows,48042,93.5124

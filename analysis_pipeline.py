@@ -27,9 +27,9 @@ from sklearn.tree import DecisionTreeClassifier
 warnings.filterwarnings("ignore")
 
 ROOT = Path(__file__).resolve().parent
-DATA_PATH = ROOT / "Autism-Child-Data.csv"
-ART = ROOT / "model_artifacts"
-ART.mkdir(exist_ok=True)
+DATA_PATH = ROOT / "data" / "asd" / "Autism-Child-Data.csv"
+ART = ROOT / "model_artifacts" / "asd"
+ART.mkdir(parents=True, exist_ok=True)
 
 RANDOM_STATE = 42
 TARGET = "Class/ASD"

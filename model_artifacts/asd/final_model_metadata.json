@@ -1,0 +1,173 @@
+{
+  "project_title": "아동학대 의심 예측 설문조사",
+  "project_subtitle": "ASD 선별 관련 행동·개인·배경 특성 분석을 통한 관심 필요 아동 탐색",
+  "actual_dataset_target": "Class/ASD",
+  "target_meaning": "A1~A10 점수 합계 규칙에 기반한 ASD 선별 레이블",
+  "abuse_target_in_dataset": false,
+  "random_state": 42,
+  "data_rows_raw": 292,
+  "data_rows_after_dedup": 290,
+  "development_rows": 232,
+  "final_test_rows": 58,
+  "selection_train_rows": 174,
+  "validation_rows": 58,
+  "missing_value_handling": {
+    "age": "median=6",
+    "ethnicity": "Unknown",
+    "relation": "Unknown"
+  },
+  "behavior_candidates": [
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score"
+  ],
+  "background_candidates": [
+    "age",
+    "gender",
+    "ethnicity",
+    "jaundice",
+    "family_asd",
+    "country_of_res",
+    "used_app_before",
+    "relation"
+  ],
+  "all_candidate_features": [
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score",
+    "age",
+    "gender",
+    "ethnicity",
+    "jaundice",
+    "family_asd",
+    "country_of_res",
+    "used_app_before",
+    "relation"
+  ],
+  "excluded_features": {
+    "result": "A1~A10 합계이며 Target 생성 규칙을 직접 포함하므로 독립 요인/모델 입력에서 제외",
+    "age_desc": "모든 행에서 동일한 4-11 years 설명값이어서 제외",
+    "Class/ASD": "Target 자체이므로 입력 변수 아님"
+  },
+  "feature_selection_rule": "Selection Train에서 희소 범주 통합 후 p<0.05인 요인을 ML 입력 후보로 유지",
+  "association_effect_size": {
+    "categorical": "Bias-corrected Cramer's V",
+    "age": "absolute point-biserial correlation"
+  },
+  "rare_category_grouping": {
+    "features": [
+      "ethnicity",
+      "country_of_res"
+    ],
+    "min_count": 10,
+    "label": "Other (rare)",
+    "selection_maps": {
+      "ethnicity": [
+        "White-European",
+        "Unknown",
+        "Asian",
+        "Middle Eastern ",
+        "Others"
+      ],
+      "country_of_res": [
+        "United Kingdom",
+        "United States",
+        "India",
+        "Jordan",
+        "New Zealand",
+        "Australia"
+      ]
+    },
+    "final_maps": {
+      "ethnicity": [
+        "White-European",
+        "Unknown",
+        "Asian",
+        "Middle Eastern ",
+        "South Asian",
+        "Others",
+        "Black"
+      ],
+      "country_of_res": [
+        "United Kingdom",
+        "United States",
+        "India",
+        "Jordan",
+        "Australia",
+        "New Zealand"
+      ]
+    }
+  },
+  "weighted_checklist": {
+    "score_range": "0-100",
+    "weight_source": "Logistic Regression coefficient magnitude",
+    "observe_cutoff": 50,
+    "high_cutoff": 65,
+    "very_high_cutoff": 80,
+    "cutoff_basis": {
+      "development_no_max": 64,
+      "development_yes_min": 67,
+      "development_yes_median": 80.0
+    },
+    "points": {
+      "A10_Score": 13,
+      "A1_Score": 12,
+      "A4_Score": 11,
+      "A8_Score": 11,
+      "A7_Score": 10,
+      "A5_Score": 9,
+      "A3_Score": 9,
+      "A9_Score": 9,
+      "A6_Score": 8,
+      "A2_Score": 8
+    },
+    "purpose": "수업 프로젝트용 ASD 선별 관련 행동 관찰 참고점수",
+    "not_for": "자폐증 진단 또는 아동학대 위험 확률 산출"
+  },
+  "selected_behavior_features": [
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score"
+  ],
+  "selected_background_features": [],
+  "final_features": [
+    "A1_Score",
+    "A2_Score",
+    "A3_Score",
+    "A4_Score",
+    "A5_Score",
+    "A6_Score",
+    "A7_Score",
+    "A8_Score",
+    "A9_Score",
+    "A10_Score"
+  ],
+  "selected_model": "Logistic Regression",
+  "threshold": 0.5,
+  "rule_checks": {
+    "result_equals_A1_to_A10_sum": true,
+    "class_yes_equals_result_ge_7": true
+  },
+  "interpretation_warning": "A1~A10이 Target 생성에 직접 사용되므로 높은 모델 성능과 가중 체크리스트 점수는 독립적 임상 예측보다 선별 규칙 재현에 가깝다. 가중 체크리스트는 공식 AQ-10 채점법을 대체하지 않는다."
+}

@@ -1,0 +1,7 @@
+﻿limitation,detail
+직접 목표값,Target은 아동학대 여부가 아니라 Class/ASD 선별 결과임. 아동학대는 프로젝트 배경과 활용 맥락으로만 연결함.
+Target 구조,A1~A10 합계가 result이고 result>=7이 Class/ASD와 일치하므로 높은 성능은 선별 규칙 재현의 영향이 큼.
+표본 크기,중복 제거 후 290행이며 외부 검증 데이터가 없음.
+희소 범주,"ethnicity와 country_of_res는 Selection/Development 내부에서 10건 미만 범주를 Other로 통합하고 보정된 Cramer's V를 사용했지만, 표본이 작아 세부 범주 차이를 일반화하면 안 됨."
+가중 체크리스트,100점 가중 체크리스트는 선택 모델의 중요도를 수업 프로젝트용으로 환산한 탐색적 지표이며 공식 AQ-10 채점법이나 임상 진단도구가 아님. 아동학대 여부도 이 점수로 판정할 수 없음.
+연관성,"p-value, 연관성 크기, Feature Importance는 인과관계를 뜻하지 않음."
