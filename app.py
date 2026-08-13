@@ -30,12 +30,16 @@ st.markdown(
     """
     <style>
     .block-container {
-        max-width: 1240px;
+        max-width: 1340px;
+        margin-left:0 !important;
+        margin-right:auto !important;
+        padding-left:4.60rem !important;
+        padding-right:1.85rem !important;
         padding-top: 4.20rem !important;
         padding-bottom: 2.5rem;
     }
-    section[data-testid="stSidebar"] {width: 18rem !important;}
-    section[data-testid="stSidebar"] > div {width: 18rem !important;}
+    section[data-testid="stSidebar"] {width: 16.5rem !important;}
+    section[data-testid="stSidebar"] > div {width: 16.5rem !important;}
 
     h1 {font-size: 1.58rem !important; line-height: 1.25 !important; margin-top: 0 !important; margin-bottom: .30rem !important; padding-top:.12rem !important;}
     h2 {font-size: 1.15rem !important; line-height: 1.3 !important; margin-top: .9rem !important;}
@@ -51,6 +55,54 @@ st.markdown(
         background:#f4f8fc; border-left:3px solid #5a83ad; border-radius:6px;
         padding:.62rem .82rem; margin:.35rem 0 .7rem 0;
         font-size:.82rem; line-height:1.6; color:#2f4254;
+    }
+    .nsch-preprocess-result {
+        background:#f4f8fc; border-left:3px solid #5a83ad; border-radius:6px;
+        padding:.72rem 1rem; margin:.45rem 0 .75rem 0; color:#284b69;
+        font-size:.93rem; line-height:1.55; width:96%; max-width:none;
+        box-sizing:border-box;
+    }
+    .nsch-conclusion-result {font-size:.80rem; line-height:1.48; padding:.60rem .82rem;}
+    .nsch-final-flow {max-width:610px; margin:.20rem auto .48rem; padding:.50rem .66rem; font-size:.78rem; line-height:1.42;}
+    .nsch-final-flow .formula-arrow {font-size:.90rem; margin:.06rem 0;}
+    .nsch-reduction-flow {
+        width:96%; background:#f8fafc; border:1px solid #d9e4ee; border-radius:9px;
+        padding:.65rem .9rem; margin:.45rem 0 .75rem 0; box-sizing:border-box;
+        color:#315b78; font-size:.84rem; line-height:1.65;
+    }
+    .nsch-reduction-flow b {color:#24445c;}
+    .nsch-learning-tree {
+        position:sticky; top:4.15rem; background:#f7f9fb; border:1px solid #d6e0e8;
+        border-radius:10px; padding:.88rem .86rem; margin:.15rem 0 .7rem; color:#556674;
+        font-size:.72rem; line-height:1.48; box-sizing:border-box;
+    }
+    .nsch-learning-tree-title {font-size:.84rem; font-weight:850; color:#294b64; padding:.05rem .10rem .58rem; border-bottom:1px solid #dbe4eb; margin-bottom:.48rem;}
+    .nsch-tree-stage {border-left:3px solid #d7e0e7; border-radius:0 7px 7px 0; padding:.34rem .38rem .38rem .52rem; margin:.22rem 0; transition:all .16s ease;}
+    .nsch-tree-stage.active {background:#eaf3fb; border-left-color:#5d91b8; box-shadow:inset 0 0 0 1px #c7ddec;}
+    .nsch-tree-main {font-size:.76rem; font-weight:800; color:#3a5264;}
+    .nsch-tree-stage.active .nsch-tree-main {color:#1e5d8b;}
+    .nsch-tree-sub {font-size:.68rem; color:#71808c; padding-left:.18rem; margin-top:.12rem;}
+    .nsch-tree-stage.active .nsch-tree-sub {color:#4c6d84;}
+    .nsch-tree-foot {font-size:.66rem; color:#82909a; border-top:1px solid #dbe4eb; padding:.50rem .10rem 0; margin-top:.55rem; line-height:1.45;}
+    .nsch-final-heading {font-size:.94rem; font-weight:850; color:#2f485c; margin:.58rem 0 .40rem;}
+    .nsch-final-table {width:100%; table-layout:fixed; border-collapse:separate; border-spacing:0; overflow:hidden; border:1px solid #d7e3ec; border-radius:9px; font-size:.74rem; color:#425766; margin:.18rem 0 .48rem;}
+    .nsch-final-table th {background:#f2f6f9; color:#496679; font-weight:650; text-align:center; padding:.52rem .38rem; border-bottom:1px solid #d7e3ec; white-space:normal; line-height:1.35;}
+    .nsch-final-table td {padding:.48rem .45rem; border-bottom:1px solid #e7edf1; vertical-align:middle; line-height:1.42; word-break:keep-all;}
+    .nsch-final-table tr:last-child td {border-bottom:0;}
+    .nsch-final-table tr:nth-child(even) td {background:#fbfcfd;}
+    .nsch-final-num {color:#6b879b; font-weight:500; text-align:center; width:5%;}
+    .nsch-final-question {font-weight:400; color:#354f61; width:33%;}
+    .nsch-final-response {color:#607785; width:18%;}
+    .nsch-final-rate {text-align:center; color:#47677d; font-weight:500; width:12%; white-space:nowrap;}
+    .nsch-final-gap {text-align:center; color:#4e8064; font-weight:500; width:10%; white-space:nowrap;}
+    .nsch-final-weight {text-align:center; color:#365f79; font-weight:600; width:10%; white-space:nowrap;}
+    .behavior-weight-table {width:100%; border-collapse:separate; border-spacing:0; border:1px solid #d7e3ec; border-radius:8px; overflow:hidden; font-size:.78rem; color:#425766;}
+    .behavior-weight-table th, .behavior-weight-table td {text-align:center !important; vertical-align:middle; padding:.48rem .35rem; border-bottom:1px solid #e7edf1;}
+    .behavior-weight-table th {background:#f2f6f9; color:#496679; font-weight:700; line-height:1.35;}
+    .behavior-weight-table tr:last-child td {border-bottom:0;}
+    .behavior-weight-table tr:nth-child(even) td {background:#fbfcfd;}
+    @media (max-width: 900px) {
+        .nsch-learning-tree {position:static; margin-bottom:.75rem;}
     }
     .warning-line {
         color:#7a5b1b; font-size:.77rem; line-height:1.5; margin:.25rem 0 .55rem 0;
@@ -114,6 +166,31 @@ st.markdown(
         background:#f8fafc; border:1px solid #dce4ec; border-radius:9px;
         padding:.82rem .95rem; font-size:.80rem; line-height:1.65; color:#374957;
         margin:.10rem 0 .55rem 0;
+    }
+    .project-flow-wrap {
+        display:flex; align-items:stretch; gap:.34rem; overflow-x:auto;
+        padding:.18rem .10rem .78rem; margin:.04rem 0 .42rem;
+        scrollbar-color:#b9c8d5 transparent;
+    }
+    .project-flow-card {
+        flex:1 0 122px; min-width:122px; min-height:112px;
+        background:#f8fafc; border:1px solid #d9e3eb; border-top:4px solid #7ea6c4;
+        border-radius:10px; padding:.72rem .70rem .62rem; box-sizing:border-box;
+        color:#374957;
+    }
+    .project-flow-card.data {flex-basis:168px; min-width:168px;}
+    .project-flow-card.combine {background:#f1f7fb; border-color:#c7dce9; border-top-color:#5d91b8;}
+    .project-flow-card.final {background:#f4f8fc; border-color:#c7dce9; border-top-color:#4f7d9d;}
+    .project-flow-kicker {font-size:.65rem; font-weight:800; letter-spacing:.045em; color:#6a8da6; margin-bottom:.28rem;}
+    .project-flow-title {font-size:.83rem; font-weight:850; color:#2f526a; line-height:1.35; margin-bottom:.38rem; word-break:keep-all;}
+    .project-flow-text {font-size:.70rem; color:#5d6f7d; line-height:1.48; word-break:keep-all;}
+    .project-flow-arrow {flex:0 0 13px; align-self:center; color:#80a0b6; font-size:1.13rem; text-align:center; margin-top:-.05rem;}
+    .project-flow-summary {font-size:.74rem; color:#617180; text-align:center; margin:-.10rem 0 .50rem; letter-spacing:.01em;}
+    .project-flow-heading {font-size:.98rem; font-weight:850; color:#315b78; margin:.10rem 0 .30rem;}
+    .analysis-stage-heading {font-size:1.02rem; font-weight:850; color:#2f485c; margin:.45rem 0 .48rem;}
+    @media (max-width: 760px) {
+        .project-flow-card {flex-basis:145px; min-width:145px;}
+        .project-flow-card.data {flex-basis:170px; min-width:170px;}
     }
     .learning-card {
         height:100%; min-height:132px; background:#f8fafc; border:1px solid #dce4ec;
@@ -221,7 +298,7 @@ st.markdown(
 .split-box.test {background:#eef7f2; border-color:#cfe4d5;}
 .split-branches {display:grid; grid-template-columns:1fr 1fr; gap:.50rem; width:70%; margin:.18rem auto 0;}
 .split-branch-arrows {display:flex; justify-content:center; gap:28%; color:#8ea0af; font-size:1.18rem; line-height:1; margin:.12rem 0 .12rem 0;}
-.survey-section-spacer {height:.65rem;}
+.survey-section-spacer {height:1.15rem;}
 .student-result-callout {
     background:#f4f8fc; border:1px solid #d5e2ee; border-left:4px solid #6e96bb;
     border-radius:9px; padding:.78rem .88rem; margin:.20rem 0 .70rem 0;
@@ -241,8 +318,10 @@ st.markdown(
 .formula-box {
     background:#f8fafc; border:1px solid #dce4ec; border-radius:9px;
     padding:.72rem .85rem; margin:.20rem 0 .55rem 0; color:#334956;
-    font-size:.88rem; line-height:1.65;
+    font-size:.88rem; line-height:1.65; text-align:center;
 }
+.formula-arrow {display:block; text-align:center; color:#6f92aa; font-size:1.04rem; line-height:1.05; margin:.12rem 0;}
+.nsch-section-subheading {font-size:.98rem; font-weight:750; color:#344f62; margin:.72rem 0 .32rem;}
 
 
     /* ===== 최종 개요 카드 ===== */
@@ -420,6 +499,59 @@ NSCH_SURVEY_QUESTIONS = {
     "k10q40_r": "아이는 사는 동네가 안전하다고 생각합니까?",
 }
 
+# 4~11세 ACE 4개 이상 위험신호 분석 산출물.
+# 기존 NSCH-ASD 산출물은 보존하고, 결과 화면은 이 새 모델만 사용한다.
+NSCH_RISK_ART = APP_DIR / "model_artifacts" / "nsch_ace4_8q"
+NSCH_RISK_META = (json.loads((NSCH_RISK_ART / "final_model_metadata.json").read_text(encoding="utf-8")) if (NSCH_RISK_ART / "final_model_metadata.json").exists() else {})
+NSCH_RISK_FEATURES = NSCH_RISK_META.get("final_features", [])
+
+NSCH_LABELS.update({
+    "family_r": "가족 형태", "a1_employed_r": "주 보호자의 현재 고용 상태",
+    "a1_grade": "주 보호자의 최종 학력", "foodsit": "최근 12개월 가구 식품 상황",
+    "missmortgage": "주거비·임대료 납부 곤란", "k10q40_r": "아이가 느끼는 동네 안전",
+    "k10q22": "동네의 노후·불량 주택", "k10q23": "동네의 기물파손",
+    "moves": "이사 횟수", "hoursleep": "평균 수면 시간", "screentime": "화면 사용 시간",
+    "k10q41_r": "아이가 느끼는 학교 안전", "k7q04r_r": "학교가 가정에 문제로 연락한 횟수",
+    "k7q82_r": "학교에서 잘하고 싶어 하는 마음",
+    "a1_relation": "주 보호자와 아이의 관계",
+    "a1_marital": "주 보호자의 혼인 상태", "a2_marital": "두 번째 보호자의 혼인 상태",
+    "everhomeless": "거주지 없이 지낸 경험", "homeevic": "주거 퇴거 걱정",
+    "bullied_r": "최근 따돌림·괴롭힘 경험",
+})
+NSCH_CODE_OPTIONS.update({
+    "k10q22": [(1, "예"), (2, "아니오")],
+    "k10q23": [(1, "예"), (2, "아니오")],
+    "moves": [(1, "0회"), (2, "1회"), (3, "2회 이상")],
+    "a1_relation": [(1, "친부모·입양부모"), (2, "새부모"), (3, "조부모"), (4, "위탁부모"), (6, "기타 친족"), (7, "비친족 보호자")],
+    "a1_marital": [(1, "기혼"), (2, "동거 중이나 미혼"), (3, "미혼"), (4, "이혼"), (5, "별거"), (6, "사별")],
+    "a2_marital": [(1, "기혼"), (2, "동거 중이나 미혼"), (3, "미혼"), (4, "이혼"), (5, "별거"), (6, "사별")],
+    "everhomeless": [(2, "아니오"), (3, "모름"), (1, "예")],
+    "homeevic": [(5, "전혀 없음"), (4, "드물게"), (3, "가끔"), (2, "대부분"), (1, "항상")],
+    "bullied_r": [(1, "최근 12개월 동안 없음"), (2, "1~2회"), (3, "한 달에 1~2회"), (4, "일주일에 1~2회"), (5, "거의 매일")],
+})
+NSCH_SURVEY_QUESTIONS.update({
+    "family_r": "아이와 함께 사는 가족의 형태는 무엇입니까?",
+    "a1_employed_r": "아이의 주 보호자의 현재 고용 상태는 무엇입니까?",
+    "a1_grade": "아이의 주 보호자의 최종 학력은 어디에 해당합니까?",
+    "foodsit": "최근 12개월 동안 아이 가정의 식품 상황은 어떠했습니까?",
+    "missmortgage": "최근 12개월 동안 주거비나 임대료를 제때 내기 어려웠던 적이 있습니까?",
+    "moves": "아이는 지금 주소로 오기 전까지 이사를 몇 번 했습니까?",
+    "k10q22": "아이의 동네에 관리가 잘 되지 않은 낡은 주택이 있습니까?",
+    "k10q23": "아이의 동네에 기물파손이나 낙서가 있습니까?",
+    "screentime": "평일에 아이가 TV·휴대폰·컴퓨터 화면을 사용하는 시간은 어느 정도입니까?",
+    "hoursleep": "지난 일주일 동안 아이의 하루 평균 수면 시간은 어느 정도입니까?",
+    "k10q40_r": "아이는 사는 동네가 안전하다고 생각합니까?",
+    "k10q41_r": "아이는 학교가 안전하다고 생각합니까?",
+    "k7q04r_r": "최근 12개월 동안 아이의 문제로 학교에서 가정에 연락한 적이 있습니까?",
+    "k7q82_r": "아이는 학교에서 잘하고 싶어 하는 모습을 얼마나 보입니까?",
+    "a1_relation": "아이의 주 보호자는 아이와 어떤 관계입니까?",
+    "a1_marital": "아이의 주 보호자의 현재 혼인 상태는 무엇입니까?",
+    "a2_marital": "아이의 두 번째 보호자의 현재 혼인 상태는 무엇입니까?",
+    "everhomeless": "아이가 거주지 없이 지낸 경험이 있습니까?",
+    "homeevic": "현재 사는 집에서 나가야 할까 걱정되는 일이 얼마나 있습니까?",
+    "bullied_r": "최근 12개월 동안 아이가 또래에게 따돌림이나 괴롭힘을 당한 적이 있습니까?",
+})
+
 final_row = final_result.iloc[0] if not final_result.empty else pd.Series(dtype="object")
 
 
@@ -572,6 +704,36 @@ def nsch_pipeline(active):
         if i < len(NSCH_PIPELINE) - 1:
             html.append('<div class="flow-arrow">→</div>')
     st.markdown(f'<div class="flow-wrap">{"".join(html)}</div>', unsafe_allow_html=True)
+
+
+def nsch_learning_tree(active_stage):
+    """NSCH 5개 화면 옆에서 수업 흐름 전체와 현재 단계를 함께 보여 준다."""
+    stages = [
+        (0, "① 데이터 불러오기", "└─ pandas.read_stata() · NSCH 2024 원자료"),
+        (0, "② 데이터 확인", "└─ 행·열 · 4~11세 · ACE 유효응답 · 결측 확인"),
+        (0, "③ 독립변수 X / 종속변수 y 분리", "└─ X=환경·생활 항목 · y=ACE 4개 이상 여부"),
+        (0, "④ 전처리", "└─ 최빈값 대체 · One-Hot Encoding · Pipeline"),
+        (1, "⑤ 통계적 관계 확인", "└─ ACE 4개 이상 vs 0~3개 · 카이제곱 · Cramér's V"),
+        (1, "⑥ 최종 질문 선정", "└─ 관계 크기 + Random Forest 변수 중요도"),
+        (2, "⑦ 훈련·검증·최종평가 분리", "└─ Train / Validation / Test = 60% / 20% / 20%"),
+        (2, "⑧ 지도학습 분류모델 비교", "└─ 로지스틱 회귀 · KNN · 의사결정나무 · 랜덤 포레스트"),
+        (2, "⑨ 분류 성능 평가", "└─ 정확도 · 정밀도 · 재현율 · F1 · ROC-AUC"),
+        (3, "⑩ 새 설문 점수 계산", "└─ RF 문항 가중치 + 응답별 위험군 차이 합산"),
+        (4, "⑪ 최종 결론·설문 문항", "└─ 통계 관계 + RF 중요도 + 모델 검증 → 8문항 확정"),
+    ]
+    tree_html = []
+    for stage, title, detail in stages:
+        active = " active" if stage == active_stage else ""
+        tree_html.append(
+            f'<div class="nsch-tree-stage nsch-tree-stage-{stage}{active}">'
+            f'<div class="nsch-tree-main">{title}</div><div class="nsch-tree-sub">{detail}</div></div>'
+        )
+    st.markdown(
+        "<div class='nsch-learning-tree'><div class='nsch-learning-tree-title'>NSCH 분석 순서</div>"
+        + "".join(tree_html)
+        + "<div class='nsch-tree-foot'>파란색 영역은 현재 보고 있는 분석 단계입니다.</div></div>",
+        unsafe_allow_html=True,
+    )
 
 
 def render_nsch_asd_page():
@@ -767,6 +929,459 @@ def render_nsch_asd_page():
         st.markdown('<div class="formula-box"><b>계산 예시</b><br>설문 응답 → 모델 입력 변환 → predict_proba 출력값 0.63 → 생활환경 관찰점수 63점</div>', unsafe_allow_html=True)
 
 
+def render_nsch_ace4_page_legacy():
+    """4~11세 ACE 4개 이상 위험신호 분석 결과를 기존 NSCH 화면 형식으로 보여 준다."""
+    target = pd.read_csv(NSCH_RISK_ART / "target_summary.csv").set_index("metric")["value"]
+    candidates = pd.read_csv(NSCH_RISK_ART / "candidate_features.csv")
+    imputation = pd.read_csv(NSCH_RISK_ART / "imputation_summary.csv")
+    stats = pd.read_csv(NSCH_RISK_ART / "statistical_tests.csv")
+    selection = pd.read_csv(NSCH_RISK_ART / "final_selection.csv")
+    comparison = pd.read_csv(NSCH_RISK_ART / "model_validation_comparison.csv")
+    group_response_comparison = pd.read_csv(NSCH_RISK_ART / "group_response_comparison.csv")
+    final = pd.read_csv(NSCH_RISK_ART / "final_test_metrics.csv").iloc[0]
+    split_summary = pd.read_csv(NSCH_RISK_ART / "split_summary.csv")
+    severity_summary = pd.read_csv(NSCH_RISK_ART / "severity_summary.csv")
+    severity_comparison = pd.read_csv(NSCH_RISK_ART / "severity_validation_comparison.csv")
+    severity_final = pd.read_csv(NSCH_RISK_ART / "severity_test_metrics.csv").iloc[0]
+    selected = selection[selection["selected_final"]].copy()
+    model_names = {"LogisticRegression": "로지스틱 회귀", "KNN": "K-최근접 이웃", "DecisionTree": "의사결정나무", "RandomForest": "랜덤 포레스트"}
+    chosen_model = str(final["model"])
+    split_counts = split_summary.groupby("split")["count"].sum().to_dict()
+
+    page_title("NSCH 외부데이터 분석", "4~11세 아동의 ACE 4개 이상 경험과 함께 나타나는 환경·생활 요인을 분석해 생활환경 설문을 구성했습니다.")
+    tabs = st.tabs(["1. 데이터 확인 및 전처리", "2. 관련성 분석", "3. 최종 질문 선정", "4. 머신러닝 모델 비교", "5. 모델 성능 평가", "6. 설문·점수 연결"])
+
+    with tabs[0]:
+        nsch_pipeline(0)
+        st.subheader("1. 4~11세 분석 자료 만들기")
+        learning_cards("NSCH 2024 원자료를 확인", "행동 설문과 같은 연령대에 맞추기 위해", "4~11세와 ACE 9개 유효 응답만 남김", f"{int(target['ace_complete_4_11_count']):,}명 분석")
+        cols = st.columns(4, gap="small")
+        cols[0].metric("NSCH 전체", f"{int(target['raw_rows']):,}명")
+        cols[1].metric("4~11세 아동", f"{int(target['age_4_11_count']):,}명")
+        cols[2].metric("ACE 분석 가능", f"{int(target['ace_complete_4_11_count']):,}명")
+        cols[3].metric("ACE 4개 이상", f"{int(target['ace4_high_count']):,}명")
+        severity_total = severity_summary.groupby("severity_group")["count"].sum()
+        s1, s2, s3 = st.columns(3, gap="small")
+        s1.metric("ACE 0~3개", f"{int(severity_total.get('ACE 0~3개', 0)):,}명")
+        s2.metric("ACE 4~5개", f"{int(severity_total.get('ACE 4~5개', 0)):,}명")
+        s3.metric("ACE 6개 이상", f"{int(severity_total.get('ACE 6개 이상', 0)):,}명")
+        st.markdown("<div class='formula-box'><b>분석 흐름</b><br>4~11세 아동 → ACE 9개 문항 유효 응답 확인 → ACE 4개 이상 / 0~3개 구분 → 환경·생활 요인 분석</div>", unsafe_allow_html=True)
+        prep = pd.DataFrame([
+            ["원본 자료", f"{int(target['raw_rows']):,}명 × {int(target['raw_columns']):,}개 항목", "NSCH 2024 전체 아동 설문"],
+            ["연령 기준", f"{int(target['age_4_11_count']):,}명", "행동 설문과 동일한 4~11세로 제한"],
+            ["분석 대상", f"{int(target['ace_complete_4_11_count']):,}명", "ACE 9개 문항 응답이 모두 유효한 아동"],
+            ["예측할 결과", "ACE 4개 이상 여부", "4개 이상=1, 0~3개=0"],
+        ], columns=["항목", "결과", "왜 사용했나"])
+        left_table(prep, .92)
+        st.subheader("수업에서 배운 방법 중 무엇을 사용했나")
+        lesson_map = pd.DataFrame([
+            ["문제 유형", "지도학습 · 분류", "결과가 연속 숫자가 아니라 ACE 4개 이상 여부이기 때문", "사용"],
+            ["독립변수 X / 종속변수 y", "X=환경·생활 14개 후보, y=ACE 4개 이상 여부", "입력과 정답을 분리해 학습하기 위해", "사용"],
+            ["상관계수·p-value", "카이제곱·Cramér's V·Spearman", "후보와 결과의 관계 및 우연 가능성 확인", "사용"],
+            ["범주형 전처리", "최빈값 대치 + OneHotEncoder", "응답코드를 연속적인 크기로 오해하지 않게 하기 위해", "사용"],
+            ["데이터 분리", "Train 60% / Validation 20% / Test 20%", "학습·모델선택·최종평가를 분리하기 위해", "사용"],
+            ["분류모델", "로지스틱·KNN·의사결정나무·랜덤 포레스트", "같은 입력으로 성능을 비교하기 위해", "비교"],
+            ["랜덤 포레스트", "원-핫 더미 중요도를 원래 질문별로 합산", "최종 질문 선정 근거를 만들기 위해", "사용"],
+            ["K-means 군집화", "정답 없이 유형을 묶는 비지도학습", "이번에는 ACE 단계라는 정답이 있어 최종 예측에는 부적합", "미사용"],
+            ["PCA", "여러 변수를 소수 주성분으로 축소", "8개 질문의 의미와 설명력을 유지해야 하므로 부적합", "미사용"],
+            ["회귀", "연속값 예측", "이번 결과는 위험군 범주이므로 분류가 더 적합", "미사용"],
+        ], columns=["수업 내용", "이번 분석에서의 의미", "선택·제외 이유", "적용"])
+        left_table(lesson_map, .98, 430)
+
+    with tabs[1]:
+        nsch_pipeline(1)
+        st.subheader("2. ACE 4개 이상 여부와 환경·생활 요인의 관련성 확인")
+        learning_cards("후보별로 두 집단 차이 확인", "단순히 자주 나온 항목이 아닌, ACE 4개 이상과 구분되는 항목을 찾기 위해", "범주형은 카이제곱·Cramér's V, 순서형은 Spearman", f"{int(stats['significant_0_05'].sum())}개 항목 유의")
+        mini_note("여기서 비교한 대상은 ‘ACE 4개 이상’ 집단과 ‘ACE 0~3개’ 집단입니다. p-value는 우연한 차이인지, 관계 크기는 차이가 얼마나 큰지 보여 줍니다.")
+        view = stats.copy()
+        view["관계 정도"] = view["effect_size"].map(lambda x: f"{float(x):.3f}")
+        view["p-value"] = view["p_value"].map(lambda x: "< 0.001" if float(x) < .001 else f"{float(x):.3f}")
+        view["결과"] = np.where(view["significant_0_05"], "통계적으로 유의", "유의하지 않음")
+        view = view[["korean_name", "domain", "test_method", "관계 정도", "p-value", "결과"]]
+        view.columns = ["분석 항목", "영역", "사용한 방법", "관계 정도", "p-value", "결과"]
+        left_table(view, .96, 440)
+        result_line("표본이 크면 작은 차이도 유의하게 나올 수 있으므로, 다음 단계에서 관계 크기와 랜덤 포레스트 변수 중요도를 함께 확인했습니다.")
+
+    with tabs[2]:
+        nsch_pipeline(2)
+        st.subheader("3. 14개 후보에서 최종 10개 설문 질문 선정")
+        learning_cards("환경·생활 후보 14개 검토", "ACE 문항을 직접 묻지 않는 10문항 설문을 만들기 위해", "통계 관계 순위 + 누적 ACE 가중 RF 중요도 순위를 합산", f"최종 {len(selected)}개 질문 선정")
+        st.markdown("<div class='formula-box'><b>14개 후보</b> → 통계적 관계 크기 확인 → 원-핫 인코딩 → ACE 4개=1.0, 5개=1.25, 6개=1.5, 7개=1.75, 8개=2.0 가중 Random Forest → 두 순위 합산 → <b>최종 10개 질문</b></div>", unsafe_allow_html=True)
+        plot_data = selected.sort_values("rf_importance")
+        fig, ax = plt.subplots(figsize=(5.0, 3.2))
+        bars = ax.barh(plot_data["korean_name"], plot_data["rf_importance"], color="#7ea6c4")
+        for bar, value in zip(bars, plot_data["rf_importance"]):
+            ax.text(float(value) + .002, bar.get_y() + bar.get_height() / 2, f"{float(value):.3f}", va="center", fontsize=7)
+        ax.set_xlabel("랜덤 포레스트 변수 중요도", fontsize=8)
+        ax.set_ylabel("생활환경 설문 항목", fontsize=8)
+        ax.set_title("ACE 4개 이상 분류에 중요하게 사용된 항목", fontsize=10)
+        ax.tick_params(labelsize=7); fig.tight_layout(); left_plot(fig, .56)
+        table = selected.sort_values("selection_rank")[["korean_name", "domain", "reason", "effect_size", "rf_importance"]].copy()
+        table["effect_size"] = table["effect_size"].map(lambda x: f"{float(x):.3f}")
+        table["rf_importance"] = table["rf_importance"].map(lambda x: f"{float(x):.3f}")
+        table.columns = ["최종 질문", "영역", "후보 선정 이유", "관계 정도", "RF 중요도"]
+        left_table(table, .96, 360)
+
+    with tabs[3]:
+        nsch_pipeline(3)
+        st.subheader("4. 같은 10개 질문으로 4개 모델 비교")
+        learning_cards("네 가지 분류모델 학습", "특정 알고리즘을 미리 정하지 않고 검증자료에서 비교하기 위해", "Train 학습 → Validation 비교", f"최종 선택: {model_names[chosen_model]}")
+        compare = comparison.copy(); compare["model"] = compare["model"].map(model_names)
+        compare = compare[["model", "accuracy", "precision", "recall", "f1", "roc_auc", "severity_weighted_f1", "ace6plus_recall"]]
+        for col in compare.columns[1:]: compare[col] = compare[col].map(lambda x: f"{float(x):.3f}")
+        compare.columns = ["모델", "정확도", "정밀도", "재현율", "F1", "ROC-AUC", "누적가중 F1", "ACE 6개+ 재현율"]
+        left_table(compare, .98)
+        result_line("ACE 4개 이상 집단의 비율이 낮으므로 정확도만 보지 않고, 실제 위험신호 집단을 놓치지 않는 재현율·F1·ROC-AUC를 함께 비교했습니다.")
+        st.subheader("계층형 2단계 분류")
+        st.markdown("<div class='formula-box'><b>1차 분류</b> · ACE 0~3개 / 4개 이상 → 위험신호 점수<br><br><b>2차 분류</b> · 1차 위험군 안에서 ACE 4~5개 / 6개 이상 → 누적 단계 패턴</div>", unsafe_allow_html=True)
+        stage2_view = severity_comparison.copy(); stage2_view["model"] = stage2_view["model"].map(model_names)
+        stage2_view = stage2_view[["model", "accuracy", "precision", "recall", "f1", "roc_auc"]]
+        for col in stage2_view.columns[1:]: stage2_view[col] = stage2_view[col].map(lambda x: f"{float(x):.3f}")
+        stage2_view.columns = ["모델", "정확도", "정밀도", "재현율", "F1", "ROC-AUC"]
+        left_table(stage2_view, .90)
+        mini_note("한 번에 3개 집단을 분류하면 0~3개 집단이 지나치게 커서 작은 집단 학습이 약해집니다. 그래서 먼저 4개 이상을 찾고, 그 안에서 6개 이상 패턴을 한 번 더 구분했습니다.")
+
+    with tabs[4]:
+        nsch_pipeline(4)
+        st.subheader("5. 최종 모델 성능 평가")
+        learning_cards("Test 자료로 마지막 평가", "모델 선택 과정에 쓰지 않은 자료에서 일반화 성능을 확인하기 위해", f"Train {int(split_counts['train']):,}명 + Validation {int(split_counts['validation']):,}명으로 재학습", f"Test {int(split_counts['test']):,}명 평가")
+        metrics_df = pd.DataFrame([
+            ["정확도", final["accuracy"], "전체 분류가 맞은 비율"], ["정밀도", final["precision"], "높은 위험신호로 표시한 아동 중 실제 ACE 4개 이상 비율"],
+            ["재현율", final["recall"], "실제 ACE 4개 이상 아동 중 모델이 찾아낸 비율"], ["F1 점수", final["f1"], "정밀도와 재현율의 균형"],
+            ["ROC-AUC", final["roc_auc"], "두 집단을 전반적으로 구분하는 정도"],
+            ["누적가중 F1", final["severity_weighted_f1"], "ACE 개수가 많은 사례를 더 크게 반영한 F1"],
+            ["ACE 6개 이상 재현율", final["ace6plus_recall"], "ACE 6개 이상 사례 중 1차 모델이 찾아낸 비율"],
+        ], columns=["평가 지표", "Test 결과", "의미"])
+        metrics_df["Test 결과"] = metrics_df["Test 결과"].map(lambda x: f"{float(x):.3f}")
+        left_table(metrics_df, .92)
+        fig, ax = plt.subplots(figsize=(4.2, 2.6)); keys = ["accuracy", "precision", "recall", "f1", "roc_auc"]
+        bars = ax.bar(["정확도", "정밀도", "재현율", "F1", "ROC-AUC"], [float(final[k]) for k in keys], color="#7ea6c4")
+        ax.set_ylim(0, 1.05); ax.set_ylabel("Test 성능", fontsize=8); ax.tick_params(labelsize=8)
+        for bar, value in zip(bars, [float(final[k]) for k in keys]): ax.text(bar.get_x()+bar.get_width()/2, value+.02, f"{value:.3f}", ha="center", fontsize=7)
+        fig.tight_layout(); left_plot(fig, .50)
+        st.subheader("2차 누적단계 모델 Test 결과")
+        stage2_test = pd.DataFrame([
+            ["선택 모델", model_names[str(severity_final["model"])]], ["정확도", f"{float(severity_final['accuracy']):.3f}"],
+            ["정밀도", f"{float(severity_final['precision']):.3f}"], ["재현율", f"{float(severity_final['recall']):.3f}"],
+            ["F1", f"{float(severity_final['f1']):.3f}"], ["ROC-AUC", f"{float(severity_final['roc_auc']):.3f}"],
+        ], columns=["항목", "결과"])
+        left_table(stage2_test, .64)
+        mini_note("2차 모델은 표본이 더 작아 1차 점수를 대체하지 않으며, ACE 4~5개 패턴과 6개 이상 패턴을 구분하는 보조 결과로만 사용합니다.")
+
+    with tabs[5]:
+        nsch_pipeline(5)
+        st.subheader("6. 최종 8문항을 생활환경 설문 점수로 연결")
+        learning_cards("선정된 8문항을 설문으로 구성", "센터에서 생활환경 위험신호를 같은 방식으로 확인하기 위해", "응답 범주를 원-핫 변환 후 1차·2차 모델 입력", "0~100 위험신호 점수 + 누적 단계 패턴")
+        st.markdown(f"<div class='formula-box'><b>1차 점수</b><br>8문항 응답 → {model_names[chosen_model]} → predict_proba × 100 → ACE 4개 이상 위험신호 점수<br><br><b>2차 보조 결과</b><br>같은 8문항 → {model_names[str(severity_final['model'])]} → ACE 4~5개 / 6개 이상 누적 패턴 구분</div>", unsafe_allow_html=True)
+        input_view = selected[["korean_name", "domain"]].copy(); input_view.columns = ["설문 질문", "영역"]
+        left_table(input_view, .76, 330)
+        result_line("랜덤 포레스트 중요도는 질문을 고르는 근거로 사용했고, ACE 개수가 많을수록 학습 가중치를 높였습니다. 실제 0~100점과 누적 단계는 각각 Validation에서 선택된 로지스틱 회귀 모델이 계산합니다.")
+
+
+def render_nsch_ace4_stage_content(target, candidates, imputation, stats, selection, comparison,
+                                   final, broad_candidate_count, selected, split_counts,
+                                   model_names, chosen_model, group_response_comparison, current_stage):
+    """선택된 NSCH 단계의 상세 내용을 오른쪽 본문 열에 렌더링한다."""
+    if current_stage == 0:
+        st.subheader("1. 데이터 확인 및 전처리")
+        summary_cards = st.columns(4, gap="small")
+        with summary_cards[0]:
+            metric_card("행(Row)", f"{int(target['raw_rows']):,}명")
+        with summary_cards[1]:
+            metric_card("열(Column)", f"{int(target['raw_columns']):,}개")
+        with summary_cards[2]:
+            metric_card("중복 응답", "0건")
+        with summary_cards[3]:
+            metric_card("결측 응답(8개 입력)", f"{int(imputation['analysis_missing_count'].sum()):,}건")
+        st.markdown(
+            f"<div class='nsch-reduction-flow'><b>전처리 규모 변화</b><br>"
+            f"분석 데이터: {int(target['raw_rows']):,}명 → {int(target['age_4_11_count']):,}명(4~11세) → {int(target['ace_complete_4_11_count']):,}명(ACE 응답 유효)<br>"
+            f"분석 항목: {int(target['raw_columns']):,}개 → {broad_candidate_count}개(전수 탐색 후보) → {len(candidates)}개(설문 가능 환경·생활 후보) → {len(selected)}개(최종 설문 입력)</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown("#### 전처리 내용")
+        preprocess_tbl = pd.DataFrame([
+            ["연령 기준 적용", f"전체 {int(target['raw_rows']):,}명", f"4~11세 {int(target['age_4_11_count']):,}명", "행동패턴 설문과 같은 4~11세만 남김"],
+            ["ACE 유효 응답 확인", f"4~11세 {int(target['age_4_11_count']):,}명", f"분석 가능 {int(target['ace_complete_4_11_count']):,}명", f"ACE 9개 응답이 부족한\n{int(target['age_4_11_count']) - int(target['ace_complete_4_11_count']):,}명 제외"],
+            ["결과값 생성", f"분석 가능 {int(target['ace_complete_4_11_count']):,}명", f"0~3개 {int(target['ace_complete_4_11_count']) - int(target['ace4_high_count']):,}명\n4개 이상 {int(target['ace4_high_count']):,}명", "ACE 개수를 두 위험신호 그룹으로 변환"],
+            ["컬럼 개수", f"원본 {int(target['raw_columns']):,}개 → 전수 탐색 {broad_candidate_count}개", f"설문 가능 후보 {len(candidates)}개 → 최종 {len(selected)}개", "기술·정답 누수 항목 제외 후\n설문 가능 영역만 다시 정리"],
+            ["결측값 처리", "최종 8개 컬럼", f"결측이 있는 {len(imputation)}개 컬럼", "Train 자료의 최빈 응답으로 대체"],
+            ["범주형 변환", "최종 8개 선택지", "OneHotEncoder 입력값", "각 선택지를 별도 0/1 입력값으로 변환"],
+        ], columns=["전처리 종류", "처리 전", "처리 후", "처리 방법"])
+        preprocess_style = (
+            preprocess_tbl.style
+            .set_properties(**{"text-align": "center", "white-space": "pre-wrap"})
+            .set_table_styles([
+                {"selector": "th", "props": [("text-align", "center")]},
+                {"selector": "td", "props": [("white-space", "pre-wrap")]},
+            ])
+        )
+        left_table(preprocess_style, .96)
+        st.markdown(
+            f"<div class='nsch-preprocess-result'>전처리 결과: <b>{int(target['raw_rows']):,}명 · {int(target['raw_columns']):,}개 항목</b>에서 시작해, <b>4~11세 ACE 유효응답 {int(target['ace_complete_4_11_count']):,}명 · 전수 탐색 {broad_candidate_count}개 · 설문 가능 후보 {len(candidates)}개</b>로 분석 범위를 정리했습니다.</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown("#### 결측값 처리 상세")
+        imputation_view = imputation.copy()
+        def mode_label(row):
+            code = int(float(row["train_mode_code"]))
+            options = NSCH_CODE_OPTIONS.get(row["column"], [])
+            return next((label for value, label in options if value == code), f"응답 코드 {code}")
+        imputation_view["Train 최빈 응답"] = imputation_view.apply(mode_label, axis=1)
+        imputation_view["분석자료 결측 수"] = imputation_view["analysis_missing_count"].map(lambda value: f"{int(value):,}개")
+        imputation_view["Train 결측 수"] = imputation_view["train_missing_count"].map(lambda value: f"{int(value):,}개")
+        imputation_view = imputation_view[["korean_name", "분석자료 결측 수", "Train 결측 수", "Train 최빈 응답", "method"]]
+        imputation_view.columns = ["결측이 있었던 항목", "분석자료 결측 수", "Train 결측 수", "대체한 응답", "처리 방법"]
+        left_table(imputation_view, .96, 315)
+        mini_note("결측값은 Validation·Test에서 따로 계산하지 않고, Train 자료에서 정한 최빈 응답만 적용했습니다. 그래야 평가 자료의 정보가 학습 과정에 섞이지 않습니다.")
+
+
+    if current_stage == 1:
+        st.subheader("2. 관련성 확인과 최종 8문항 선정")
+        st.markdown(
+            f"<div class='nsch-preprocess-result'><b>무엇과 무엇을 비교했나?</b> 4~11세 ACE 유효응답 {int(target['ace_complete_4_11_count']):,}명에서, <b>ACE 4개 이상 위험신호 {int(target['ace4_high_count']):,}명</b>과 <b>ACE 0~3개 비교집단 {int(target['ace4_low_count']):,}명</b>의 환경·생활 응답 비율을 비교했습니다. 비교집단이 있어야 어떤 항목이 전체 아동에게 흔한 특성인지, 위험신호 그룹에서 상대적으로 더 많이 나타나는 특성인지 구분할 수 있습니다.</div>",
+            unsafe_allow_html=True,
+        )
+        left, right = st.columns([.48, .52], gap="large")
+        with left:
+            st.markdown(f"""<div class='formula-box'><b>질문 선정 흐름</b><br><br>
+            전수 탐색 {broad_candidate_count}개 → 설문 가능 후보 {len(candidates)}개
+            <div class='formula-arrow'>↓</div>
+            카이제곱 검정·Cramér's V
+            <div class='formula-arrow'>↓</div>
+            Random Forest 변수 중요도
+            <div class='formula-arrow'>↓</div>
+            통계 관계와 중요도 순위 결합
+            <div class='formula-arrow'>↓</div>
+            최종 생활환경 설문 {len(selected)}문항</div>""", unsafe_allow_html=True)
+            mini_note("전수 탐색에서는 각 범주형 응답을 카이제곱 검정과 Cramér's V로 ACE 4개 이상 여부와 비교했습니다. 그 뒤 설문으로 확인 가능한 환경·생활 항목만 남겨 모델 입력 후보로 사용했습니다.")
+            stat_view = stats.copy()
+            stat_view["관계 정도"] = stat_view["effect_size"].map(lambda x: f"{float(x):.3f}")
+            stat_view["p-value"] = stat_view["p_value"].map(lambda x: "< 0.001" if float(x) < .001 else f"{float(x):.3f}")
+            stat_view = stat_view[["korean_name", "test_method", "관계 정도", "p-value"]]
+            stat_view.columns = ["후보 항목", "사용한 방법", "관계 정도", "p-value"]
+            with st.expander(f"2차 후보 {len(candidates)}개 통계 결과 보기"):
+                st.dataframe(stat_view, hide_index=True, width="stretch")
+        with right:
+            plot_data = selected.sort_values("rf_importance")
+            fig, ax = plt.subplots(figsize=(8.2, 6.0))
+            bars = ax.barh(plot_data["korean_name"], plot_data["rf_importance"], color="#7ea6c4")
+            for bar, value in zip(bars, plot_data["rf_importance"]):
+                ax.text(float(value) + .002, bar.get_y() + bar.get_height() / 2, f"{float(value):.3f}", va="center", fontsize=10)
+            ax.set_title("최종 8문항 변수 중요도", fontsize=14, pad=10)
+            ax.set_xlabel("Random Forest 변수 중요도", fontsize=11)
+            ax.set_ylabel("생활환경 설문 항목", fontsize=11)
+            ax.tick_params(labelsize=10); fig.tight_layout(pad=1.1)
+            st.pyplot(fig, width="stretch")
+            plt.close(fig)
+        st.markdown("<div class='nsch-section-subheading'>최종 설문 질문별 응답 차이</div>", unsafe_allow_html=True)
+        comparison_rows = []
+        for column in selected.sort_values("selection_rank")["column"]:
+            item = group_response_comparison[group_response_comparison["column"].eq(column)].copy()
+            item["응답"] = item["response_code"].map(
+                lambda code: next((label for value, label in NSCH_CODE_OPTIONS.get(column, []) if value == int(float(code))), f"응답 {int(float(code))}")
+            )
+            # ACE 4개 이상 그룹에서 비율이 가장 크게 높았던 응답을 같은 기준으로 비교한다.
+            strongest = item.loc[item["difference_pp"].idxmax()]
+            comparison_rows.append([
+                NSCH_LABELS.get(column, str(strongest["korean_name"])),
+                str(strongest["응답"]),
+                f"{float(strongest['low_rate']) * 100:.1f}%",
+                f"{float(strongest['high_rate']) * 100:.1f}%",
+                f"+{float(strongest['difference_pp']):.1f}%p",
+            ])
+        group_summary = pd.DataFrame(comparison_rows, columns=[
+            "최종 설문 항목", "4개 이상 그룹에서 더 많았던 응답", "ACE 0~3개", "ACE 4개 이상", "차이",
+        ])
+        mini_note("각 항목에서 ACE 4개 이상 그룹의 비율이 가장 크게 높았던 응답을 비교했습니다. ‘차이’는 두 그룹의 응답 비율 차이(%p)이며, 원인을 뜻하지는 않습니다.")
+        # 고정 높이를 크게 주면 실제 문항보다 아래에 빈 행처럼 보이는 영역이 생긴다.
+        # 현재 최종 문항 수에 맞춰 표 높이를 계산해 실제 행까지만 표시한다.
+        group_summary_height = 44 + len(group_summary) * 34
+        left_table(group_summary, 1.0, group_summary_height)
+        with st.expander("문항별 전체 응답 분포 보기"):
+            detail = group_response_comparison.copy()
+            detail["응답"] = detail.apply(
+                lambda row: next((label for value, label in NSCH_CODE_OPTIONS.get(row["column"], []) if value == int(float(row["response_code"]))), f"응답 {int(float(row['response_code']))}"), axis=1,
+            )
+            detail["ACE 0~3개 비율"] = detail["low_rate"].map(lambda value: f"{float(value) * 100:.1f}%")
+            detail["ACE 4개 이상 비율"] = detail["high_rate"].map(lambda value: f"{float(value) * 100:.1f}%")
+            detail["차이(%p)"] = detail["difference_pp"].map(lambda value: f"{float(value):+.1f}%p")
+            detail = detail[["korean_name", "응답", "ACE 0~3개 비율", "ACE 4개 이상 비율", "차이(%p)"]]
+            detail.columns = ["최종 설문 항목", "응답", "ACE 0~3개", "ACE 4개 이상", "차이"]
+            st.dataframe(detail, hide_index=True, width="stretch", height=420)
+
+    if current_stage == 2:
+        st.subheader("3. 머신러닝 모델 비교")
+        mini_note("여기서 머신러닝은 ‘정답을 새로 만드는 단계’가 아니라, 통계적으로 확인한 최종 8문항 조합이 두 그룹을 함께 구분할 때 어떤 항목을 중요하게 쓰는지와 조합 성능을 검증하는 단계입니다.")
+        left, right = st.columns([.47, .53], gap="large")
+        with left:
+            st.markdown(f"""<div class='formula-box'><b>학습과 평가 흐름</b><br><br>
+            최종 질문 8개
+            <div class='formula-arrow'>↓</div>
+            Train {int(split_counts['train']):,}명 · Validation {int(split_counts['validation']):,}명 · Test {int(split_counts['test']):,}명
+            <div class='formula-arrow'>↓</div>
+            로지스틱 회귀 / K-최근접 이웃<br>의사결정나무 / 랜덤 포레스트
+            <div class='formula-arrow'>↓</div>
+            Validation 성능 비교
+            <div class='formula-arrow'>↓</div>
+            <b>최종 선택: {model_names[chosen_model]}</b></div>""", unsafe_allow_html=True)
+            plain_list([
+                ("정확도", "전체 분류가 맞은 비율"), ("정밀도", "높은 위험신호로 표시한 결과의 정확성"),
+                ("재현율", "실제 높은 위험신호를 놓치지 않고 찾은 비율"),
+                ("F1", "정밀도와 재현율의 균형"), ("ROC-AUC", "두 그룹을 전반적으로 구분하는 능력"),
+            ])
+        with right:
+            compare = comparison.copy(); compare["model"] = compare["model"].map(model_names)
+            graph_metrics = ["recall", "f1", "roc_auc"]
+            x = np.arange(len(compare)); width = .23
+            fig, ax = plt.subplots(figsize=(4.7, 2.8))
+            colors = ["#7ea6c4", "#a8c9a5", "#e4b985"]
+            for idx, (metric, color) in enumerate(zip(graph_metrics, colors)):
+                ax.bar(x + (idx - 1) * width, compare[metric], width, label={"recall": "재현율", "f1": "F1", "roc_auc": "ROC-AUC"}[metric], color=color)
+            ax.set_xticks(x, compare["model"], rotation=0); ax.set_ylim(0, 1.05)
+            ax.set_ylabel("Validation 성능", fontsize=8); ax.set_title("머신러닝 모델 성능 비교", fontsize=10)
+            ax.legend(fontsize=7, ncol=3, loc="upper center"); ax.tick_params(labelsize=7); fig.tight_layout()
+            left_plot(fig, 1.0)
+            compare_view = compare[["model", "accuracy", "precision", "recall", "f1", "roc_auc"]].copy()
+            for col in compare_view.columns[1:]: compare_view[col] = compare_view[col].map(lambda value: f"{float(value):.3f}")
+            compare_view.columns = ["모델", "정확도", "정밀도", "재현율", "F1", "ROC-AUC"]
+            left_table(compare_view, 1.0)
+
+    if current_stage == 3:
+        st.subheader("4. 최종 결과와 생활환경 설문 연결")
+        survey_final = pd.read_csv(NSCH_RISK_ART / "weighted_score_test_metrics.csv").iloc[0]
+        test_split = pd.read_csv(NSCH_RISK_ART / "split_summary.csv")
+        test_high = int(test_split[(test_split["split"].eq("test")) & (test_split["ace4_high"].eq(1))]["count"].iloc[0])
+        test_low = int(test_split[(test_split["split"].eq("test")) & (test_split["ace4_high"].eq(0))]["count"].iloc[0])
+        test_total = test_high + test_low
+        found_high = int(round(test_high * float(survey_final["recall"])))
+        left, right = st.columns([.47, .53], gap="large")
+        with left:
+            st.markdown(f"""<div class='formula-box'><b>설문 점수 계산</b><br><br>
+            생활환경 설문 8문항
+            <div class='formula-arrow'>↓</div>
+            Random Forest 문항 가중치
+            <div class='formula-arrow'>↓</div>
+            선택 응답의 위험군 반영점수
+            <div class='formula-arrow'>↓</div>
+            8문항 반영점수 합산
+            <div class='formula-arrow'>↓</div>
+            <b>생활환경 위험신호 점수 0~100</b></div>""", unsafe_allow_html=True)
+            result_line("문항 가중치는 Random Forest로 계산하고, 선택 응답은 ACE 4개 이상 위험군에서 더 많이 나타난 정도로 반영합니다. 그래서 모든 문항을 바꾸면 해당 문항 점수가 즉시 달라집니다.")
+        with right:
+            st.markdown(
+                f"<div class='explain-card'><b>무엇을 비교해 평가했나?</b><br>Test 자료 {test_total:,}명에서 ACE 4개 이상 {test_high:,}명(약 {test_high / test_total * 100:.1f}%)과 ACE 0~3개 {test_low:,}명을 구분한 결과입니다.<br><br>"
+                f"<b>왜 F1·정밀도가 낮게 보이나?</b><br>ACE 4개 이상 사례가 매우 적은 불균형 자료라서, 실제 {test_high:,}명 중 약 {found_high:,}명을 찾은 재현율 {float(survey_final['recall']):.3f}과 달리 정밀도·F1은 낮아질 수 있습니다. 계산 오류가 아니라 두 집단의 규모 차이에서 나타나는 평가 특성입니다.<br><br>"
+                f"<b>어떻게 해석하나?</b><br>ROC-AUC {float(survey_final['roc_auc']):.3f}은 8문항 가중점수가 두 집단을 전반적으로 순서대로 구분하는 능력입니다. 이 점수는 위험신호 요인을 정리하고 설문 문항을 검증하는 용도이며, 개별 결과를 단정하는 도구로 해석하지 않습니다.</div>",
+                unsafe_allow_html=True,
+            )
+        st.markdown("<div class='nsch-section-subheading'>Test 최종 성능 평가</div>", unsafe_allow_html=True)
+        metrics_view = pd.DataFrame([
+            ["점수 산출", "8문항 가중합", "RF 문항 가중치와 응답별 반영점수를 합산", "각 응답이 독립적으로 반영돼 설문 점수로 사용 가능"],
+            ["정확도", f"{float(survey_final['accuracy']):.3f}", "전체 {0:,}명 중 맞게 구분한 비율".format(test_total), "높아 보이지만 ACE 4개 이상이 4.0%뿐이라 단독 판단 근거로는 부족"],
+            ["정밀도", f"{float(survey_final['precision']):.3f}", "위험신호로 표시한 응답 중 실제 ACE 4개 이상인 비율", "낮음: 위험신호 표시 중 비교집단도 많음. 개별 위험군 확정에는 부족"],
+            ["재현율", f"{float(survey_final['recall']):.3f}", f"실제 ACE 4개 이상 {test_high:,}명 중 약 {int(round(test_high * float(survey_final['recall']))):,}명을 찾아낸 비율", "보통 이하: 단독 선별 도구로는 충분하지 않음"],
+            ["F1 점수", f"{float(survey_final['f1']):.3f}", "정밀도와 재현율을 함께 반영한 균형 지표", "낮음: 불균형 자료에서 위험군을 정확히 찾아내는 성능은 제한적"],
+            ["ROC-AUC", f"{float(survey_final['roc_auc']):.3f}", "두 그룹을 전반적으로 구분하는 순위 성능", "양호: 관련 요인의 순위 구분과 설문 문항 검증 근거로는 활용 가능"],
+        ], columns=["평가 지표", "Test 결과", "해석", "타당성 판단"])
+        st.dataframe(metrics_view, hide_index=True, width="stretch")
+
+    if current_stage == 4:
+        st.subheader("5. 최종 결론과 생활환경 설문 문항")
+        st.markdown(
+            f"<div class='nsch-preprocess-result nsch-conclusion-result'><b>최종 결론이 나온 과정</b><br>"
+            f"ACE 4개 이상 그룹 {int(target['ace4_high_count']):,}명과 ACE 0~3개 비교집단 {int(target['ace4_low_count']):,}명의 환경·생활 응답을 비교했습니다. "
+            f"그중 설문 가능한 {len(candidates)}개 후보에 통계적 관계 크기와 Random Forest 변수 중요도를 적용하고, 최종 {len(selected)}개 조합을 4개 분류모델로 검증했습니다. "
+            f"최종 모델은 <b>{model_names[chosen_model]}</b>이며, 이 결과를 바탕으로 아래 {len(selected)}개 문항을 간접 생활환경 설문으로 확정했습니다.</div>",
+            unsafe_allow_html=True,
+        )
+        st.markdown(f"<div class='nsch-final-heading'>최종 생활환경 문항 {len(selected)}개</div>", unsafe_allow_html=True)
+        final_rows = []
+        for number, column in enumerate(selected.sort_values("selection_rank")["column"], start=1):
+            question_weight = float(
+                selected.loc[selected["column"].eq(column), "rf_importance"].iloc[0]
+                / selected["rf_importance"].sum() * 100
+            )
+            response_rows = group_response_comparison[group_response_comparison["column"].eq(column)].copy()
+            response_rows["response_label"] = response_rows["response_code"].map(
+                lambda code: next((label for value, label in NSCH_CODE_OPTIONS.get(column, []) if value == int(float(code))), f"응답 {int(float(code))}")
+            )
+            high_response = response_rows.loc[response_rows["difference_pp"].idxmax()]
+            final_rows.append([
+                number,
+                NSCH_SURVEY_QUESTIONS.get(column, NSCH_LABELS.get(column, column)),
+                str(high_response["response_label"]),
+                f"{float(high_response['high_rate']) * 100:.1f}%",
+                f"{float(high_response['low_rate']) * 100:.1f}%",
+                f"+{float(high_response['difference_pp']):.1f}%p",
+                f"{question_weight:.1f}점",
+            ])
+        final_table_rows = []
+        for number, question, response, high_rate, low_rate, gap, question_weight in final_rows:
+            final_table_rows.append(
+                f"<tr><td class='nsch-final-num'>{number}</td><td class='nsch-final-question'>{question}</td>"
+                f"<td class='nsch-final-response'>{response}</td><td class='nsch-final-rate'>{high_rate}</td>"
+                f"<td class='nsch-final-rate'>{low_rate}</td><td class='nsch-final-gap'>{gap}</td>"
+                f"<td class='nsch-final-weight'>{question_weight}</td></tr>"
+            )
+        st.markdown(
+            "<table class='nsch-final-table'><thead><tr>"
+            "<th style='width:5%'>번호</th><th style='width:33%'>최종 생활환경 문항</th><th style='width:18%'>위험군에서 더 많았던 응답</th>"
+            "<th style='width:12%'>ACE 4개 이상<br>위험군 응답</th><th style='width:12%'>ACE 0~3개<br>비교집단 응답</th>"
+            "<th style='width:10%'>위험군 응답 차이</th><th style='width:10%'>문항 가중치</th></tr></thead><tbody>"
+            + "".join(final_table_rows) + "</tbody></table>",
+            unsafe_allow_html=True,
+        )
+        mini_note("‘문항 가중치’는 Train 자료에서 Random Forest가 각 문항을 분류에 사용한 중요도를 100점으로 환산한 값입니다. ‘위험군 응답 차이’는 비교집단보다 해당 응답이 얼마나 더 많이 나타났는지 보여 주는 비율 차이(%p)입니다.")
+        st.markdown("<div class='nsch-final-heading'>최종 선정 기준</div>", unsafe_allow_html=True)
+        st.markdown(
+            f"<div class='formula-box nsch-final-flow'><b>최종 흐름</b><br><br>"
+            f"ACE 4개 이상 그룹과 0~3개 그룹의 응답 비율 비교<div class='formula-arrow'>↓</div>"
+            f"카이제곱 검정·Cramér’s V로 관계 크기 확인<div class='formula-arrow'>↓</div>"
+            f"Random Forest로 분류에 중요하게 사용된 항목 확인<div class='formula-arrow'>↓</div>"
+            f"로지스틱 회귀·KNN·의사결정나무·랜덤 포레스트 비교<div class='formula-arrow'>↓</div>"
+            f"최종 {len(selected)}문항 확정</div>",
+            unsafe_allow_html=True,
+        )
+        mini_note("이 문항들은 ACE 문항을 직접 묻지 않고, ACE 4개 이상 그룹과 관련성이 확인된 가족·주거·경제·학교·생활 특성을 확인하기 위한 간접 설문 항목입니다. 관련성은 함께 나타난 정도를 뜻하며 원인이나 개인의 결과를 단정하지 않습니다.")
+
+
+def render_nsch_ace4_page():
+    """왼쪽 분석 순서와 오른쪽 단계별 내용을 같은 행에 배치한다."""
+    target = pd.read_csv(NSCH_RISK_ART / "target_summary.csv").set_index("metric")["value"]
+    candidates = pd.read_csv(NSCH_RISK_ART / "candidate_features.csv")
+    imputation = pd.read_csv(NSCH_RISK_ART / "imputation_summary.csv")
+    stats = pd.read_csv(NSCH_RISK_ART / "statistical_tests.csv")
+    selection = pd.read_csv(NSCH_RISK_ART / "final_selection.csv")
+    comparison = pd.read_csv(NSCH_RISK_ART / "model_validation_comparison.csv")
+    group_response_comparison = pd.read_csv(NSCH_RISK_ART / "group_response_comparison.csv")
+    final = pd.read_csv(NSCH_RISK_ART / "final_test_metrics.csv").iloc[0]
+    split_summary = pd.read_csv(NSCH_RISK_ART / "split_summary.csv")
+    exploration_summary_path = APP_DIR / "model_artifacts" / "nsch_ace4_exploration" / "screen_summary.json"
+    exploration_summary = json.loads(exploration_summary_path.read_text(encoding="utf-8")) if exploration_summary_path.exists() else {}
+    broad_candidate_count = int(exploration_summary.get("screened_candidate_count", len(candidates)))
+    selected = selection[selection["selected_final"]].copy()
+    split_counts = split_summary.groupby("split")["count"].sum().to_dict()
+    model_names = {"LogisticRegression": "로지스틱 회귀", "KNN": "K-최근접 이웃", "DecisionTree": "의사결정나무", "RandomForest": "랜덤 포레스트"}
+    chosen_model = str(final["model"])
+    stage_labels = ["1. 데이터 확인 및 전처리", "2. 관련성 확인·질문 선정", "3. 머신러닝 모델 비교", "4. 결과·설문 연결", "5. 최종 결론·설문 문항"]
+    current_label = st.session_state.get("nsch_stage_selector", stage_labels[0])
+    current_stage = stage_labels.index(current_label) if current_label in stage_labels else 0
+
+    page_title("NSCH 외부데이터 분석", "ACE(아동기 부정적 경험) 4개 이상 고위험군과 관련된 가족·주거·경제·학교 요인을 찾아\n간접 생활환경 설문 문항을 제작하는 과정입니다.")
+    tree_column, content_column = st.columns([.20, .80], gap="medium")
+    with tree_column:
+        nsch_learning_tree(current_stage)
+    with content_column:
+        selected_label = st.radio("NSCH 분석 단계", stage_labels, horizontal=True, label_visibility="collapsed", key="nsch_stage_selector")
+        selected_stage = stage_labels.index(selected_label)
+        render_nsch_ace4_stage_content(
+            target, candidates, imputation, stats, selection, comparison, final,
+            broad_candidate_count, selected, split_counts, model_names, chosen_model,
+            group_response_comparison, selected_stage,
+        )
+
+
 def page_title(title, subtitle=""):
     st.title(title)
     if subtitle:
@@ -783,6 +1398,54 @@ def result_line(text):
 
 def mini_note(text):
     st.markdown(f'<div class="mini-note">{text}</div>', unsafe_allow_html=True)
+
+
+def load_nsch_response_weights():
+    """Train 자료에서 계산한 응답별 가중 반영표를 불러온다."""
+    return pd.read_csv(NSCH_RISK_ART / "response_weight_summary.csv")
+
+
+@st.cache_resource
+def load_pickle_model(model_path, modified_time):
+    """같은 모델 파일을 설문 입력 때마다 다시 읽지 않고 메모리에서 재사용한다."""
+    del modified_time  # 모델 파일이 바뀌면 캐시 키만 갱신하는 용도다.
+    with Path(model_path).open("rb") as model_file:
+        return pickle.load(model_file)
+
+
+def load_nsch_score_calibration():
+    """Validation 가중 설문점수 분포를 불러와 현재 점수의 상대 위치를 계산한다."""
+    return pd.read_csv(NSCH_RISK_ART / "environment_score_calibration.csv")["survey_score"].to_numpy()
+
+
+def nsch_environment_percentile(survey_score):
+    """새 가중 설문점수가 Validation 자료 안에서 어느 백분위인지 0~100으로 계산한다."""
+    reference = load_nsch_score_calibration()
+    return float(np.searchsorted(np.sort(reference), float(survey_score), side="right") / len(reference) * 100)
+
+
+def nsch_weighted_response_summary(answers):
+    """선택한 응답의 위험군 차이×RF 중요도 반영 정도를 0~100으로 요약한다."""
+    weights = load_nsch_response_weights()
+    rows = []
+    for column, response_code in answers.items():
+        if response_code is None or pd.isna(response_code):
+            continue
+        matched = weights[
+            weights["column"].eq(column)
+            & np.isclose(weights["response_code"].astype(float), float(response_code))
+        ]
+        if matched.empty:
+            continue
+        row = matched.iloc[0]
+        rows.append({
+            "문항": NSCH_LABELS.get(column, column),
+            "문항 가중치": float(row["question_weight"]),
+            "선택 응답 반영점수": float(row["max_contribution"]),
+        })
+    detail = pd.DataFrame(rows)
+    score = float(detail["선택 응답 반영점수"].sum()) if not detail.empty else 0.0
+    return min(100.0, score), detail
 
 
 def learning_cards(what, why, how, result):
@@ -836,62 +1499,73 @@ def result_report_header(student_name, score, title, comment):
 
 def environment_result_report_header(student_name, score, title, comment):
     """생활환경 설문 결과를 ASD 설문 결과 카드와 같은 구조로 표시한다."""
-    band_html = f'<div class="report-band">{title}</div>' if title else ""
     # 문장 데이터에는 HTML 태그를 넣지 않고, 화면 출력용 줄바꿈만 여기서 만든다.
     comment_html = "<br>".join(str(comment).splitlines())
     st.markdown(
         f'''<div class="report-kicker">개별 관찰 결과</div>
         <div class="report-score">{float(score):.1f} / 100점</div>
-        {band_html}
         <div class="report-comment">{comment_html}</div>''',
         unsafe_allow_html=True,
     )
 
 
 def environment_result_state(score, score_bands):
-    """현재 환경 점수의 4개 검증 구간에 맞는 제목·설명·대응 단계 번호를 고른다."""
+    """ACE 4개 이상 위험신호 점수의 검증 구간에 맞는 제목과 설명을 고른다."""
     index = next(
-        (i for i, (_, row) in enumerate(score_bands.iterrows()) if float(score) < float(row["upper_score"]) * 100 or i == len(score_bands) - 1),
+        (i for i, (_, row) in enumerate(score_bands.iterrows()) if float(score) < float(row["upper_score"]) or i == len(score_bands) - 1),
         len(score_bands) - 1,
     )
     states = [
-        ("", "현재 설문에서 생활환경 특성이 낮은 수준으로 관찰됩니다.\n일상 환경, 수면과 학교생활의 변화가 반복되는지 평소 관찰을 지속해 주세요."),
-        ("생활환경 추가 관찰 구간", "현재 설문에서 일부 생활환경 특성이 관찰됩니다.\n생활 리듬과 학교·가정에서의 변화가 반복되는지 조금 더 자세히 기록해 주세요."),
-        ("생활환경 고관찰 구간", "현재 설문에서 여러 생활환경 특성이 함께 관찰됩니다.\n관찰한 변화와 생활환경 정보를 보호자와 공유해 함께 확인해 주세요."),
-        ("생활환경 매우 고관찰 구간", "현재 설문에서 생활환경 특성이 높은 수준으로 관찰됩니다.\n관찰 내용을 보호자와 담당자에게 우선 공유하고 필요한 지원을 함께 확인해 주세요."),
+        (
+            "낮은 위험신호 구간",
+            "현재 응답에서 가족·주거·학교생활 관련 항목은 ACE 4개 이상 그룹에서 두드러졌던 생활환경 패턴과 비교적 거리가 있습니다.\n현재 확인한 생활환경 특성을 평소와 같이 관찰해 주세요.",
+        ),
+        (
+            "주의 위험신호 구간",
+            "현재 응답에서 일부 생활환경 항목이 ACE 4개 이상 그룹에서 함께 나타난 응답 패턴과 유사하게 확인됩니다.\n생활 리듬과 가정·학교에서의 변화가 반복되는지 조금 더 기록해 주세요.",
+        ),
+        (
+            "높은 위험신호 구간",
+            "현재 응답에서 여러 생활환경 항목이 ACE 4개 이상 그룹에서 상대적으로 많이 나타난 응답 패턴과 유사하게 확인됩니다.\n응답 내용을 다시 확인하고, 관찰한 생활환경 정보를 보호자와 함께 살펴보세요.",
+        ),
+        (
+            "매우 높은 위험신호 구간",
+            "현재 응답에서 가족·주거·학교생활 관련 위험신호가 함께 나타나는 패턴이 비교적 뚜렷하게 확인됩니다.\n관찰한 내용과 생활환경 정보를 보호자 및 담당자와 우선 공유해 필요한 지원을 함께 확인해 주세요.",
+        ),
     ]
     title, comment = states[min(index, len(states) - 1)]
     return index, title, comment
 
 
 def environment_action_list(score, score_bands):
-    """기존 검증자료의 4개 환경 점수 구간에 맞춰 현재 점수의 관찰 행동을 표시한다."""
-    labels = ["일반 관찰", "생활환경 추가 관찰", "생활환경 고관찰", "생활환경 매우 고관찰"]
-    actions = [
-        "현재 생활환경 특성을 평소와 같이 관찰합니다.",
-        "생활 리듬과 학교·가정에서의 변화가 반복되는지 조금 더 기록합니다.",
-        "관찰한 변화와 생활환경 정보를 보호자와 공유해 함께 확인합니다.",
-        "관찰 내용을 보호자와 담당자에게 우선 공유하고 필요한 지원을 함께 확인합니다.",
-    ]
-    rows = ['<div class="action-list-wrap"><div class="action-list-title">대응방안</div>']
+    """현재 생활환경 가중점수를 0~100의 네 점수 구간으로 표시한다."""
+    labels = ["낮은 위험신호", "주의 위험신호", "높은 위험신호", "매우 높은 위험신호"]
+    positions = []
+    actions = []
     for i, (_, row) in enumerate(score_bands.iterrows()):
-        lower = float(row["lower_score"]) * 100
-        upper = float(row["upper_score"]) * 100
+        lower = float(row["lower_score"])
+        upper = float(row["upper_score"])
+        is_last = i == len(score_bands) - 1
+        positions.append(f"{lower:.0f}~{upper:.0f}점 {'이하' if is_last else '미만'}")
+        actions.append(f"생활환경 가중점수가 {lower:.0f}점 이상 {upper:.0f}점 {'이하' if is_last else '미만'}인 구간입니다.")
+    rows = ['<div class="action-list-wrap"><div class="action-list-title">생활환경 점수 구간</div>']
+    for i, (_, row) in enumerate(score_bands.iterrows()):
+        lower = float(row["lower_score"])
+        upper = float(row["upper_score"])
         is_last = i == len(score_bands) - 1
         active = " active" if (lower <= float(score) <= upper if is_last else lower <= float(score) < upper) else ""
-        upper_text = f"{upper:.1f}점 이하" if is_last else f"{upper:.1f}점 미만"
-        rows.append(f"<div class='action-row{active}'><b>{lower:.1f}점 이상 ~ {upper_text} · {labels[min(i, len(labels)-1)]}</b><br>{actions[min(i, len(actions)-1)]}</div>")
+        rows.append(f"<div class='action-row{active}'><b>{positions[min(i, len(positions)-1)]} · {labels[min(i, len(labels)-1)]}</b><br>{actions[min(i, len(actions)-1)]}</div>")
     rows.append('</div>')
     st.markdown(''.join(rows), unsafe_allow_html=True)
 
 
 def environment_score_position_chart(score, score_bands):
-    """점수 자체가 기존 검증자료의 어느 구간에 위치하는지 보여 주는 보조 그래프다."""
+    """현재 생활환경 가중점수가 0~100 중 어느 구간인지 보여 주는 그래프다."""
     colors = ["#edf7ef", "#dcefe0", "#c8e5ce", "#b3d9bc"]
     fig, ax = plt.subplots(figsize=(2.30, 1.92))
     for i, (_, row) in enumerate(score_bands.iterrows()):
-        lower = float(row["lower_score"]) * 100
-        upper = float(row["upper_score"]) * 100
+        lower = float(row["lower_score"])
+        upper = float(row["upper_score"])
         ax.barh(0, upper - lower, left=lower, height=.42, color=colors[i], edgecolor="#8ebc98", linewidth=.55)
         ax.text((lower + upper) / 2, 0, str(i + 1), ha="center", va="center", fontsize=6.5, color="#356047", fontweight="bold")
     ax.axvline(float(score), color="#3f7750", linewidth=1.6)
@@ -899,8 +1573,9 @@ def environment_score_position_chart(score, score_bands):
     ax.set_xlim(0, 100)
     ax.set_ylim(-.42, .42)
     ax.set_yticks([])
-    ax.set_xticks([0, 25, 50, 75, 100])
-    ax.set_xlabel("환경·생활 특성 점수", fontsize=6.5, color="#526b5a")
+    score_ticks = sorted(set(score_bands["lower_score"].astype(float).tolist() + [float(score_bands["upper_score"].iloc[-1])]))
+    ax.set_xticks(score_ticks)
+    ax.set_xlabel("생활환경 위험신호 점수", fontsize=6.5, color="#526b5a")
     ax.tick_params(axis="x", labelsize=5.8, colors="#687c6e")
     for spine in ["top", "left", "right"]:
         ax.spines[spine].set_visible(False)
@@ -918,12 +1593,23 @@ def move_to_checklist_tab(tab_index):
     """
     components.html(
         f"""<script>
-        window.setTimeout(() => {{
-            const tabs = window.parent.document.querySelectorAll('button[data-baseweb="tab"], button[role="tab"]');
-            if (tabs.length > {int(tab_index)}) {{
-                tabs[{int(tab_index)}].click();
-                tabs[{int(tab_index)}].scrollIntoView({{behavior: 'smooth', block: 'start'}});
+        const targetTabLabels = ["1. ASD 행동설문", "2. 생활환경 설문", "3. 종합 결과"];
+        function selectChecklistTab() {{
+            const root = window.parent.document;
+            const tabs = Array.from(root.querySelectorAll('button[role="tab"], button[data-baseweb="tab"]'));
+            const targetLabel = targetTabLabels[{int(tab_index)}];
+            const target = tabs.find(tab => (tab.innerText || tab.textContent || '').includes(targetLabel));
+            if (target) {{
+                target.click();
+                target.scrollIntoView({{behavior: 'smooth', block: 'start'}});
+                return true;
             }}
+            return false;
+        }}
+        let tabAttempts = 0;
+        const tabTimer = window.setInterval(() => {{
+            tabAttempts += 1;
+            if (selectChecklistTab() || tabAttempts >= 25) window.clearInterval(tabTimer);
         }}, 100);
         </script>""",
         height=0,
@@ -946,13 +1632,12 @@ def make_summary_pdf(student_name, asd_score, env_score, total_score, verdict, s
         fig.add_artist(FancyBboxPatch((.10, .765), .80, .065, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#fff3e4", edgecolor="#f0d2ad", transform=fig.transFigure))
         fig.text(.15, .802, f"ASD 행동점수    {asd_score:.1f} / 100", fontsize=13, fontweight="bold", color="#8b5a22", va="center")
         fig.add_artist(FancyBboxPatch((.10, .675), .80, .065, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#edf5fb", edgecolor="#c9ddeb", transform=fig.transFigure))
-        fig.text(.15, .712, f"환경·생활 특성 점수    {env_score:.1f} / 100", fontsize=13, fontweight="bold", color="#3f7750", va="center")
+        fig.text(.15, .712, f"생활환경 위험신호 점수    {env_score:.1f} / 100", fontsize=13, fontweight="bold", color="#3f7750", va="center")
         fig.add_artist(FancyBboxPatch((.10, .525), .80, .105, boxstyle="round,pad=.014,rounding_size=.012", facecolor="#f5f8fb", edgecolor="#7f9db6", linewidth=1.4, transform=fig.transFigure))
         fig.text(.50, .595, "종합 관찰 결과", fontsize=11, fontweight="bold", color="#647a8d", ha="center")
         fig.text(.50, .558, summary_label, fontsize=18, fontweight="bold", color="#c47722", ha="center")
         fig.text(.50, .535, f"영역별 확인: {verdict}", fontsize=10.5, color="#52616d", ha="center")
         fig.text(.10, .43, f"최종 종합점수: {total_score:.1f} / 100", fontsize=15, fontweight="bold", color="#315b78")
-        fig.text(.10, .395, "ASD 행동점수와 환경·생활 특성 점수를 같은 비중으로 단순 평균한 프로젝트 참고점수입니다.", fontsize=9.5, color="#53626d")
         fig.text(.10, .34, "최종 점수 구간별 관찰 안내", fontsize=14, fontweight="bold", color="#315b78")
         guidance = {
             "일반 관찰": ("0점 이상 ~ 25점 미만", "현재 관찰된 특성이 낮은 수준입니다. 평소와 같이 관찰합니다."),
@@ -968,7 +1653,7 @@ def make_summary_pdf(student_name, asd_score, env_score, total_score, verdict, s
             fig.text(.12, y + .011, detail, fontsize=6.1, color="#53626d", va="center")
             y -= .052
         fig.text(.10, .055, "종합점수 계산 방법", fontsize=10, fontweight="bold", color="#315b78")
-        fig.text(.10, .035, "종합점수 = (ASD 행동점수 + 환경·생활 특성 점수) ÷ 2 · 두 영역을 같은 비중으로 정리한 프로젝트 참고점수입니다.", fontsize=6.3, color="#405462")
+        fig.text(.10, .035, "종합점수 = (ASD 행동점수 + 생활환경 위험신호 점수) ÷ 2 · 두 영역을 같은 비중으로 정리한 프로젝트 참고점수입니다.", fontsize=6.3, color="#405462")
         pdf.savefig(fig, bbox_inches="tight")
         plt.close(fig)
     output.seek(0)
@@ -1097,7 +1782,29 @@ menu = "8. NSCH 외부데이터 분석" if sidebar_choice == "NSCH 외부데이�
 # ============================================================
 if menu.startswith("1."):
     page_title("아동학대 사전 예측 솔루션", "아동학대를 조기에 발견하여 사전에 방지하는 시스템")
-    st.markdown("<div class='explain-card'><b>두 단계 관찰 구조</b><br><br><b>기존 UCI 데이터</b> → 행동특성으로 ASD 선별 → <b>1차 행동특성 설문</b><br><br><b>NSCH 전체 아동 데이터</b> → 현재 ASD 있음/없음과 가족·경제·학교·생활습관 비교 → ASD와 함께 나타나는 환경·생활 특성 선정 → 머신러닝으로 재확인 → <b>2차 생활환경 설문</b><br><br><b>두 설문 결과</b> → 행동 관찰점수 + 환경·생활 특성 점수 → <b>종합 관찰 결과</b></div>", unsafe_allow_html=True)
+    st.markdown("<div class='project-flow-heading'>프로젝트 플로우</div>", unsafe_allow_html=True)
+    st.markdown(
+        """
+        <div class="project-flow-wrap">
+          <div class="project-flow-card"><div class="project-flow-title">문제 정의</div><div class="project-flow-text">아동학대 위험신호 조기 확인과 관찰 우선도 지원 목적 설정</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card data"><div class="project-flow-title">데이터 취합</div><div class="project-flow-text">UCI 행동 데이터와 NSCH 2024 생활환경 데이터 취합</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card"><div class="project-flow-title">데이터 전처리</div><div class="project-flow-text">분석 대상 정리 · 결측값 처리 · 범주형 입력 변환</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card"><div class="project-flow-title">관계·유의성 분석</div><div class="project-flow-text">카이제곱 검정 · Cramér’s V · p-value로 관계 크기와 유의성 확인</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card"><div class="project-flow-title">분류모델 비교</div><div class="project-flow-text">로지스틱 회귀 · K-최근접 이웃 · 의사결정나무 · 랜덤 포레스트 비교</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card"><div class="project-flow-title">성능평가·모델선택</div><div class="project-flow-text">정확도 · 재현율 · F1 점수 · ROC-AUC 기준 최종모델 선택</div></div>
+          <div class="project-flow-arrow">→</div>
+          <div class="project-flow-card final"><div class="project-flow-title">종합 관찰 결과·웹 서비스</div><div class="project-flow-text">행동·생활환경 점수 기반 종합 관찰 결과와 대응 방향 제공</div></div>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("<div class='analysis-stage-heading'>데이터 분석 단계</div>", unsafe_allow_html=True)
 
     behavior_related_count = 0
     background_related_count = 0
@@ -1491,17 +2198,21 @@ elif menu.startswith("3."):
 # 9. Page 4 - 머신러닝 모델
 # ============================================================
 elif menu.startswith("4."):
-    page_title("4. 머신러닝 모델", "4개 분류 모델을 같은 조건에서 학습하고 Validation 성능을 비교한다.")
+    page_title("4. 머신러닝 모델", "학습자료로 4개 분류 모델을 학습하고, 검증자료 성능을 비교해 최종 모델을 선택한다.")
     pipeline(3)
 
+    st.subheader("모델 학습과 선택 방법")
     plain_list(
         [
-            ("분류 / 회귀", "분류 — 예측할 결과가 두 범주이며, 로지스틱 회귀는 이진 분류에 사용하는 모델"),
-            ("비교 모델", "로지스틱 회귀(Logistic Regression) / K-최근접 이웃(KNN) / 의사결정나무(Decision Tree) / 랜덤 포레스트(Random Forest)"),
+            ("독립변수 X", "A1~A10 행동 응답 — 모델이 ASD 선별 YES/NO를 구분할 때 사용하는 입력값"),
+            ("종속변수 y", "ASD 선별 결과 — YES와 NO 두 범주를 예측하므로 회귀가 아닌 분류 문제로 설정"),
+            ("학습자료", f"{int(meta.get('selection_train_rows', 174))}명 — 각 모델이 행동 응답과 선별 결과의 패턴을 학습"),
+            ("검증자료", f"{int(meta.get('validation_rows', 58))}명 — 학습에 사용하지 않은 동일 자료로 4개 모델을 공정하게 비교"),
         ]
     )
 
-    st.subheader("4개 모델 Validation 비교")
+    st.subheader("4개 분류 모델의 검증자료 성능 비교")
+    st.caption("로지스틱 회귀 · K-최근접 이웃 · 의사결정나무 · 랜덤 포레스트를 같은 입력 항목과 같은 검증자료로 비교했습니다.")
     if not model_compare.empty:
         tbl = model_compare[["model", "accuracy", "precision", "recall", "f1", "roc_auc"]].copy()
         tbl["model"] = tbl["model"].map(model_name)
@@ -1516,12 +2227,6 @@ elif menu.startswith("4."):
 
         styled_tbl = tbl.style.apply(highlight_selected_model, axis=1)
         left_table(styled_tbl, .94)
-        st.markdown(
-            '<div class="selected-model-note"><b>✓ 로지스틱 회귀(Logistic Regression)</b> · '
-            'Validation에서 가장 높은 종합 성능을 보여 최종 모델로 선택</div>',
-            unsafe_allow_html=True,
-        )
-
         plot_df = model_compare.sort_values("f1", ascending=True)
         fig, ax = plt.subplots(figsize=(4.4, 2.9))
         labels = plot_df["model"].replace(
@@ -1530,7 +2235,7 @@ elif menu.startswith("4."):
         colors = ["#88b895" if m == "Logistic Regression" else "#c8d1d8" for m in plot_df["model"]]
         bars = ax.barh(labels, plot_df["f1"], color=colors)
         ax.set_xlim(0.75, 1.03)
-        ax.set_xlabel("Validation F1")
+        ax.set_xlabel("검증자료 F1 점수")
         for bar, val in zip(bars, plot_df["f1"]):
             ax.text(
                 float(val) + .005,
@@ -1542,9 +2247,15 @@ elif menu.startswith("4."):
         fig.tight_layout()
         center_plot(fig, .38)
 
-        best = model_compare.sort_values(["f1", "recall", "roc_auc"], ascending=False).iloc[0]
+        best = model_compare.sort_values(["selection_rank", "f1", "recall"], ascending=[True, False, False]).iloc[0]
+        st.subheader("최종 모델 선택")
+        st.markdown(
+            f'<div class="selected-model-note"><b>✓ {model_name(best["model"])}</b> · '
+            '검증자료에서 정확도·정밀도·재현율·F1 점수·ROC-AUC를 함께 비교한 결과 1순위로 선택</div>',
+            unsafe_allow_html=True,
+        )
         result_line(
-            f"Validation 기준 최종 선택 모델: <b>{model_name(best['model'])}</b> &nbsp; | &nbsp; "
+            f"검증자료 기준 최종 선택 모델: <b>{model_name(best['model'])}</b> &nbsp; | &nbsp; "
             f"F1 {fmt(best['f1'])} / Recall {fmt(best['recall'])} / ROC-AUC {fmt(best['roc_auc'])}"
         )
 
@@ -1553,24 +2264,30 @@ elif menu.startswith("4."):
 # 10. Page 5 - 모델 성능 평가
 # ============================================================
 elif menu.startswith("5."):
-    page_title("5. 모델 성능 평가")
+    page_title("5. 모델 성능 평가", "4번에서 선택한 최종 모델을 시험자료에 한 번만 적용해 일반화 성능을 확인한다.")
     pipeline(4)
 
-    st.subheader("학습·테스트 데이터 분할")
+    st.subheader("최종 시험자료 평가")
+    selection_train_rows = int(meta.get("selection_train_rows", 174))
+    validation_rows = int(meta.get("validation_rows", 58))
+    final_test_rows = int(meta.get("final_test_rows", 58))
     st.markdown(
         f'''<div class="split-diagram">
-            <div class="split-root-row"><div class="split-box root"><strong>전체 데이터 {len(analysis)}명</strong><br>전처리 완료 데이터</div></div>
-            <div class="split-branch-arrows"><span>↙</span><span>↘</span></div>
-            <div class="split-branches">
-                <div class="split-box train"><strong>80% · {int(round(len(analysis)*0.8))}명</strong><br>학습·검증용<br>모델 학습·선택에 사용</div>
-                <div class="split-box test"><strong>20% · {int(round(len(analysis)*0.2))}명</strong><br>Final Test<br>마지막 성능 평가에 사용</div>
+            <div class="split-root-row"><div class="split-box root"><strong>분석 가능 데이터 {len(analysis)}명</strong><br>중복 제거·전처리 완료</div></div>
+            <div class="split-branch-arrows"><span>↓</span></div>
+            <div class="split-branches" style="grid-template-columns:repeat(3, 1fr); width:82%;">
+                <div class="split-box train"><strong>학습자료 · {selection_train_rows}명</strong><br>4개 모델 학습</div>
+                <div class="split-box train"><strong>검증자료 · {validation_rows}명</strong><br>모델 비교·선택</div>
+                <div class="split-box test"><strong>시험자료 · {final_test_rows}명</strong><br>선택 모델 최종 평가</div>
             </div>
         </div>''',
         unsafe_allow_html=True,
     )
+    st.caption("시험자료는 모델 학습이나 선택에 사용하지 않고, 최종 모델을 정한 뒤 마지막 평가에만 사용했습니다.")
 
     st.markdown('<div style="height:.70rem"></div>', unsafe_allow_html=True)
-    st.subheader("성능평가 결과")
+    selected_model_label = model_name(meta.get("selected_model", "Logistic Regression"))
+    st.subheader(f"{selected_model_label} 최종 성능")
 
     if not final_row.empty:
         metric_table = pd.DataFrame(
@@ -1581,10 +2298,15 @@ elif menu.startswith("5."):
                 ["F1 점수(F1-score)", final_row.get("f1"), "Precision과 Recall의 균형"],
                 ["ROC-AUC", final_row.get("roc_auc"), "YES와 NO를 전반적으로 구분하는 능력"],
             ],
-            columns=["평가 지표", "Final Test 결과", "설명"],
+            columns=["평가 지표", "시험자료 결과", "설명"],
         )
-        metric_table["Final Test 결과"] = metric_table["Final Test 결과"].map(lambda x: fmt(x))
+        metric_table["시험자료 결과"] = metric_table["시험자료 결과"].map(lambda x: fmt(x))
         left_table(metric_table, .82)
+        result_line(
+            f"시험자료 기준 <b>{selected_model_label}</b> 성능: "
+            f"정확도 {fmt(final_row.get('accuracy'))} / 재현율 {fmt(final_row.get('recall'))} / "
+            f"F1 {fmt(final_row.get('f1'))} / ROC-AUC {fmt(final_row.get('roc_auc'))}"
+        )
 
         tn = int(final_row.get("tn", 0))
         fp = int(final_row.get("fp", 0))
@@ -1617,7 +2339,7 @@ elif menu.startswith("5."):
                 f"<b>TN</b> 실제 ASD 선별 NO → 모델도 NO라고 예측: <b>{tn}명</b><br>"
                 f"<b>FP</b> 실제 NO인데 모델이 YES라고 잘못 예측: <b>{fp}명</b><br>"
                 f"<b>FN</b> 실제 YES인데 모델이 NO라고 잘못 예측: <b>{fn}명</b><br><br>"
-                f"<b>결과:</b> Final Test {tp+tn+fp+fn}명 중 {tp+tn}명을 정확히 분류했다."
+                f"<b>결과:</b> 시험자료 {tp+tn+fp+fn}명 중 {tp+tn}명을 정확히 분류했다."
             )
 
         if not roc_points.empty and {"fpr", "tpr"}.issubset(roc_points.columns):
@@ -1640,8 +2362,15 @@ elif menu.startswith("5."):
                     "ROC 곡선(ROC Curve)은 ASD 선별 YES/NO를 구분할 때 모델의 판단 기준을 바꿔가며 성능 변화를 보여준다.<br>"
                     "세로축(TPR)은 실제 ASD 선별 YES를 YES로 찾아낸 비율이고, 가로축(FPR)은 실제 ASD 선별 NO를 YES로 잘못 판단한 비율이다.<br>"
                     "그래프가 왼쪽 위에 가까울수록 구분 성능이 좋고, AUC는 1에 가까울수록 좋다.<br><br>"
-                    f"<b>현재 로지스틱 회귀 Final Test 결과: ROC-AUC {auc:.3f}</b>"
+                    f"<b>현재 로지스틱 회귀 시험자료 결과: ROC-AUC {auc:.3f}</b>"
                 )
+
+        st.subheader("평가 결과 해석")
+        explain_card(
+            "시험자료에서도 모든 평가지표가 높아, 선택된 모델이 이 데이터의 ASD 선별 규칙을 안정적으로 재현했습니다.<br>"
+            "다만 원래 ASD 선별 결과가 A1~A10 응답 합계 규칙으로 만들어졌고 모델도 같은 A1~A10을 입력으로 사용하므로, "
+            "높은 성능은 새로운 독립 요인을 발견했다기보다 기존 선별 규칙을 정확히 학습한 결과로 해석해야 합니다."
+        )
 
 
 # ============================================================
@@ -1681,12 +2410,10 @@ elif menu.startswith("6."):
         wtbl["raw_importance"] = wtbl["raw_importance"].map(lambda x: f"{float(x):.3f}")
         wtbl["normalized_weight"] = wtbl["normalized_weight"].map(lambda x: f"{float(x)*100:.2f}%")
         wtbl.columns = ["순위", "문항", "|회귀계수|", "상대 가중치", "최종 점수"]
-        styled_wtbl = (
-            wtbl.style
-            .set_properties(**{"text-align": "center"})
-            .set_table_styles([{"selector": "th", "props": [("text-align", "center")]}])
-        )
-        left_table(styled_wtbl, .74, 390)
+        weight_table_html = wtbl.to_html(index=False, classes="behavior-weight-table", border=0)
+        weight_table_cols = st.columns([.74, .26], gap="small")
+        with weight_table_cols[0]:
+            st.markdown(weight_table_html, unsafe_allow_html=True)
 
     checklist_meta = meta.get("weighted_checklist", {})
     observe_cutoff = int(checklist_meta.get("observe_cutoff", 50))
@@ -1705,7 +2432,7 @@ elif menu.startswith("6."):
 # 12. Page 7 - 결과
 # ============================================================
 elif menu.startswith("8."):
-    render_nsch_asd_page()
+    render_nsch_ace4_page()
     st.stop()
     page_title("8. NSCH 외부데이터 분석", "가족·경제·주거·생활환경 항목으로 생활환경 위험 수준(ACE 0~1개 / 2개 이상)을 분석한 결과입니다.")
     nt = st.tabs(["1. 분석 대상", "2. 데이터 정리·후보 선정", "3. 데이터 분리·결측 처리", "4. 통계적 연관성", "5. 최종 12개 선정", "6. 모델 입력 변환", "7. 모델 비교", "8. 최종 모델 결과", "9. 변수 중요도"])
@@ -1886,13 +2613,31 @@ elif menu.startswith("10."):
     a = sum(int(r["points"]) for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows() if st.session_state.get(f"teacher_check_{r['feature']}", False)) if not weighted_checklist.empty else 0; e = float(st.session_state.get("nsch_environment_score", 0)); ah = a >= 65; eh = e >= 50
     st.metric("ASD 행동 관찰점수", a); st.metric("생활환경 관찰점수", f"{e:.1f}"); st.success("복합 추가관찰" if ah and eh else "ASD 행동 집중 관찰" if ah else "생활환경 집중 관찰" if eh else "일반 관찰")
 elif menu.startswith("7."):
-    page_title("7. 결과", "ASD 행동 특성과 환경·생활 특성을 각각 확인하고 종합 관찰 결과를 봅니다.")
-    preserve_checklist_scroll_position()
+    page_title("7. 결과", "ASD 행동 특성과 ACE 4개 이상 경험에 관련된 생활환경 위험신호를 각각 확인하고 종합 결과를 봅니다.")
+    # 최초 1회만 스크롤 복원 리스너를 붙여 입력 때마다 iframe이 다시 그려지는 깜빡임을 줄인다.
+    if not st.session_state.get("checklist_scroll_listener_ready", False):
+        preserve_checklist_scroll_position()
+        st.session_state["checklist_scroll_listener_ready"] = True
     pipeline(6)
     st.markdown("### 체크리스트")
-    survey_tabs = st.tabs(["ASD 행동 설문", "생활환경 설문", "종합 결과"])
+    pending_tab = st.session_state.pop("checklist_target_tab", None)
+    checklist_tab_labels = ["1. ASD 행동설문", "2. 생활환경 설문", "3. 종합 결과"]
+    # Streamlit 탭 상태를 session_state로 직접 관리한다.
+    # 버튼에서 이 값을 바꾼 뒤 rerun하면 다음 탭이 서버 상태에 맞춰 확실히 열린다.
+    if pending_tab is not None:
+        requested_tab = max(0, min(int(pending_tab), len(checklist_tab_labels) - 1))
+        st.session_state["checklist_active_tab"] = checklist_tab_labels[requested_tab]
+    elif "checklist_active_tab" not in st.session_state:
+        st.session_state["checklist_active_tab"] = checklist_tab_labels[0]
+    survey_tabs = st.tabs(
+        checklist_tab_labels,
+        key="checklist_active_tab",
+        on_change="rerun",
+    )
     with survey_tabs[0]:
-        asd_checklist_slot = st.empty()
+        # st.empty()는 재실행 시작과 동시에 기존 설문을 지워 화면이 꺼졌다 켜지는 것처럼 보인다.
+        # 일반 컨테이너는 기존 화면을 유지한 채 변경된 점수와 그래프만 교체해 깜빡임을 줄인다.
+        asd_checklist_slot = st.container()
     with survey_tabs[1]:
         st.subheader("생활환경 설문")
         st.markdown('<div class="survey-section-spacer"></div>', unsafe_allow_html=True)
@@ -1900,68 +2645,108 @@ elif menu.startswith("7."):
         with env_form_col:
             st.markdown('<span class="environment-panel-marker"></span>', unsafe_allow_html=True)
             st.markdown('<div class="environment-title">아동학대 의심 설문조사 (생활환경)</div>', unsafe_allow_html=True)
-            with (NSCH_ASD_ART / "final_model_nsch_asd.pkl").open("rb") as f:
-                nsch_ui_model = pickle.load(f)
-            # 선택지가 바뀔 때마다 이 값도 다시 만들어 오른쪽 결과가 바로 갱신되게 한다.
-            nsch_values = {"fpl_i1": np.nan, "makefriend": np.nan}
-            visible_features = [x for x in NSCH_ASD_FEATURES if x not in {"fpl_i1", "makefriend"}]
+            nsch_model_path = NSCH_RISK_ART / "final_model_nsch_ace4.pkl"
+            nsch_ui_model = load_pickle_model(str(nsch_model_path), nsch_model_path.stat().st_mtime_ns)
+            # 첫 화면에서는 어떤 응답도 미리 선택하지 않는다.
+            # 선택한 문항만 즉시 점수에 반영하고, 8개를 모두 선택하면 최종 결과를 볼 수 있다.
+            nsch_values = {}
+            visible_features = NSCH_RISK_FEATURES
             for number, x in enumerate(visible_features, start=1):
                 question = NSCH_SURVEY_QUESTIONS.get(x, NSCH_LABELS[x])
                 if x in NSCH_CODE_OPTIONS:
-                    options = NSCH_CODE_OPTIONS[x]
-                    nsch_values[x] = st.selectbox(
+                    options = [None, *NSCH_CODE_OPTIONS[x]]
+                    selected_option = st.selectbox(
                         f"{number}. {question}", options,
-                        format_func=lambda value: value[1], key=f"integrated_{x}",
-                    )[0]
+                        format_func=lambda value: "선택하세요" if value is None else value[1],
+                        key=f"integrated_{x}_v4",
+                    )
+                    nsch_values[x] = np.nan if selected_option is None else selected_option[0]
             st.session_state["nsch_environment_answers"] = nsch_values.copy()
+            answered_count = sum(pd.notna(value) for value in nsch_values.values())
+            all_environment_answers = answered_count == len(visible_features)
+            st.session_state["nsch_environment_answer_count"] = answered_count
             # 저장 파이프라인이 학습 때 받은 전체 열을 만들고, 실제 선택 항목 외 열은 NaN으로 둔다.
             nsch_model_input = pd.DataFrame(
                 [{column: nsch_values.get(column, np.nan) for column in nsch_ui_model.feature_names_in_}]
             )
-            st.session_state["nsch_environment_score"] = float(
-                nsch_ui_model.predict_proba(nsch_model_input)[0, 1] * 100
-            )
+            nsch_raw_probability = float(nsch_ui_model.predict_proba(nsch_model_input)[0, 1])
+            st.session_state["nsch_environment_raw_probability"] = nsch_raw_probability
+            weighted_response_score, weighted_response_detail = nsch_weighted_response_summary(nsch_values)
+            # 주 점수는 각 문항 가중치와 선택 응답 반영점수를 더한 값이다.
+            # 따라서 어떤 문항을 바꿔도 해당 문항의 반영점수만큼 항상 점수가 변한다.
+            st.session_state["nsch_environment_score"] = weighted_response_score
+            st.session_state["nsch_environment_percentile"] = nsch_environment_percentile(weighted_response_score)
+            st.session_state["nsch_environment_weighted_score"] = weighted_response_score
+            st.session_state["nsch_environment_weighted_detail"] = weighted_response_detail.to_dict("records")
             env_back_col, env_submit_col = st.columns(2, gap="small")
             with env_back_col:
                 return_to_asd = st.button("이전 설문으로 돌아가기", use_container_width=True, key="environment_back")
             with env_submit_col:
-                submitted = st.button("제출 및 결과보기", type="primary", use_container_width=True, key="environment_submit")
+                submitted = st.button("제출 및 결과보기", type="primary", use_container_width=True, key="environment_submit", disabled=not all_environment_answers)
             if submitted:
                 # 실시간으로 계산된 현재 점수를 그대로 종합 결과 탭에 사용한다.
-                move_to_checklist_tab(2)
+                st.session_state["environment_survey_saved"] = True
+                st.session_state["checklist_target_tab"] = 2
+                st.rerun()
             elif return_to_asd:
-                move_to_checklist_tab(0)
+                st.session_state["checklist_target_tab"] = 0
+                st.rerun()
         with env_result_col:
             env_now = st.session_state.get("nsch_environment_score")
+            answered_count = int(st.session_state.get("nsch_environment_answer_count", 0))
+            all_environment_answers = answered_count == len(NSCH_RISK_FEATURES)
             # 결과 영역은 ASD 행동패턴 결과와 같은 흰색 카드·녹색 강조 형식을 사용한다.
             st.markdown('<span class="result-panel-marker"></span>', unsafe_allow_html=True)
-            if env_now is not None:
-                environment_score_bands = pd.read_csv(NSCH_ASD_ART / "environment_score_bands.csv")
-                _, env_title, env_comment = environment_result_state(env_now, environment_score_bands)
+            if answered_count:
+                environment_score_bands = pd.read_csv(NSCH_RISK_ART / "environment_score_bands.csv")
+                env_score = float(env_now)
+                _, env_title, env_comment = environment_result_state(env_score, environment_score_bands)
+                if not all_environment_answers:
+                    env_title = ""
+                    env_comment = f"현재 {answered_count} / {len(NSCH_RISK_FEATURES)}문항 응답 기준의 중간 점수입니다.\n나머지 문항을 모두 선택하면 최종 생활환경 결과가 표시됩니다."
                 environment_result_report_header(
                     st.session_state.get("student_name", ""), env_now, env_title, env_comment
                 )
-                environment_action_list(env_now, environment_score_bands)
-                st.markdown('<div class="report-section-title">생활환경 특성 비교</div>', unsafe_allow_html=True)
-                environment_score_position_chart(env_now, environment_score_bands)
-                st.markdown('<div class="radar-note">현재 점수가 검증자료의 4개 환경·생활 특성 점수 구간 중 어디에 위치하는지 보여 줍니다.</div>', unsafe_allow_html=True)
+                if all_environment_answers:
+                    environment_action_list(env_score, environment_score_bands)
+                weighted_now = float(st.session_state.get("nsch_environment_weighted_score", 0.0))
+                st.markdown(
+                    f"<div class='result-line'><span style='font-weight:500'>문항 가중 반영도</span> · {weighted_now:.1f} / 100<br>"
+                    "각 문항의 Random Forest 가중치와 선택 응답의 위험군 차이를 합산한 생활환경 점수입니다.</div>",
+                    unsafe_allow_html=True,
+                )
+                mini_note("100점은 8개 문항 모두에서 학습자료상 위험군 응답 차이가 가장 컸던 선택지를 고른 경우에만 나옵니다. 각 문항의 선택지가 겉으로 비슷하게 우려되어 보여도 실제 두 집단의 응답 차이가 작으면 해당 문항 점수는 낮게 반영됩니다.")
+                with st.expander("문항별 가중 반영 보기"):
+                    weighted_detail = pd.DataFrame(st.session_state.get("nsch_environment_weighted_detail", []))
+                    if not weighted_detail.empty:
+                        weighted_detail["문항 가중치"] = weighted_detail["문항 가중치"].map(lambda value: f"{float(value):.1f}점")
+                        weighted_detail["선택 응답 반영점수"] = weighted_detail["선택 응답 반영점수"].map(lambda value: f"{float(value):.1f}점")
+                        st.dataframe(weighted_detail, hide_index=True, width="stretch")
+                    mini_note("문항 가중치는 Train 자료의 Random Forest 중요도를 100점으로 환산했습니다. 선택 응답 반영점수는 ACE 4개 이상 위험군에서 비교집단보다 더 많이 나타난 정도를 적용했으며, 식품 상황·학교 연락·주거 퇴거 걱정·따돌림처럼 응답 순서가 있는 문항은 응답 강도가 높을수록 점수가 커지도록 반영했습니다.")
+                if all_environment_answers:
+                    st.markdown('<div class="report-section-title">생활환경 점수 위치</div>', unsafe_allow_html=True)
+                    environment_score_position_chart(env_score, environment_score_bands)
+                    st.markdown('<div class="radar-note">그래프의 표시점은 위에 나온 생활환경 점수와 동일한 값입니다. 네 구간 중 높은 위험신호의 시작점은 검증자료에서 F1 점수가 가장 높았던 기준을 사용합니다.</div>', unsafe_allow_html=True)
                 with st.expander("검증자료 구간 기준"):
                     criteria_view = environment_score_bands.copy()
                     criteria_view["점수 구간"] = criteria_view.apply(
-                        lambda row: f"{float(row['lower_score'])*100:.1f}점 이상 ~ {float(row['upper_score'])*100:.1f}점 {'이하' if float(row['upper_score']) == 1 else '미만'}",
+                        lambda row: f"{float(row['lower_score']):.0f}점 이상~{float(row['upper_score']):.0f}점 {'이하' if float(row['upper_score']) == 100 else '미만'}",
                         axis=1,
                     )
                     criteria_view["검증자료 인원"] = criteria_view["validation_count"].map(lambda value: f"{int(value):,}명")
-                    criteria_view["현재 ASD 있음 비율"] = criteria_view["observed_asd_rate"].map(lambda value: f"{float(value)*100:.1f}%")
-                    st.dataframe(criteria_view[["점수 구간", "score_band", "검증자료 인원", "현재 ASD 있음 비율"]].rename(columns={"score_band": "원래 구간명"}), hide_index=True, width="stretch")
+                    criteria_view["ACE 4개 이상 비율"] = criteria_view["observed_ace4_rate"].map(lambda value: f"{float(value)*100:.1f}%")
+                    criteria_view["평균 ACE 개수"] = criteria_view["observed_mean_ace_count"].map(lambda value: f"{float(value):.2f}개")
+                    st.dataframe(criteria_view[["점수 구간", "score_band", "검증자료 인원", "ACE 4개 이상 비율", "평균 ACE 개수"]].rename(columns={"score_band": "위험신호 구간"}), hide_index=True, width="stretch")
             else:
-                st.markdown("<div class='explain-card'><b>결과 안내</b><br>왼쪽 8개 질문에 응답한 뒤 결과 확인 버튼을 누르면 점수가 표시됩니다.</div>", unsafe_allow_html=True)
+                st.markdown("<div class='explain-card'><b>결과 안내</b><br>왼쪽 8개 질문에 응답하면 점수가 바로 표시됩니다.</div>", unsafe_allow_html=True)
     with survey_tabs[2]:
-        # ASD는 기존 가중 체크리스트 합계, 환경 점수는 NSCH-ASD 모델 predict_proba × 100이다.
+        # ASD는 기존 가중 체크리스트 합계, 환경 점수는 RF 문항 가중치와 응답별 위험신호 반영점수를 더한 값이다.
         # 동일한 아동을 두 데이터에서 함께 관찰한 자료가 없으므로, 별도 결합 모델 없이 두 점수를 같은 비중으로 평균한다.
         env = float(st.session_state.get("nsch_environment_score", 0.0)); asd = sum(int(r["points"]) for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows() if st.session_state.get(f"teacher_check_{r['feature']}", False)) if not weighted_checklist.empty else 0; asd_pct = min(100.0, float(asd)); avg = (asd_pct + env) / 2
-        high = asd >= int(meta.get("weighted_checklist", {}).get("high_cutoff", 65)); env_high = env >= float(NSCH_ASD_META.get("validation_threshold", .5)) * 100
-        verdict = "복합 추가관찰" if high and env_high else "ASD 행동 집중 관찰" if high else "생활환경 집중 관찰" if env_high else "일반 관찰"
+        environment_score_bands = pd.read_csv(NSCH_RISK_ART / "environment_score_bands.csv")
+        survey_cutoff = float(environment_score_bands.iloc[2]["lower_score"])
+        high = asd >= int(meta.get("weighted_checklist", {}).get("high_cutoff", 65)); env_high = env >= survey_cutoff
+        verdict = "복합 추가확인" if high and env_high else "ASD 행동 집중 관찰" if high else "생활환경 위험신호 추가확인" if env_high else "일반 관찰"
         asd_observe_cutoff = int(meta.get("weighted_checklist", {}).get("observe_cutoff", 50))
         asd_high_cutoff = int(meta.get("weighted_checklist", {}).get("high_cutoff", 65))
         asd_very_high_cutoff = int(meta.get("weighted_checklist", {}).get("very_high_cutoff", 80))
@@ -1971,13 +2756,11 @@ elif menu.startswith("7."):
             "추가 관찰 구간" if asd >= asd_observe_cutoff else
             "일반 관찰 구간"
         )
-        environment_score_bands = pd.read_csv(NSCH_ASD_ART / "environment_score_bands.csv")
         _, env_band, _ = environment_result_state(env, environment_score_bands)
-        env_band = env_band or "생활환경 일반 관찰 구간"
-        verdict_text = "ASD 행동 특성과 환경·생활 특성이 모두 높게 관찰되었습니다." if high and env_high else "ASD 행동 특성은 높고 환경·생활 특성은 낮게 관찰되었습니다." if high else "환경·생활 특성은 높고 ASD 행동 특성은 낮게 관찰되었습니다." if env_high else "ASD 행동 특성과 환경·생활 특성이 모두 낮게 관찰되었습니다."
+        verdict_text = "ASD 행동 특성과 ACE 4개 이상 위험신호가 모두 높게 나타났습니다." if high and env_high else "ASD 행동 특성은 높고 ACE 4개 이상 위험신호는 낮게 나타났습니다." if high else "ACE 4개 이상 위험신호는 높고 ASD 행동 특성은 낮게 나타났습니다." if env_high else "ASD 행동 특성과 ACE 4개 이상 위험신호가 모두 낮게 나타났습니다."
         if avg < 25:
             summary_label = "일반 관찰"
-            summary_action = "현재 관찰된 ASD 행동 특성과 환경·생활 특성은 모두 낮은 수준입니다. 평소와 같이 아동의 놀이, 의사소통, 또래관계와 일상 적응을 관찰하고, 의미 있는 변화가 반복되면 날짜와 상황을 객관적으로 기록해 주세요."
+            summary_action = "현재 ASD 행동 특성과 ACE 4개 이상 경험에 관련된 생활환경 위험신호가 모두 낮게 나타났습니다. 평소와 같이 아이의 놀이, 의사소통, 또래관계와 일상 적응을 관찰해 주세요."
         elif avg < 50:
             summary_label = "관찰 강화"
             summary_action = "특정 행동이 반복되는지 조금 더 자세히 확인하고, 약 2~4주 동안 나타난 상황·빈도·지속시간을 객관적으로 기록해 보호자와 관찰 사실을 공유해 주세요."
@@ -1993,12 +2776,10 @@ elif menu.startswith("7."):
         with card1:
             st.markdown(f"<div class='combined-card asd'><div class='combined-card-label'>🧩 ASD 행동점수</div><div class='combined-card-score'>{asd_pct:.0f} / 100</div><div class='combined-card-band'>{asd_band}</div></div>", unsafe_allow_html=True)
         with card2:
-            st.markdown(f"<div class='combined-card env'><div class='combined-card-label'>🏡 환경·생활 특성 점수</div><div class='combined-card-score'>{env:.0f} / 100</div><div class='combined-card-band'>{env_band}</div></div>", unsafe_allow_html=True)
+            st.markdown(f"<div class='combined-card env'><div class='combined-card-label'>🏡 생활환경 위험신호 점수</div><div class='combined-card-score'>{env:.0f} / 100</div><div class='combined-card-band'>{env_band}</div></div>", unsafe_allow_html=True)
         st.markdown("<div style='text-align:center;font-size:1.4rem;color:#7f9db6;margin:.35rem 0'>↓</div>", unsafe_allow_html=True)
         child_name = st.session_state.get("student_name", "").strip() or "미입력"
-        st.markdown(f"<div class='combined-result'><div class='combined-result-title'>종합 관찰 결과</div><div class='combined-result-value'>🟠 {summary_label}</div><div class='combined-result-text'><b>아이 이름: {child_name}</b><br><br>{summary_action}<br><br><b>영역별 확인: {verdict}</b><br>{verdict_text}</div></div>", unsafe_allow_html=True)
-        st.markdown("<div style='height:.55rem'></div>", unsafe_allow_html=True)
-        st.markdown(f"<div class='result-line'><b>최종 종합점수: {avg:.1f} / 100</b><br>ASD 행동점수와 환경·생활 특성 점수를 같은 비중으로 단순 평균한 프로젝트 참고점수입니다.</div>", unsafe_allow_html=True)
+        st.markdown(f"<div class='combined-result'><div class='combined-result-title'>종합 관찰 결과</div><div class='combined-result-value'>🟠 {summary_label}</div><div class='combined-result-text' style='width:60%;margin-left:auto;margin-right:auto;line-height:1.75'><b>아이 이름: {child_name}</b><br><span style='display:inline-block;margin-top:.55rem;font-size:1.08rem;font-weight:800;color:#315b78'>최종 종합점수: {avg:.1f} / 100</span><br><br>{summary_action}<br><br><b>영역별 확인: {verdict}</b><br>{verdict_text}</div></div>", unsafe_allow_html=True)
         st.markdown(
             f"""<div class='criteria-wrap'>
             <div class='criteria-heading'>최종 점수 구간별 관찰 안내</div>
@@ -2011,8 +2792,8 @@ elif menu.startswith("7."):
             <div class='combine-algorithm'>
               <div class='combine-algorithm-title'>종합점수 계산 방법</div>
               <div style='font-size:.76rem;line-height:1.65;color:#4b606f;text-align:left'>
-                ASD 행동점수는 A1~A10 문항의 기존 가중치를 더해 계산하고, 환경·생활 특성 점수는 NSCH-ASD 로지스틱 회귀 모델이 계산한 0~1 범위의 점수에 100을 곱해 계산합니다. 두 원자료는 같은 아동을 함께 조사한 자료가 아니므로, 두 예측값과 실제 정답으로 학습한 결합·스태킹 모델은 현재 존재하지 않습니다.<br><br>
-                <b>종합점수 = (ASD 행동점수 + 환경·생활 특성 점수) ÷ 2</b><br><br>
+                ASD 행동점수는 A1~A10 문항의 기존 가중치를 더해 계산합니다. 생활환경 위험신호 점수는 4~11세 NSCH 자료에서 ACE 4개 이상 여부를 비교한 뒤, Random Forest 중요도로 계산한 문항 가중치와 선택 응답의 위험군 차이를 더해 계산합니다. 따라서 각 문항 응답은 점수에 독립적으로 반영됩니다.<br><br>두 원자료는 같은 아동을 함께 조사한 자료가 아니므로, 두 예측값과 실제 정답으로 학습한 결합·스태킹 모델은 현재 존재하지 않습니다.<br><br>
+                <b>종합점수 = (ASD 행동점수 + 생활환경 위험신호 점수) ÷ 2</b><br><br>
                 따라서 최종 종합점수는 두 영역을 같은 비중으로 정리한 프로젝트 참고점수이며, 두 영역이 각각 높은지 여부는 위의 ‘영역별 확인’ 2×2 결과로 별도로 표시합니다.
               </div>
             </div>
@@ -2085,7 +2866,10 @@ elif menu.startswith("7."):
                 if checked:
                     total_score += points
                     checked_items.append(feature)
-            asd_next = st.button("다음 설문으로 넘어가기", type="primary", use_container_width=True, key="asd_next")
+            st.markdown('<div style="height:.45rem"></div>', unsafe_allow_html=True)
+            next_left, next_button, next_right = st.columns([.35, .30, .35], gap="small")
+            with next_button:
+                asd_next = st.button("저장하고 다음설문하기", type="primary", use_container_width=True, key="asd_next")
 
         if total_score >= very_high_cutoff:
             result_title = "ASD 선별 매우 고관찰 구간"
@@ -2203,7 +2987,9 @@ elif menu.startswith("7."):
 
         if asd_next:
             # 버튼 제출 후 선택한 응답은 session_state에 남아 있고, 생활환경 설문 탭만 연다.
-            move_to_checklist_tab(1)
+            st.session_state["asd_survey_saved"] = True
+            st.session_state["checklist_target_tab"] = 1
+            st.rerun()
 
     with st.expander("점수 구간별 선정 기준"):
         st.markdown("이 점수 구간은 <b>프로젝트 데이터의 가중점수 분포를 바탕으로 만든 관찰 단계</b>입니다.", unsafe_allow_html=True)

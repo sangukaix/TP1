@@ -1,0 +1,10 @@
+﻿split,severity_group,count
+test,ACE 0~3개,3710
+test,ACE 4~5개,113
+test,ACE 6개 이상,41
+train,ACE 0~3개,11125
+train,ACE 4~5개,335
+train,ACE 6개 이상,121
+validation,ACE 0~3개,3708
+validation,ACE 4~5개,111
+validation,ACE 6개 이상,40

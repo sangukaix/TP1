@@ -1,0 +1,10 @@
+﻿column,korean_name,analysis_missing_count,train_missing_count,method,train_mode_code
+family_r,가족 형태,84,49,Train 자료의 최빈 응답으로 대체,1.0
+a2_relation,두 번째 보호자와 아이의 관계,137,81,Train 자료의 최빈 응답으로 대체,1.0
+everhomeless,거주지 없이 지낸 경험,86,50,Train 자료의 최빈 응답으로 대체,2.0
+a1_relation,주 보호자와 아이의 관계,68,40,Train 자료의 최빈 응답으로 대체,1.0
+a1_marital,주 보호자의 혼인 상태,143,88,Train 자료의 최빈 응답으로 대체,1.0
+foodsit,최근 12개월 가구 식품 상황,66,38,Train 자료의 최빈 응답으로 대체,1.0
+homeevic,주거 퇴거 걱정,33,20,Train 자료의 최빈 응답으로 대체,5.0
+k7q04r_r,학교가 가정에 문제로 연락한 횟수,4904,2925,Train 자료의 최빈 응답으로 대체,1.0
+bullied_r,최근 따돌림·괴롭힘 경험,4831,2879,Train 자료의 최빈 응답으로 대체,1.0

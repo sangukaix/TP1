@@ -1,0 +1,89 @@
+{
+  "analysis_question": "4~11세 아동의 ACE 4개 이상 경험 위험신호와 환경·생활 특성",
+  "target": {
+    "definition": "ACE 9개 중 4개 이상 = 1, 0~3개 = 0",
+    "age_range": "4~11세",
+    "ace_columns": [
+      "ace1",
+      "ace3",
+      "ace4",
+      "ace5",
+      "ace6",
+      "ace7",
+      "ace8",
+      "ace9",
+      "ace10"
+    ]
+  },
+  "candidate_count": 39,
+  "final_features": [
+    "family_r",
+    "everhomeless",
+    "a1_relation",
+    "a1_marital",
+    "foodsit",
+    "k7q04r_r",
+    "homeevic",
+    "bullied_r"
+  ],
+  "final_feature_count": 8,
+  "model": "RandomForest",
+  "validation_threshold": 0.5700000000000002,
+  "severity_weighting": {
+    "rule": "ACE 0~3개=1.0, ACE 4개 이상은 ACE_COUNT/4",
+    "purpose": "ACE 누적 개수가 많은 사례를 학습과 임계값 선택에 더 크게 반영"
+  },
+  "severity_model": {
+    "target": "ACE 4개 이상 집단 안에서 6개 이상=1, 4~5개=0",
+    "model": "LogisticRegression",
+    "validation_threshold": 0.36000000000000004,
+    "use": "1차 위험신호 점수에 누적 단계 패턴을 보조 표시"
+  },
+  "three_class_review": {
+    "groups": [
+      "ACE 0~3개",
+      "ACE 4~5개",
+      "ACE 6개 이상"
+    ],
+    "decision": "불균형을 줄이기 위해 한 번에 3분류하지 않고 1차 4개 이상 분류 + 2차 6개 이상 분류의 계층형 구조 사용"
+  },
+  "environment_score_bands": {
+    "method": "validation weighted-score fixed bands",
+    "source": "validation only",
+    "thresholds": [
+      0.0,
+      25.0,
+      51.000000000000014,
+      55.73894166551589,
+      100.0
+    ]
+  },
+  "survey_score": {
+    "method": "RF 문항 가중치 × 응답별 반영점수의 합",
+    "validation_threshold": 0.5100000000000001,
+    "validation_metrics": {
+      "model": "WeightedSurveyScore",
+      "split": "validation",
+      "threshold": 0.5100000000000001,
+      "accuracy": 0.9323658979010107,
+      "precision": 0.25225225225225223,
+      "recall": 0.3708609271523179,
+      "f1": 0.3002680965147453,
+      "roc_auc": 0.8832227794566249,
+      "severity_weighted_f1": 0.3337278106508876,
+      "ace6plus_recall": 0.45
+    },
+    "test_metrics": {
+      "model": "WeightedSurveyScore",
+      "split": "test",
+      "threshold": 0.5100000000000001,
+      "accuracy": 0.9254658385093167,
+      "precision": 0.20869565217391303,
+      "recall": 0.3116883116883117,
+      "f1": 0.25,
+      "roc_auc": 0.8821314803794589,
+      "severity_weighted_f1": 0.27530364372469635,
+      "ace6plus_recall": 0.3170731707317073
+    }
+  }
+}
