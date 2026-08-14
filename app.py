@@ -2742,7 +2742,17 @@ elif menu.startswith("7."):
     with survey_tabs[2]:
         # ASD는 기존 가중 체크리스트 합계, 환경 점수는 RF 문항 가중치와 응답별 위험신호 반영점수를 더한 값이다.
         # 동일한 아동을 두 데이터에서 함께 관찰한 자료가 없으므로, 별도 결합 모델 없이 두 점수를 같은 비중으로 평균한다.
-        env = float(st.session_state.get("nsch_environment_score", 0.0)); asd = sum(int(r["points"]) for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows() if st.session_state.get(f"teacher_check_{r['feature']}", False)) if not weighted_checklist.empty else 0; asd_pct = min(100.0, float(asd)); avg = (asd_pct + env) / 2
+        env = float(st.session_state.get("nsch_environment_score", 0.0))
+        # 저장하고 다음 설문하기를 누른 뒤에는 확정한 ASD 점수를 사용한다.
+        # 저장 전이거나 이전 세션이면 기존 체크박스 합산값을 안전한 기본값으로 사용한다.
+        asd_fallback = sum(
+            int(r["points"])
+            for _, r in weighted_checklist[weighted_checklist["feature"].isin(BEHAVIOR)].head(10).iterrows()
+            if st.session_state.get(f"teacher_check_{r['feature']}", False)
+        ) if not weighted_checklist.empty else 0
+        asd = float(st.session_state.get("asd_behavior_score", asd_fallback))
+        asd_pct = min(100.0, asd)
+        avg = (asd_pct + env) / 2
         environment_score_bands = pd.read_csv(NSCH_RISK_ART / "environment_score_bands.csv")
         survey_cutoff = float(environment_score_bands.iloc[2]["lower_score"])
         high = asd >= int(meta.get("weighted_checklist", {}).get("high_cutoff", 65)); env_high = env >= survey_cutoff
@@ -2986,7 +2996,10 @@ elif menu.startswith("7."):
             )
 
         if asd_next:
-            # 버튼 제출 후 선택한 응답은 session_state에 남아 있고, 생활환경 설문 탭만 연다.
+            # 생활환경 설문으로 이동하기 전에 행동 설문의 현재 점수와 선택 문항을 확정해 둔다.
+            # 종합 결과는 이 저장값을 우선 사용하므로 탭을 이동해도 ASD 점수가 사라지지 않는다.
+            st.session_state["asd_behavior_score"] = float(total_score)
+            st.session_state["asd_behavior_answers"] = checked_items.copy()
             st.session_state["asd_survey_saved"] = True
             st.session_state["checklist_target_tab"] = 1
             st.rerun()
