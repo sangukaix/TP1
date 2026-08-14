@@ -560,7 +560,8 @@ final_row = final_result.iloc[0] if not final_result.empty else pd.Series(dtype=
 # ============================================================
 def normalize_raw(df):
     out = df.copy()
-    for c in out.select_dtypes(include=["object"]).columns:
+    # pandas 3.x에서는 문자열 dtype이 object와 분리될 수 있으므로 둘 다 명시한다.
+    for c in out.select_dtypes(include=["object", "str"]).columns:
         out[c] = out[c].astype("string").str.strip().str.strip("'").str.strip('"')
         out[c] = out[c].replace("?", pd.NA)
     out = out.rename(
@@ -1583,37 +1584,6 @@ def environment_score_position_chart(score, score_bands):
     fig.tight_layout(pad=.7)
     st.pyplot(fig, width="content")
     plt.close(fig)
-
-
-def move_to_checklist_tab(tab_index):
-    """폼 제출 뒤 체크리스트의 다음/이전 탭을 선택한다.
-
-    Streamlit 탭은 서버에서 선택 상태를 직접 바꾸는 API가 없어, 제출이 끝난 뒤
-    화면의 탭 버튼을 한 번 선택한다. 설문 응답 자체는 모두 session_state에 보관된다.
-    """
-    components.html(
-        f"""<script>
-        const targetTabLabels = ["1. ASD 행동설문", "2. 생활환경 설문", "3. 종합 결과"];
-        function selectChecklistTab() {{
-            const root = window.parent.document;
-            const tabs = Array.from(root.querySelectorAll('button[role="tab"], button[data-baseweb="tab"]'));
-            const targetLabel = targetTabLabels[{int(tab_index)}];
-            const target = tabs.find(tab => (tab.innerText || tab.textContent || '').includes(targetLabel));
-            if (target) {{
-                target.click();
-                target.scrollIntoView({{behavior: 'smooth', block: 'start'}});
-                return true;
-            }}
-            return false;
-        }}
-        let tabAttempts = 0;
-        const tabTimer = window.setInterval(() => {{
-            tabAttempts += 1;
-            if (selectChecklistTab() || tabAttempts >= 25) window.clearInterval(tabTimer);
-        }}, 100);
-        </script>""",
-        height=0,
-    )
 
 
 def make_summary_pdf(student_name, asd_score, env_score, total_score, verdict, summary_label):
